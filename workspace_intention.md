@@ -1,0 +1,1 @@
+This workspace is a special build for engineering high level prompts for AI LLM's looping and agentic abilities.

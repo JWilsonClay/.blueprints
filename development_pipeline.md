@@ -6,11 +6,11 @@ To maximize efficiency and minimize workload, the AI must provide complete, chai
 
 **AI Command Generation Rules:**
 1.  **Structure:** Numbered descriptive headers (e.g., 'Command 1: Verify Qwen Restore') followed by the full command as a single-line chained string using `&&` (ensure the footer executes by using `;` or `||` logic where appropriate).
-2.  **Environment:** Start every command with `cd <PROJECT_ROOT> && source <VENV_PATH>/bin/activate &&`. (Exception: Skip this prefix for system information queries or initial project creation commands where the folder/venv does not yet exist). **CRITICAL:** If `<PROJECT_ROOT>` or `<VENV_PATH>` are not defined in the Global Project Context, **STOP** and ask the user to provide them before generating commands. Do not output literal placeholders.
+2.  **Environment:** Start every command with `cd <PROJECT_ROOT> && source <VENV_PATH>/bin/activate &&`. (Exception: Skip this prefix for System Command 0, system information queries, or initial project creation commands where the folder/venv does not yet exist). **CRITICAL:** If `<PROJECT_ROOT>` or `<VENV_PATH>` are not defined in the Global Project Context, **STOP** and ask the user to provide them before generating commands. Do not output literal placeholders.
 3.  **Logging:** *Mandatory* automatic logging.
     *   Append output: `2>&1 | tee -a <LOG_PATH>` (Ensure <LOG_PATH> is replaced by the value in Global Project Context)
     *   Footer: `echo "=== COMMAND NAME COMPLETED ===" 2>&1 | tee -a <LOG_PATH>`
-    *   Session Start: `System Command 0` (and ONLY Command 0) must overwrite the log file (use `tee` instead of `tee -a`) to clean it for the new iteration.
+    *   Iteration Start: `System Command 0` (and ONLY Command 0) must overwrite the log file (use `tee` instead of `tee -a`). This enforces the "Transient Log Workflow": logs are cleared at the start of every new AI-User iteration to prevent file bloat and ensure the AI analyzes only the most recent execution context.
 4.  **Error Handling:** Include `|| echo "Error..."` chains to log failures without crashing the user's terminal experience.
 5.  **Timestamps:** Prefix completion echoes with `$(date)`.
 6.  **Estimates:** Include estimated execution time inline.
@@ -18,8 +18,7 @@ To maximize efficiency and minimize workload, the AI must provide complete, chai
 8.  **Timeouts:** Use `timeout` for long-running ops (default 5 mins) to prevent hangs.
 9.  **Verification:** Log environment details (e.g., `python --version`, `pwd`) at the start.
 10. **Verbosity:** Include verbose flags (`-v`) where appropriate, capturing output via `2>&1 | tee -a ...`.
-11. **Noise Control:** For noisy commands, redirect stdout to null (`> /dev/null`) but keep errors (`2>> <LOG_PATH>`), while echoing status.
-    *   *Clarification:* This rule is an exception to Rule 3. For noisy commands, redirect stdout to null (`> /dev/null`) but keep errors (`2>> <LOG_PATH>`), while echoing status.
+11. **Noise Control:** As an exception to Rule 3, for noisy commands, redirect stdout to null (`> /dev/null`) but keep errors (`2>> <LOG_PATH>`). Ensure status is echoed separately (e.g., `echo "Status..." && cmd > /dev/null 2>> <LOG_PATH>`).
 
 ## Global Directives: Project Management
 At the beginning, if I mention a new project or provide a tree structure (via command output or description), immediately suggest terminal commands to create the project folder (e.g., mkdir project_name && cd project_name) and organize it logically (e.g., subfolders like src, tests, docs, logs; use mv to relocate files if needed). 
@@ -31,15 +30,19 @@ Explain suggestions briefly before commands.
 Global definition Manual Commands
 Global format for Manual Commands: markdown with code block
 Example:
+```bash
+# [Description of Manual Command]
+command_to_execute arguments
+```
 
 Global format for Code Updates (Diff/Patch):
 1. **System Command:** Use `printf`, `echo`, or `sed` to write files directly (preferred for automation).
 2. **Diff/Block:** Provide a Unified Diff or full code block if manual review is needed.
 
-System Command 0: Log Session Start
-Estimated Time: Instant (simple echo operation). **Note:** This is the ONLY command that uses `tee` (overwrite). All subsequent commands MUST use `tee -a` (append).
+System Command 0: Iteration Start & Log Reset
+Estimated Time: Instant. **Purpose:** Resets the transient log file. This is the ONLY command that uses `tee` (overwrite). All subsequent commands in this iteration MUST use `tee -a` (append). This prevents multi-GB log files and isolates the context for the current cycle.
 ```bash
-echo "=== New Session: [Description] - $(date '+%Y-%m-%d %H:%M:%S') ===" 2>&1 | tee <LOG_PATH>
+echo "=== New Iteration: [Description] - $(date '+%Y-%m-%d %H:%M:%S') ===" 2>&1 | tee <LOG_PATH>
 ```
 
 System Command: Display Comprehensive System Information
