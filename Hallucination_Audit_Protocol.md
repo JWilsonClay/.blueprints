@@ -22,14 +22,19 @@ Dimensions MUST be defined as independent modules that map to the execution work
 Custom auditing environments MAY append additional dimensions by providing a compatible schema matrix of `(Check, Trigger, Fix)`.
 
 **Dimension Registration Schema:**
-Custom dimensions MUST adhere to the following strict Markdown structure to ensure dynamic parsing:
-`### Dimension [ID_NUMBER]: [Name] ([Focus])`
-`*Category Prefix: [PREFIX]*`
-`*Goal: [Statement]*`
-`1. **[Check Name]:**`
-`   * *Trigger/Check:* [Definition]`
-`   * *Protocol/Risk:* [Risk or Rule]`
-`   * *Fix/Example:* [Remediation]`
+Custom dimensions MUST adhere to the following YAML-based schema, wrapped in a `yaml` fenced code block, to ensure structured dynamic parsing:
+```yaml
+dimension_id: [ID_NUMBER]
+name: [Name]
+focus: [Focus]
+category_prefix: [PREFIX]
+goal: [Statement]
+checks:
+  - check_name: [Check Name]
+    trigger: [Definition]
+    risk: [Risk or Rule]
+    fix_example: [Remediation]
+```
 
 ### Dimension 01: Consistency (Contradiction Detection)
 *Category Prefix: CONSIST*
@@ -89,14 +94,13 @@ Custom dimensions MUST adhere to the following strict Markdown structure to ensu
 
 To execute this protocol, the AI Auditor performs the following pass:
 
-1.  **Ingest & Tokenize:** Parse the document into an Abstract Syntax Tree (AST) to securely isolate fenced code blocks, blockquotes, and tables from prose. 
-    Tag standard prose as "Instructional Blocks" and fenced/quoted content as "Example Blocks."
+1.  **Ingest & Segment:** Functionally segment the document by identifying standard Markdown boundaries. Extract all fenced code blocks (using triple backticks), blockquotes (`>`), and tables to isolate them from instructional prose. Tag standard unstructured prose as "Instructional Blocks" and isolated content as "Example Blocks."
 2.  **Targeted Logic Mapping:** 
     * Isolate sentences containing generalized global modifiers (e.g., "Always", "Never", "Must", "All"). 
     * Extract imperative verbs exclusively from these high-risk constraint blocks.
     * Extract all binding assertions simultaneously (Is, Are Not, Will, Shall Not).
     * Extract all passive structural constraints (Are to be, Must not be).
-    * Generate a structured tuple for each extracted element: `(Constraint_Type, Action_or_State, Target_Object, Scope)`.
+    * Generate a structured mapping for each extracted element: `(Element_Type, Primary_Target, Contextual_Scope, Violated_Rule)`. For constraint blocks, this maps to `("Imperative Constraint", Action, Target, Scope)`. For static examples, it maps to `("Example Block", Entity_Name, File_Context, N/A)`.
     * Flag any single line containing multiple imperative verbs or competing constraints as a violation of the active "Ventilated Prose" rule.
     * *Example:* `("Imperative", "Delete", "User Account", "Global / After 30 days")`
 3.  **Dynamic Dimension Execution:** Iterate over all active Dimension modules successfully parsed from the document structure, remaining completely agnostic to their specific identifiers or customized origins.
@@ -145,6 +149,9 @@ For automated pipelines, the AI Auditor MUST generate the Gap Analysis Report as
 {
   "report_metadata": {
     "document_name": "[Document Name]",
+    "protocol_applied": "OP-RISK-AUDIT",
+    "protocol_version": "[VERSION]",
+    "audit_timestamp": "[ISO-8601]",
     "status": "[PASS/FAIL]",
     "extensions": {}
   },
@@ -169,6 +176,9 @@ If no gaps are detected across all dimensions, the `findings` array MUST be stri
 {
   "report_metadata": {
     "document_name": "[Document Name]",
+    "protocol_applied": "OP-RISK-AUDIT",
+    "protocol_version": "[VERSION]",
+    "audit_timestamp": "[ISO-8601]",
     "status": "PASS",
     "extensions": {}
   },
