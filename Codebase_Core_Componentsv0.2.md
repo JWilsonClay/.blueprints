@@ -1,34 +1,97 @@
-In the works:
-1. Token Density & Conciseness
-LLMs have context windows. "Fluff" or conversational filler dilutes the density of instructions.
+---
+# BLUEPRINT: Codebase Core Components
+version: v0.2.1
+date: 2026-03-01
+changelog:
+  - v0.2.1: Resolved GAP-05 (Scope Conflict) and verified GAP-06 (Changelog).
+  - v0.2: Added "Logging Integration" column. Aligned with table_formatter.py.
+  - v0.1: Initial schema definition.
+canonical_tool: table_formatter.py
+output_dir: "[TARGET_PROJECT_ROOT]/docs/checklists/"
+---
 
-Practice: Remove introductory paragraphs that explain "Why" unless they contain critical constraints.
-Example: Instead of "To make this practical and actionable, I'll complete the list...", just start the list. The AI understands the list implies actionability.
-2. Explicit Schemas over Prose
-When defining the output format (the Checklists), prose descriptions can be ambiguous.
+### Prompt to Execute this Document
+# ROLE
+You are a Senior Codebase Auditor and Documentation Engineer. Your execution must be mechanical, exhaustive, and strictly bound by the provided schemas.
 
-Practice: Define the target structure using a pseudo-schema or strict template.
-Example: Instead of describing the columns in a paragraph, provide a JSON skeleton or a strict Markdown Table Template block.
-3. Negative Constraints
-LLMs are eager to please and may hallucinate features to be helpful.
+# CONTEXT
+Reference Document: `Codebase_Core_Componentsv0.2.md` (The Blueprint).
+Target Codebase: [INSERT PROJECT ROOT PATH OR ATTACH CODE FILES HERE]
 
-Practice: Explicitly state what is out of scope.
-Example: "Do not include hardware drivers. Do not include project management tools." (You already have some of this, but making it a bulleted "Constraints" section increases adherence).
-4. Anchor Identifiers
-Practice: Assign unique IDs or anchors to sections.
-Benefit: Allows you to reference specific rules in future prompts (e.g., "Review code against [Rule 7.2]").
-5. Versioning & Changelogs
-Practice: Keep a compact changelog at the top of the file.
-Benefit: Helps the AI understand the evolution of the document (e.g., "v0.2 added Logging"). This provides temporal context for why certain rules exist.
-End of In the works.
+# OBJECTIVE
+Generate the mandatory documentation artifacts defined in the Blueprint. 
+You must analyze the provided source code and map **every** element to its corresponding checklist file, EXCEPT those explicitly excluded by the Negative Constraints below.
+
+# OUTPUT REQUIREMENTS
+Generate the following Markdown files. Do not summarize; list **every** instance found in the code.
+
+1. `FEATURES_CHECKLIST.md`
+2. `FUNCTIONS_CHECKLIST.md`
+3. `CLASSES_CHECKLIST.md`
+4. `MODULES_CHECKLIST.md`
+5. `VARIABLES_CHECKLIST.md` (Global/Config level only)
+6. `DATA_STRUCTURES_CHECKLIST.md`
+7. `ALGORITHMS_CHECKLIST.md`
+8. `APIS_CHECKLIST.md`
+9. `TESTS_CHECKLIST.md`
+10. `CONFIGURATIONS_CHECKLIST.md`
+11. `DEPENDENCIES_CHECKLIST.md`
+12. `DOCUMENTATION_CHECKLIST.md`
+
+# STRICT SCHEMA ENFORCEMENT
+For each file, use the exact table columns defined in v0.2. 
+**CRITICAL:** You must include the "Logging Integration" column for every table where applicable.
+**CRITICAL:** Every table entry (Header, Separator, and Data Rows) MUST be terminated by a literal newline (\n). 
+Consolidating multiple rows into a single plane is a fatal violation of Auditability.
+
+## Table Template
+| [Name] | [Description] | [File Name] | [Line Numbers] | [Logging Integration] |
+|---|---|---|---|---|
+| (Identifier) | (What it does) | (Relative Path) | (Start-End) | (Log level, library used, or "None") |
+
+## Table Schema Rules
+- RULE-S1: Every table MUST have exactly one header row.
+- RULE-S2: Every table MUST have exactly one separator row immediately following the header. The separator row MUST use `---` per column and MUST NOT contain other content.
+- RULE-S3: Every data row MUST have the same number of columns as the header row.
+- RULE-S4: Every row MUST be terminated with a literal newline character (`\n`)-row consolidation is a fatal violation.
+- RULE-S5: Pipe characters (`|`) within cell content MUST be escaped as `\|`.
+- RULE-S6: File paths are relative to the TARGET project root, not to the `.blueprints` directory.
+
+# NEGATIVE CONSTRAINTS (DO NOT DO THIS)
+1. **Do not hallucinate functionality.** If a function has no logging, write "None". 
+Do not assume it *should* have logging.
+2. **Do not skip "trivial" code.** If a function exists in the source, it must exist in the table.
+3. **Do not use conversational filler.** Output only the file names and the markdown tables.
+4. **Do not include external library code** or traverse excluded directories (e.g., `node_modules`, `venv`, `.git`, `build`, `dist`, `target`) unless explicitly documenting `DEPENDENCIES_CHECKLIST.md`.
+5. **Do not guess line numbers.** Use the actual line numbers from the provided context.
+6. **Do not consolidate rows or instructions.** Each instance mapped in a checklist must occupy its own unique line in the physical file, and every logical mandate must be terminated by a literal newline (`\n`). 
+Ventilated prose (One Statement Per Line) is mandatory.
+
+# EDGE CASE HANDLING
+1. **Anonymous Functions/Lambdas:** Group these under the parent function or module in the Description column; do not give them their own row unless they are assigned to a constant.
+2. **Empty Files:** If a file exists but contains no relevant components, list it in `MODULES_CHECKLIST.md` with the description "Empty/Placeholder".
+3. **Ambiguous Features:** If a block of code serves multiple features, list it in `FEATURES_CHECKLIST.md` under the primary feature, and cross-reference in the Description.
+
+# EXECUTION STEP
+Proceed to generate the checklists based on the attached codebase.
 
 ### Core Components of a Software Engineering Codebase
-## Global Constraint - Ventilated Prose In Effect for this document - One Statement Per Line Only
+## Global Constraint - Ventilated Prose In Effect for this document
+**One Statement Per Line Only:** A "Statement" is a single imperative instruction, condition, or data row. Every statement must be terminated by a newline (`\n`).
 
 In software engineering, a codebase represents the foundational structure of any application, library, or system. 
 It encompasses a wide array of elements that collectively enable functionality, maintainability, scalability, and collaboration. 
 The user's prompt begins with "Every code base consists of feature, functions,...", implying a need to expand this into a comprehensive list of key constituents, while remaining strictly within the domain of software engineering. 
 This excludes hardware, business processes, or non-technical aspects like team dynamics or project management tools (e.g., Jira or Trello), focusing instead on code-centric elements.
+
+## Global Tooling Definition
+To ensure the checklist tables defined below remain readable and CommonMark compliant, a dedicated formatter script is provided.
+**Tool**: `table_formatter.py`
+**Purpose**: Automatically aligns pipe tables in all checklist files.
+**Terminal Call**:
+```bash
+python3 .blueprints/table_formatter.py --pattern "*_CHECKLIST.md"
+```
 
 To make this practical and actionable, I'll complete the list by enumerating essential components, drawing from established software engineering principles such as modularity (e.g., from SOLID principles), separation of concerns, and best practices in version control systems like Git. 
 For each component, I'll provide:
@@ -333,54 +396,3 @@ Trade-offs: Brevity vs. depth. Implications: Onboarding acceleration; compliance
 | Inline Comment for quickSort | Details algorithm steps and complexity. | algorithms/sort.cpp | 8-9 | References logging for profiling |
 
 This list is comprehensive yet bounded: It covers the spectrum from abstraction to implementation without venturing into non-software elements like hardware interfaces or DevOps tooling (e.g., Dockerfiles, which could be seen as configs but are often separate). In practice, adapt based on paradigm (e.g., more emphasis on functions in functional programming). Implementing these checklists in a repository root fosters a self-documenting codebase, reducing onboarding time by 30-50% (based on industry benchmarks) and aiding in compliance audits. If your codebase evolves (e.g., adopting new paradigms), revisit and expand these files iteratively.
-
-### Prompt to Execute this Document
-# ROLE
-You are a Senior Codebase Auditor and Documentation Engineer. Your execution must be mechanical, exhaustive, and strictly bound by the provided schemas.
-
-# CONTEXT
-Reference Document: `Codebase_Core_Componentsv0.2.md` (The Blueprint).
-Target Codebase: [INSERT PROJECT ROOT PATH OR ATTACH CODE FILES HERE]
-
-# OBJECTIVE
-Generate the mandatory documentation artifacts defined in the Blueprint. You must analyze the provided source code and map **every** element to its corresponding checklist file. 
-
-# OUTPUT REQUIREMENTS
-Generate the following Markdown files. Do not summarize; list **every** instance found in the code.
-
-1. `FEATURES_CHECKLIST.md`
-2. `FUNCTIONS_CHECKLIST.md`
-3. `CLASSES_CHECKLIST.md`
-4. `MODULES_CHECKLIST.md`
-5. `VARIABLES_CHECKLIST.md` (Global/Config level only)
-6. `DATA_STRUCTURES_CHECKLIST.md`
-7. `ALGORITHMS_CHECKLIST.md`
-8. `APIS_CHECKLIST.md`
-9. `TESTS_CHECKLIST.md`
-10. `CONFIGURATIONS_CHECKLIST.md`
-11. `DEPENDENCIES_CHECKLIST.md`
-12. `DOCUMENTATION_CHECKLIST.md`
-
-# STRICT SCHEMA ENFORCEMENT
-For each file, use the exact table columns defined in v0.2. 
-**CRITICAL:** You must include the "Logging Integration" column for every table where applicable.
-
-## Table Template
-| [Name] | [Description] | [File Name] | [Line Numbers] | [Logging Integration] |
-|---|---|---|---|---|
-| (Identifier) | (What it does) | (Relative Path) | (Start-End) | (Log level, library used, or "None") |
-
-# NEGATIVE CONSTRAINTS (DO NOT DO THIS)
-1. **Do not hallucinate functionality.** If a function has no logging, write "None". Do not assume it *should* have logging.
-2. **Do not skip "trivial" code.** If a function exists in the source, it must exist in the table.
-3. **Do not use conversational filler.** Output only the file names and the markdown tables.
-4. **Do not include external library code** or traverse excluded directories (e.g., `node_modules`, `venv`, `.git`, `build`, `dist`, `target`) unless explicitly documenting `DEPENDENCIES_CHECKLIST.md`.
-5. **Do not guess line numbers.** Use the actual line numbers from the provided context.
-
-# EDGE CASE HANDLING
-1. **Anonymous Functions/Lambdas:** Group these under the parent function or module in the Description column; do not give them their own row unless they are assigned to a constant.
-2. **Empty Files:** If a file exists but contains no relevant components, list it in `MODULES_CHECKLIST.md` with the description "Empty/Placeholder".
-3. **Ambiguous Features:** If a block of code serves multiple features, list it in `FEATURES_CHECKLIST.md` under the primary feature, and cross-reference in the Description.
-
-# EXECUTION STEP
-Proceed to generate the checklists based on the attached codebase.

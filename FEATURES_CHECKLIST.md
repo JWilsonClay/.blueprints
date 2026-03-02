@@ -1,0 +1,12 @@
+# FEATURES_CHECKLIST.md
+
+| [Name]                       | [Description]                                                                                              | [File Name]                        | [Line Numbers] | [Logging Integration] |
+| ---                          | ---                                                                                                        | ---                                | ---            | ---                   |
+| Checklist Formatting         | Auto-aligns Markdown tables using space padding for visual consistency and CommonMark compliance.          | checklist_formatter.py             | 1-330          | None                  |
+| Codebase Aggregation         | Scans project root for major programming languages and aggregates source code into a single manifest file. | search_copy.py                     | 1-138          | None                  |
+| Operational Protocols        | Strict terminal workflow dictates for manual command execution and automatic logging.                      | development_pipeline.md            | 1-42           | None                  |
+| Core Component Auditing      | Defines the technical framework and mandatory artifacts for software engineering codebase audits.          | Codebase_Core_Componentsv0.2.md    | 1-387          | None                  |
+| Role Initialization          | Hierarchical delegation patterns for Architect, Project Manager, and Systems Engineer roles.               | 01Senior_Architect_Role_Starter.md | 1-19           | None                  |
+| Differential Diff Protection | Strategies for preventing LLM diff corruption during code updates.                                         | diffcorrector                      | 1-16           | None                  |
+| Time Tracking                | Status monitoring for last update and sequence tracking.                                                   | gemini_clock.md                    | 1-1            | None                  |
+| Workspace Context            | High-level goal definition for the agentic prompt engineering workspace.                                   | workspace_intention.md             | 1-1            | None                  |

@@ -53,9 +53,9 @@ System Command: Display Comprehensive System Information
 # Development Pipeline - Blueprints v1
 
 ## Global Project Context (copy this into every stage prompt)
-Project Name: 
-Project Root Path: 
-Virtual Env Path: 
+Project Name: Blueprints
+Project Root Path: .blueprints
+Virtual Env Path: to be set up
 Log File Path: ~/Desktop/terminal.log  #USER DEFINED SETTING
 Overall Goal: 
 Languages Used: 
