@@ -7,9 +7,9 @@ protocol_dependencies:
   - OP-EVAL-MEASURE@1.0.0
 version: 1.0.0
 status: ACTIVE
-last_updated: 2026-03-02
+date_created: 2026-03-02
+date_modified: 2026-03-03
 ---
-
 **Role:** Genesis_Agent.
 
 - In detail, your ROLE is to act as the specialized Agentic Substrate Creator.

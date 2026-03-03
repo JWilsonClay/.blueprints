@@ -2,7 +2,8 @@
 protocol_id: OP-SUBSTRATE-COMP
 version: 1.0.0
 status: ACTIVE
-last_updated: 2026-03-03
+date_created: 2026-03-03
+date_modified: 2026-03-03
 ---
 # Operational Protocol: Substrate Core Components (OP-SUBSTRATE-COMP)
 
@@ -113,4 +114,4 @@ last_updated: 2026-03-03
 ```
 
 ---
-*Ventilated Prose Enforced | Protocol: OP-CORE-COMP*
+*Ventilated Prose Enforced | Protocol: OP-SUBSTRATE-COMP*

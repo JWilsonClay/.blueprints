@@ -60,18 +60,23 @@
 
 ## Part 3: Summary Matrix
 
-| ID | Trajectory / Phase | Importance | Status |
-|---|---|---|---|
-| P-1 | Blueprint Restructure | Critical | In Progress |
-| P-2 | Script Consolidation | High | In Progress |
-| P-3 | Schema Hardening | Medium | Planned |
-| T-01 | Versioning / Registry | Critical | Proposed |
-| T-02 | Pipeline Orchestration | Critical | Proposed |
-| T-03 | Role Routing | High | Proposed |
-| T-04 | Snapshots / Diffing | High | Proposed |
 | T-05 | Security Hardening | Medium | Proposed |
 
 ---
-**Version:** v1.0.0
+
+## Part 4: Technical Debt & Remediations (Absorbed Gaps)
+
+### [G-01] Python Tooling Gaps (High)
+- Refactor `toolkits/activation_demonstration/` Python scripts to include mandatory logic headers and robust error recovery.
+- Standardize ASCII logging across the entire toolkit suite to ensure uniform terminal output (OP-TERMINAL-WORKFLOW).
+- Ensure all scripts support the dynamic `.blueprints` root detection implemented in `search_copy.py`.
+
+### [G-02] Documentation Anchoring (Medium)
+- Close the loop on "theoretical" notes by ensuring every philosophy insight is mapped to an operational dimension in `OP-RISK-AUDIT`.
+- Complete the modularization of the Genesis Agent prompt into the PCSF repository structure (OP-SYMBIO-PCSF).
+
+---
+**Version:** v1.1.0
 **Last Updated:** 2026-03-03
 **Owner:** AI Engineering Governance Board
+**Verification:** Orchestrator_Agent Validated

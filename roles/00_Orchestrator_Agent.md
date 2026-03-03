@@ -5,9 +5,9 @@ protocol_dependencies:
   - OP-CORE-COMP@1.0.0
 version: 1.0.0
 status: ACTIVE
-last_updated: 2026-03-02
+date_created: 2026-03-02
+date_modified: 2026-03-03
 ---
-
 **Role:** Orchestrator_Agent.
 
 - In detail, your ROLE is to act as the specialized AI Architect and Workflow Engine (The Brain).

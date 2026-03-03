@@ -2,9 +2,10 @@
 protocol_id: OP-RISK-AUDIT
 version: 1.0.0
 status: ACTIVE
-last_updated: 2026-03-01
 changelog:
   - 1.0.0: Initial release.
+date_created: 2026-03-02
+date_modified: 2026-03-03
 ---
 # Operational Protocol: Document Integrity & Hallucination Risk Assessment
 
@@ -158,6 +159,65 @@ example_checks:
     *   *Example:* emails, phone numbers, or physical addresses in the context.
     *   *Protocol:* Enforce strict redaction.
     *   *Fix:* Replace PII with generic tokens (e.g., `[REDACTED_EMAIL]`).
+
+### Dimension 07: Substrate Hygiene & Redundancy
+*Category Prefix: HYGIENE*
+*Goal: Prevent context noise by purging fully implemented or deprecated artifacts.*
+
+1.  **Functional Convergence:**
+    *   *Check:* Does the purpose of this file exist in a hardened `protocol/` or `role/`?
+    *   *Trigger:* Content describes rules, schemas, or behaviors that are now active imperatives in the operational substrate.
+    *   *Fix:* Flag for secure deletion.
+    *   *Fix:* Redirect logic to the authoritative protocol.
+2.  **Report Obsolescence:**
+    *   *Check:* Is this a "Closed" gap report or "Finished" analysis?
+    *   *Trigger:* The document summarizes a state of the system that is now the baseline ("Old News").
+    *   *Fix:* Flag for secure deletion.
+3.  **Conceptual Drift:**
+    *   *Check:* Does the file contain "theoretical" or "in-the-works" notes that have been superseded by concrete implementation?
+    *   *Trigger:* Notes describe logical patterns now active in the substrate.
+    *   *Fix:* Merge unique delta into the roadmap (`TRAJECTORY_EVOLUTION.md`).
+    *   *Fix:* Delete the source.
+4.  **Substrate Absorption Cycle:**
+    *   *Check:* Is this artifact evaluated as "Useful / Applicable" but resides outside the hardened directories?
+    *   *Trigger:* Document contains unique strategic, theoretical, or mission-critical data.
+    *   *Fix:* Scan workspace for the "Conceptual Anchor" (matching Role/Protocol).
+    *   *Fix:* Generate Implementation Plan to "Cohesively Merge" the data.
+    *   *Fix:* Execute merge and purge the source.
+
+### Dimension 07.5: Safety-Weighted Integration Matrix
+*Category Prefix: ABSORB*
+*Goal: Determine risk-optimal integration targets for unique root-level data.*
+
+1.  **Merge into Existing Artifact:**
+    *   *Condition:* Delta has zero ambiguity risk.
+    *   *Condition:* Delta fits within the target's existing logical scope.
+    *   *Condition:* Merge does NOT violate token density or "One Statement Per Line" rules.
+    *   *Instruction:* Execute direct refactor of the existing Role or Protocol.
+2.  **Create New Substrate Artifact:**
+    *   *Condition:* Delta introduces a new logical domain (e.g., new Agent Role).
+    *   *Condition:* Merging into existing documents exceeds the comprehensiveness vs. clarity threshold.
+    *   *Condition:* High risk of semantic dilution if grouped with unrelated logic.
+    *   *Instruction:* Instantiate a new Protocol/Role using `OP-SUBSTRATE-BUILD`.
+
+### Dimension 08: Substrate Seniority & Assimilation
+*Category Prefix: SENIORITY*
+*Goal: Prevent format pollution by ensuring newer artifacts assimilate to the established patterns of senior files.*
+
+1.  **Immutable Creation Stamp:**
+    *   *Trigger:* Missing or incorrect `date_created` field in YAML frontmatter.
+    *   *Protocol:* Every authoritative Role and Protocol MUST possess a fixed `date_created` field. 
+    *   *Fix:* Execute `substrate_birthmark_verifier.py` to anchor the date based on filesystem birth-metadata.
+2.  **Seniority-Based Refinement Authority:**
+    *   *Check:* Does a newer file (by `date_created`) propose an alteration to a senior file's hardened format or structure?
+    *   *Logic:* Senior files define the "Canonical Pattern." 
+    *   *Logic:* Newer files MUST assimilate to it.
+    *   *Risk:* CORROSION - Newer, un-audited patterns polluting senior, safe structures.
+    *   *Fix:* Reject alterations to senior files that degrade structural consistency. 
+    *   *Fix:* Force the newer file to adopt the senior file's syntax/schema.
+3.  **Assimilation Space Constraint:**
+    *   *Constraint:* Senior files MUST maintain a scalable "Registry Space" or header section to acknowledge the existence of newer files without altering their core operational logic.
+    *   *Fix:* Add a "Downstream Dependencies" or "Integration Matrix" section to senior protocols.
 
 ## 2. Execution Workflow
 

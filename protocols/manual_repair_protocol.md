@@ -2,7 +2,8 @@
 protocol_id: OP-MANUAL-REPAIR
 version: 1.0.0
 status: ACTIVE
-last_updated: 2026-03-03
+date_created: 2026-03-03
+date_modified: 2026-03-03
 ---
 # Operational Protocol: Manual/Precision Repair (OP-MANUAL-REPAIR)
 

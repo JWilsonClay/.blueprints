@@ -2,7 +2,8 @@
 protocol_id: OP-REFINE-HARDEN
 version: 1.0.0
 status: ACTIVE
-last_updated: 2026-03-02
+date_created: 2026-03-02
+date_modified: 2026-03-03
 ---
 # Operational Protocol: Refinement & Enhancement (OP-REFINE-HARDEN)
 
@@ -33,7 +34,7 @@ last_updated: 2026-03-02
 - You MUST implement every Critical/High finding verbatim.
 - You MUST explicitly document trade-off justifications.
 - This applys to any auditor suggestion you modify or reject.
-- You MUST systematically inject the seven robustness attributes into the refined substrate.
+- You MUST implement the seven robustness attributes defined in `OP-SUBSTRATE-BUILD` into the refined substrate.
 - You MUST execute the defined version-bump logic on the target artifact explicitly.
 
 ## 3. Conflict Resolution & Pareto Outputs

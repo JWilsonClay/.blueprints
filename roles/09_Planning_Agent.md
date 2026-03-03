@@ -4,9 +4,9 @@ protocol_dependencies:
   - OP-DECOMPOSE-TASK@1.0.0
 version: 1.0.0
 status: ACTIVE
-last_updated: 2026-03-02
+date_created: 2026-02-27
+date_modified: 2026-03-03
 ---
-
 **Role:** Planning_Agent.
 
 - In detail, your ROLE is to act as the Senior Project Manager and Sequence Generator.

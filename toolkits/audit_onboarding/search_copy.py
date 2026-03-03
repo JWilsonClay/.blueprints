@@ -2,8 +2,6 @@
 
 """Search Copy – intelligent file aggregation."""
 
-# PLACE A COPY IN THE PROJECT ROOT AND RUN IT TO GENERATE A CODEBASE MARKDOWN FILE.
-# A PART OF THE AUDIT_ONBOARDING TOOLKIT
 # VERSION: 1.0.0
 # ROBUSTNESS: Full seven attributes; provenance header; passes all audits and tests.
 # =====================================================
@@ -18,8 +16,16 @@ def generate_codebase_markdown():
     Languages are sorted by total code volume (character count) descending.
     Includes visually appealing ASCII art separators for better readability.
     """
-    # Automatically determine the workspace root (where the script is placed)
-    root_dir = os.path.dirname(os.path.abspath(__file__))
+    # Automatically determine the workspace root (finding .blueprints parent)
+    current = os.path.abspath(__file__)
+    root_dir = os.path.dirname(current)
+    while root_dir != os.path.dirname(root_dir):
+        if os.path.basename(root_dir) == ".blueprints":
+            break
+        root_dir = os.path.dirname(root_dir)
+    else:
+        root_dir = os.path.dirname(os.path.abspath(__file__))
+    
     project_name = os.path.basename(root_dir)
     output_filename = f"{project_name}.codebase.md"
     output_path = os.path.join(root_dir, output_filename)

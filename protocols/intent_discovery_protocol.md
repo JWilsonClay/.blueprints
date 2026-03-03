@@ -2,7 +2,8 @@
 protocol_id: OP-DISCOVER-INTENT
 version: 1.0.0
 status: ACTIVE
-last_updated: 2026-03-03
+date_created: 2026-03-03
+date_modified: 2026-03-03
 ---
 # Operational Protocol: Intent Discovery (OP-DISCOVER-INTENT)
 

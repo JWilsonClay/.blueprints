@@ -2,7 +2,8 @@
 protocol_id: OP-PRECISION-PRECISE
 version: 1.0.0
 status: ACTIVE
-last_updated: 2026-03-03
+date_created: 2026-03-03
+date_modified: 2026-03-03
 ---
 # Operational Protocol: Precision Surgery (OP-PRECISION-PRECISE)
 
@@ -16,13 +17,13 @@ last_updated: 2026-03-03
 
 ## 2. Surgical Workflow
 1.  **Lock State**: Isolate the target delta to exactly one file.
-2.  **Pre-Audit**: Run the full regression suite using `testing_sandbox.py`.
+2.  **Pre-Audit**: Run the full regression suite pursuant to `OP-TEST-VALIDATE`.
 3.  **Surgical Edit**: Apply the minimal possible patch.
 4.  **Post-Audit**: Re-run the regression suite to verify zero side effects.
 
 ## 3. Rollback Policy
 - You MUST trigger an immediate rollback on any regression detection.
-- You MUST utilize `git_bridge.py` for rollback execution.
+- You MUST execute rollbacks strictly according to `OP-INTEGRATE-MERGE` logic.
 - You MUST escalate to human oversight after 3 failed attempts.
 
 ## 4. Output Deliverables
