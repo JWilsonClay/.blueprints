@@ -17,8 +17,8 @@ last_updated: 2026-03-02
 ```
 
 **Protocol ID:** OP-ORCHESTRATE-META
-**Assigned Role:** Orchestrator (Capstone)
-**Target Audience:** All Execution Agents
+**Assigned Role:** Orchestrator_Agent
+**Target Audience:** All Macro-Agents
 
 ## 1. Core Function & Rationale
 

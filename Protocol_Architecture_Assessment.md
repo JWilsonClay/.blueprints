@@ -101,8 +101,18 @@ To maximize the 7 attributes, we reduce the 9 individual roles down to **4 Core 
 *(Implicit dependency on all protocols via parsing capabilities)*
 **Why:** The Orchestrator requires its own isolated compute to manage budgets, detect loops, and sequence the Genesis, Verification, and Deployment agents. It holds the meta-protocol that governs how the other protocols are allowed to evolve.
 
+#### 5. The Precision Agent (The Surgeon)
+*Focuses on interactive and surgical error correction across frontend and backend.*
+**Assigned Protocols:**
+*   `manual_repair_protocol.md` (OP-MANUAL-REPAIR)
+*   `precision_surgery_protocol.md` (OP-SURGEON-PRECISE)
+ 
+#### 6. The Intake & Planning Agents (The Onboarding Bridge)
+*Focuses on intent discovery and task decomposition.*
+**Assigned Protocols:**
+*   `intent_discovery_protocol.md` (OP-DISCOVER-INTENT)
+*   `task_decomposition_protocol.md` (OP-DECOMPOSE-TASK)
+
 ### Conclusion on Multi-Protocol Assignments
 
-By shifting to a **Protocol-Centric Ecosystem**, the intelligence of the system is permanently captured, version-controlled, and audited in the `/protocols/` directory. 
-
-By grouping those 9 protocols into **4 Macro-Agents**, you drastically reduce API latency, token bloat, and context-switching errors, mastering the **Efficient** and **Scalable** attributes while retaining 100% of the **Comprehensive** rigor required for autonomous evolution.
+By grouping those 10 protocols into **8 Specialized Agents**, you drastically reduce API latency while retaining 100% of the **Comprehensive** rigor required for autonomous evolution.

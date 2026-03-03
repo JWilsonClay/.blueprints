@@ -6,12 +6,12 @@ These eight production-grade utility scripts form a dedicated “Audit & Onboard
 
 Below I provide exhaustive details on **what each tool does**, **why it is indispensable for full, robust audits**, **how it wires into the 8 roles / 9 protocols**, **key nuances and edge cases**, and **broader implications**. I also include a mapping table and usage examples so the entire layer is immediately actionable.
 
-### 1. search_copy.py (given)
-**Core function**: Automatically discovers the workspace root, aggregates every source file from 20+ languages by volume (largest first), and emits a single beautifully formatted `[projectname].codebase.md` with ASCII art boxes, language headers, fenced code blocks, and visual separators.  
-**Why indispensable for audits**: Gives the Auditor / Evaluator roles a complete, single-file view of the entire codebase in one pass—ideal for feeding to an LLM without token waste or directory traversal errors. New developers can run it once and instantly see “the whole picture.”  
-**Wiring**: Called by Orchestrator in meta_orchestration_protocol.md (pre-audit step) and by human via `python search_copy.py`. Output is audited by hallucination_audit_protocol.md before any further processing.  
-**Nuance/edge case**: Excludes itself and non-code files; handles binary or encoding issues gracefully (errors=ignore).  
-**Example**: After adding a new module, run once → instant LLM-ready snapshot.
+### 1. search_copy.py
+**Core function**: Automatically discovers the workspace root, aggregates every source file from 20+ languages by volume (largest first), and emits a single beautifully formatted `[projectname].codebase.md`.
+**Why indispensable for audits**: Gives the Auditor / Evaluator roles a complete, single-file view of the entire codebase in one pass without token waste or directory traversal errors.
+**Wiring**: Resides at the project root for native execution context but is logically managed under this layer. 
+Called by Orchestrator in `meta_orchestration_protocol.md`.
+**Dependencies**: Inherits core utility functions from `toolkits/dependency/core_utils.py`.
 
 ### 2. table_formatter.py (given)
 **Core function**: Recursively finds every `*CHECKLIST.md` (or custom pattern), aligns all Markdown tables with perfect space padding, supports undo, respects .gitignore + hardcoded excludes, and uses atomic temp-file writes.  

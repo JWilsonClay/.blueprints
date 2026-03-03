@@ -17,8 +17,15 @@ last_updated: 2026-03-02
 ```
 
 **Protocol ID:** OP-OPTIMIZE-TUNE
-**Assigned Role:** Optimizer
-**Target Audience:** Verification Agent, Orchestrator Role
+**Assigned Role:** Verification_Agent
+
+## 3. Contextual Efficiency
+
+- You MUST implement a mandatory summarization layer when the combined prompt and context exceed 80% of the target model's context window.
+- You MUST utilize the fallback summarization directive: "Summarize the following context in [TOKEN_LIMIT] tokens:" to preserve core intent.
+- You MUST specify a required caching strategy for repeated or static context blocks to reduce latency and computational cost.
+- You MUST identify and prune redundant or low-priority tokens from long context streams prior to final submission.
+**Target Audience:** Verification_Agent, Orchestrator_Agent
 
 ## 1. Core Function & Rationale
 

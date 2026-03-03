@@ -17,8 +17,8 @@ last_updated: 2026-03-02
 ```
 
 **Protocol ID:** OP-REFINE-HARDEN
-**Assigned Role:** Refiner
-**Target Audience:** Verification Agent, Tester Role
+**Assigned Role:** Genesis_Agent
+**Target Audience:** Verification_Agent
 
 ## 1. Core Function & Rationale
 

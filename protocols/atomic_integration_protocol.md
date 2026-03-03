@@ -17,8 +17,8 @@ last_updated: 2026-03-02
 ```
 
 **Protocol ID:** OP-INTEGRATE-MERGE
-**Assigned Role:** Integrator
-**Target Audience:** Evaluator Role
+**Assigned Role:** Deployment_Agent
+**Target Audience:** Verification_Agent, Orchestrator_Agent
 
 ## 1. Core Function & Rationale
 

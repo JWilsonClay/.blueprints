@@ -2,6 +2,7 @@
 role: Orchestrator_Agent
 protocol_dependencies:
   - OP-ORCHESTRATE-META@1.0.0
+  - OP-CORE-COMP@1.0.0
 version: 1.0.0
 status: ACTIVE
 last_updated: 2026-03-02

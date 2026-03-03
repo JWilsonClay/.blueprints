@@ -17,7 +17,14 @@ last_updated: 2026-03-02
 ```
 
 **Protocol ID:** OP-DOC-CAPTURE
-**Assigned Role:** Documenter
+**Assigned Role:** Verification_Agent
+
+## 3. Maintainability & Versioning
+
+- You MUST enforce mandatory semantic versioning (e.g., v1.0.0) in both the filename and the header block of every documentation artifact.
+- You MUST maintain an explicit "Change Log" section in every file to track evolution history and logic shifts.
+- You MUST provide inline "Intent Comments" specifically for complex or non-obvious prompt logic to aid downstream debugging.
+- You MUST ensure every documentation artifact includes a verification or evaluation prompt in its companion `_eval.md` file.
 **Target Audience:** All Macro-Agents
 
 ## 1. Core Function & Rationale

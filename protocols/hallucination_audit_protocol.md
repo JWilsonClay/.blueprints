@@ -9,12 +9,33 @@ changelog:
 # Operational Protocol: Document Integrity & Hallucination Risk Assessment
 
 **Protocol ID:** OP-RISK-AUDIT
-**Target Audience:** AI Agents, Prompt Engineers, QA Auditors
+**Target Audience:** Verification_Agent, Deployment_Agent, Genesis_Agent, Orchestrator_Agent
 **Purpose:** To systematically detect and neutralize patterns in documentation that cause Large Language Models (LLMs) to hallucinate, misinterpret instructions, or enter logic loops.
 
 ## 1. Core Analysis Directives
 
 When assessing a document (Blueprint, Spec, or Prompt), the AI must evaluate it against three dimensions: **Consistency**, **Grounding**, and **Clarity**.
+
+## 1.1. Audit Scoping Tiers
+
+To optimize verification efficiency and provide granular feedback, the agent MUST support three distinct execution tiers:
+
+1.  **Single File Audit:**
+    *   *Scope:* Exactly one (1) file provided in the input payload.
+    *   *Logic:* Execute all parameters (Consistent, Grounding, Clarity, etc.) against the file content.
+    *   *Output:* Detailed pass/fail report for the specific file.
+2.  **Single Directory Audit:**
+    *   *Scope:* All files contained within the immediate parent directory of the target.
+    *   *Logic:* Execute parameter checks for inter-file consistency and grounding across the directory.
+    *   *Logic:* Aggregate pass/fail results to determine directory-level compliance.
+3.  **Comprehensive Workspace Audit:**
+    *   *Scope:* The entire active workspace or `.blueprints` directory tree.
+    *   *Logic:* Execute exhaustive global cross-referencing and redundancy checks.
+    *   *Logic:* Verify adherence to the universal architectural safety substrate.
+
+### Rule: Tier-Specific Pass/Fail Criteria
+- Result MUST be binary (Pass/Fail) at each tier level.
+- A "Fail" at any tier MUST halt downstream pipeline progression for that specific scope.
 
 ### Ruleset Extensibility
 The protocol supports modular rulesets natively.
@@ -72,11 +93,33 @@ example_checks:
     *   *Fix:* Prepend instructions with explicit states, e.g., "Assuming `[DEPENDENCY]` is installed..." or provide an explicit installation command before usage.
 
 
+5.  **Parameterization Integrity:**
+    *   *Trigger:* Any placeholder in the format `{variable_name}` that is not explicitly defined in the provided `context` or `variables` payload.
+    *   *Protocol:* Enforce strict parameter mapping. Every `{placeholder} MUST have a corresponding value in the input state.
+    *   *Fix:* Define the missing variable or remove the unused placeholder.
+6.  **Token Budget Awareness:**
+    *   *Trigger:* Expected prompt length (including context and retrieval) exceeds 85% of the target model's documented context window.
+    *   *Protocol:* Enforce "Context Buffer" rule. 
+    *   *Fix:* Implement a summarization layer (see OP-OPTIMIZE-TUNE) or truncate lower-priority context blocks.
+ 
+
 ### Dimension 03: Clarity (Ambiguity & Syntax)
 *Category Prefix: CLARITY*
 *Goal: Eliminate subjective interpretation.*
 
-### Dimension 04: Recursive Self-Reference (Logic Loop Detection)
+### Dimension 04: Empirical Feedback Integration (from Roundhouse Audit)
+*Category Prefix: EMPIRICAL*
+*Goal: Close the loop between static auditing and dynamic testing.*
+
+1.  **Test-Failure Loop-Back:**
+    *   *Trigger:* Input context contains a "Failed" status from `OP-TEST-VALIDATE`.
+    *   *Protocol:* The audit MUST explicitly ingest the error logs and trace the empirical failure to a static documentation root cause.
+    *   *Fix:* Map the specific test trace to a Consistency or Grounding violation for remediation.
+2.  **Benchmark Regression:**
+    *   *Trigger:* Evaluator metrics indicate a capability drop.
+    *   *Protocol:* Audit the documentation for "Complexity Bloat" or "Contextual Overload".
+
+### Dimension 05: Recursive Self-Reference (Logic Loop Detection)
 *Category Prefix: RECURSIVE*
 *Goal: Ensure protocols do not mandate operations that infinitely trigger themselves.*
 
@@ -100,12 +143,24 @@ example_checks:
         Each physical line MUST contain exactly one logical clause terminated by a literal newline (`\n`).
     *   *Exception:* **Markdown Table Rows.** Content within a table cell MUST remain on the same physical line as the row delimiters (`|`) to preserve valid Markdown syntax, even if the cell contains multiple logical clauses.
 
+### Dimension 06: Security & Robustness
+*Category Prefix: SECURITY*
+*Goal: Neutralize adversarial inputs and protect sensitive data.*
+
+1.  **Anti-Jailbreak Integrity:**
+    *   *Check:* Does the system prompt include a mandatory "Safety Guardrail" or "Anti-Jailbreak" module?
+    *   *Protocol:* Every system-level prompt MUST explicitly forbid harmful, illegal, or biased generation.
+2.  **PII Redaction Protocol:**
+    *   *Trigger:* Presence of unmasked Personally Identifiable Information (PII) such as emails, phone numbers, or physical addresses in the context.
+    *   *Protocol:* Enforce strict redaction.
+    *   *Fix:* Replace PII with generic tokens (e.g., `[REDACTED_EMAIL]`).
+
 ## 2. Execution Workflow
 
 To execute this protocol, the AI Auditor performs the following pass:
 
-1.  **Ingest & Segment:** 
-    *   Functionally segment the document by identifying standard Markdown boundaries. 
+1.  **Stage & Analyze:** 
+    *   The **Verification_Agent** must segment the document for logic analysis.
     *   Extract all fenced code blocks (using triple backticks), blockquotes (`>`), and tables to isolate them from instructional prose. 
     *   Tag standard unstructured prose as "Instructional Blocks".
     *   Tag isolated content as "Example Blocks."
@@ -143,14 +198,14 @@ Auditors MUST classify findings using exclusively the following levels based on 
 # Gap Analysis Report: [Document Name]
 
 ## Executive Summary
-[Assessment of critical gaps and pass/fail status]
+[Assessment by Verification_Agent: Pass/Fail]
 
 ## Findings Table
-| ID | Type | Severity | Description | Location | Remediation |
-|---|---|---|---|---|---|
-| DIM-CONSIST-01 | Contradiction | Critical | "Rule A" conflicts with "Rule B" | Lines XX, YY | Add "Except" clause to Line XX |
-| DIM-GROUND-01 | Hallucination | High | Example `[REAL_LOOKING_FILE]` looks real | Line ZZ | Rename to `[PLACEHOLDER]` |
-| DIM-CLARITY-01 | Ambiguity | Low | "[SUBJECTIVE_PHRASE]" is subjective | Line AA | Define "[SPECIFIC_FORMAT]" format |
+| ID             | Type          | Severity | Description                              | Location     | Remediation                       |
+|---             |---            |---       |---                                       |---           |---                                |
+| DIM-CONSIST-01 | Contradiction | Critical | "Rule A" conflicts with "Rule B"         | Lines XX, YY | Add "Except" clause to Line XX    |
+| DIM-GROUND-01  | Hallucination | High     | Example `[REAL_LOOKING_FILE]` looks real | Line ZZ      | Rename to `[PLACEHOLDER]`         |
+| DIM-CLARITY-01 | Ambiguity     | Low      | "[SUBJECTIVE_PHRASE]" is subjective      | Line AA      | Define "[SPECIFIC_FORMAT]" format |
 ```
 
 **Zero-Finding State:**
@@ -159,7 +214,7 @@ If no gaps are detected across all dimensions, the Findings Table must still be 
 | N/A | Pass | Info | No gaps detected. Document complies with OP-RISK-AUDIT. | N/A | N/A |
 ```
 ### 3.1 Machine-Readable Output (JSON)
-For automated pipelines, the AI Auditor MUST generate the Gap Analysis Report as a structured JSON object.
+For automated pipelines, the **Verification_Agent** MUST generate the Gap Analysis Report as a structured JSON object.
 **Template:**
 ```json
 {
@@ -188,7 +243,7 @@ For automated pipelines, the AI Auditor MUST generate the Gap Analysis Report as
 ```
 
 **Zero-Finding State (JSON):**
-If no gaps are detected across all dimensions, the `findings` array MUST be strictly empty and the metadata status MUST indicate a pass.
+If no gaps are detected across all dimensions, the `findings` array MUST be strictly empty and the **Verification_Agent** metadata status MUST indicate a pass.
 ```json
 {
   "example_report_metadata": {

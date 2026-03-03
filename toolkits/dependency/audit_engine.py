@@ -8,6 +8,10 @@
 # DETAILS: Exact match to OP-RISK-AUDIT@1.0.0.
 # DETAILS: Uses only stdlib + simple regex for ventilated prose / consistency / grounding checks.
 # DETAILS: Outputs the exact Gap Analysis Report format required.
+# DETAILS: Runs in parallel with redundancy_report_generator.py.
+# DETAILS: Runs in parallel with exhaustive_gap_report_generator.py.
+# DETAILS: Runs in parallel with unified_reporting_orchestrator.py.
+# DETAILS: Runs in parallel with ventilated_prose_enforcer.py.
 # VERSION: 1.0.0
 # =====================================================
 

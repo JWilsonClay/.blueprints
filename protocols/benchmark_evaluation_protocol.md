@@ -17,8 +17,8 @@ last_updated: 2026-03-02
 ```
 
 **Protocol ID:** OP-EVAL-MEASURE
-**Assigned Role:** Evaluator
-**Target Audience:** Orchestrator Role, Documenter Role
+**Assigned Role:** Verification_Agent
+**Target Audience:** Orchestrator_Agent, Verification_Agent
 
 ## 1. Core Function & Rationale
 
@@ -32,6 +32,9 @@ last_updated: 2026-03-02
 
 - You MUST receive integrated state artifacts strictly from atomic integration outputs.
 - You MUST compute a structured quantitative impact report.
+- You MUST execute delta analysis according to the active audit tier:
+  - **File-Level Delta:** Measure specific artifact performance shift.
+  - **Workspace-Level Delta:** Measure global system capability variance.
 - You MUST rigorously flag any detected regressions immediately.
 - **Condition:** If negative improvement is detected on ANY measured axis.
 - **Instruction:** You MUST explicitly tag the metadata with "regression" and force a full pipeline restart.

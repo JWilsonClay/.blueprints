@@ -17,8 +17,8 @@ last_updated: 2026-03-02
 ```
 
 **Protocol ID:** OP-TEST-VALIDATE
-**Assigned Role:** Tester
-**Target Audience:** Integrator Role, Refiner Role
+**Assigned Role:** Verification_Agent
+**Target Audience:** Deployment_Agent, Genesis_Agent
 
 ## 1. Core Function & Rationale
 
@@ -32,6 +32,9 @@ last_updated: 2026-03-02
 
 - You MUST utilize strict seeded randomness universally for all tests.
 - You MUST enforce pass-fail status strictly utilizing a predefined threshold matrix.
+- You MUST support tier-aware testing scopes (File, Directory, Workspace).
+  - **File-Level:** Spin up atomic sandboxes for single-artifact validation.
+  - **Directory/Workspace-Level:** Spin up integrated environments for cross-module validation.
 - Only tester-approved artifacts are permitted to reach `atomic_integration_protocol.md`.
 - Failed artifacts MUST instantly trigger a loop-back to the hallucination audit protocol matrix.
 

@@ -17,16 +17,16 @@ last_updated: 2026-03-02
 ```
 
 **Protocol ID:** OP-SCAFFOLD-BUILD
-**Assigned Role:** Builder
-**Target Audience:** Verification Agent, Refiner Role
+**Assigned Role:** Genesis_Agent
+**Target Audience:** Verification_Agent, Orchestrator_Agent
 
 ## 1. Core Function & Rationale
 
 - This protocol defines mandatory file-generation templates.
 - This protocol defines required naming conventions.
 - This protocol enforces strict dependency graphs.
-- This protocol institutes a seven-robustness-attribute checklist explicitly for the Builder.
-- This protocol prevents the Builder from emitting unstructured scaffolding that cascades failures.
+- This protocol institutes a seven-robustness-attribute checklist explicitly for the Genesis_Agent.
+- This protocol prevents the Genesis_Agent from emitting unstructured scaffolding that cascades failures.
 
 ## 2. Execution Constraints
 
@@ -51,3 +51,9 @@ last_updated: 2026-03-02
 - [ ] Is the generated module strictly Maintainable?
 - [ ] Is the generated module strictly Adaptable?
 - [ ] Is the generated module strictly Efficient?
+
+## 5. Compositional Standards
+
+- Every prompt MUST use at least 3 mergeable components (System/Role, Task/Goal, Context/Knowledge).
+- You MUST enforce YAML/JSON schema validation for prompt definitions to ensure machine-readability.
+- You MUST prevent logic duplication by auditing against existing prompt-library modules.
