@@ -1,5 +1,9 @@
 ---
 protocol_id: OP-SYMBIO-PCSF
+structure_status: HARDENED
+target_audience: Verification_Agent, Orchestrator_Agent
+assigned_role: System
+purpose: ** To govern the recursive relationship between meta-layer blueprints and implementation-layer code.
 version: 1.0.0
 status: ACTIVE
 date_created: 2026-03-03

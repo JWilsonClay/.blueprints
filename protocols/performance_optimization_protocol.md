@@ -1,5 +1,9 @@
 ---
 protocol_id: OP-OPTIMIZE-TUNE
+structure_status: HARDENED
+target_audience: Verification_Agent, Orchestrator_Agent
+assigned_role: System
+purpose: Execute designated protocol or role functions within the substrate.
 version: 1.0.0
 status: ACTIVE
 date_created: 2026-03-02

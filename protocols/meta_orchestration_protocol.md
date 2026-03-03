@@ -1,5 +1,9 @@
 ---
 protocol_id: OP-ORCHESTRATE-META
+structure_status: HARDENED
+target_audience: Verification_Agent, Orchestrator_Agent
+assigned_role: System
+purpose: Execute designated protocol or role functions within the substrate.
 version: 1.0.0
 status: ACTIVE
 date_created: 2026-03-02
@@ -36,7 +40,13 @@ date_modified: 2026-03-03
 - You MUST re-invoke roles with enriched state payloads only.
 - You MUST enforce absolute "loop-detection thresholds" universally across interacting agent behaviors.
 
-## 3. Protocol Evolution & Recursion
+## 3. Protocol Precedence & Logic Override
+
+- **Constraint:** When a complex task assembles multiple protocols in active context.
+- **Rule:** You MUST rank all active protocols by their `date_created` stamp (Oldest/Most Senior first).
+- **Rule:** In the event of conflicting instructions between protocols, the Most Senior Protocol ALWAYS provides the "Logic Override" and takes absolute precedence over junior counterparts.
+
+## 4. Protocol Evolution & Recursion
 
 - **Condition:** When proposing architectural improvements to underlying system protocols natively.
 - **Instruction:** You MUST explicitly operate a "Protocol Evolution" cycle.

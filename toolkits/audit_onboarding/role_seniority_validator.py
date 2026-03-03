@@ -66,6 +66,28 @@ def validate_seniority(senior_path: str, junior_path: str, threshold: float = VA
     except ValueError as e:
         return False, f"Date parse error: {e}"
 
+    # --- Universal Protocol Header (UPH) Compliance Check ---
+    # According to OP-SUBSTRATE-ASSIMILATE, all documents must adhere to UPH schema.
+    required_uph_fields = [
+        "structure_status", "target_audience", "assigned_role",
+        "purpose", "version", "status", "date_created", "date_modified"
+    ]
+    try:
+        with open(junior_path, 'r', encoding='utf-8') as f:
+            junior_data, _ = extract_frontmatter_and_body(f.read())
+            
+        missing_fields = []
+        if 'protocol_id' not in junior_data and 'role' not in junior_data:
+            missing_fields.append('protocol_id (or role)')
+        for field in required_uph_fields:
+            if field not in junior_data:
+                missing_fields.append(field)
+                
+        if missing_fields:
+            return True, f"ASSIMILATE: UPH Compliance Failure. Junior is missing required fields: {', '.join(missing_fields)}"
+    except Exception as e:
+        return False, f"Bypass: Could not parse Junior UPH fields ({e})"
+
     # Junior must be strictly younger to be a candidate for assimilation
     if junior_dt <= senior_dt:
         return False, f"Bypass: Junior ({junior_date_str}) is not younger than Senior ({senior_date_str})."

@@ -26,6 +26,7 @@ version: [X.Y.Z]
 status: [ACTIVE | DEPRECATED]
 date_created: [ISO-8601]
 date_modified: [ISO-8601]
+supersedes: [List of legacy Protocol IDs absorbed by this artifact]
 ---
 ```
 
@@ -38,6 +39,7 @@ date_modified: [ISO-8601]
 | `target_audience` | Mandatory | Explicit list of roles/users that ingest this document. |
 | `assigned_role` | Mandatory | The primary role responsible for executing or maintaining the artifact. |
 | `purpose` | Mandatory | Replicates the "Purpose" section of the document in a machine-readable field. |
+| `supersedes` | Optional | A list of older protocol identities that were fully absorbed into this protocol. Used for obsolete file hygiene. |
 
 ## 3. Example (Orchestrator Role)
 

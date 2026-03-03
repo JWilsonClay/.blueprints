@@ -17,8 +17,8 @@ This plan outlines the technical steps to extend our anti-corruption and seniori
 
 ### [Substrate Standardization]
 
-#### [MODIFY] Protocol Files (Batch Execution)
-- Systematically inject the UPH into all 18 protocol files:
+#### [MODIFY] Protocol and Agent Role Files (Batch Execution)
+- Systematically inject the UPH into all 18 protocol files AND all Agent Role files:
     - `Protocol_ID`
     - `Structure_Status`
     - `Target_Audience`

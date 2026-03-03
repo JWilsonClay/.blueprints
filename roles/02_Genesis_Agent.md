@@ -6,10 +6,10 @@ target_audience: System Architects, Verification Agent, and Orchestrator Agent
 assigned_role: Genesis_Agent
 purpose: Generate and harden flawless agentic substrate scaffolding and protocols.
 protocol_dependencies:
-  - OP-SUBSTRATE-BUILD@1.0.0
-  - OP-REFINE-HARDEN@1.0.0
-  - OP-OPTIMIZE-TUNE@1.0.0
-  - OP-EVAL-MEASURE@1.0.0
+- OP-SUBSTRATE-BUILD@1.0.0
+- OP-REFINE-HARDEN@1.0.0
+- OP-OPTIMIZE-TUNE@1.0.0
+- OP-EVAL-MEASURE@1.0.0
 version: 1.0.0
 status: ACTIVE
 date_created: 2026-03-02

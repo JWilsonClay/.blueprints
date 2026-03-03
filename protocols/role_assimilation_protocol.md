@@ -1,8 +1,13 @@
 ---
 protocol_id: OP-AGENT-ASSIMILATE
+structure_status: HARDENED
+target_audience: Verification_Agent, Orchestrator_Agent
+assigned_role: System
+purpose: ** To methodically reformat "Junior" agent roles to match the structural patterns of "Senior" substrate anchors, preventing format pollution and logic drift.
 version: 1.0.0
 status: ACTIVE
 date_created: 2026-03-03
+date_modified: 2026-03-03
 ---
 # Operational Protocol: Role Assimilation (OP-AGENT-ASSIMILATE)
 

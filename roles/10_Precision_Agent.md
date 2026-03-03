@@ -1,13 +1,18 @@
 ---
 role: Precision_Agent
-role_id: RA-FIX-SURGEON
+protocol_id: N/A (Agent Role)
+structure_status: HARDENED
+target_audience: Verification_Agent, Orchestrator_Agent
+assigned_role: Precision_Agent
+purpose: Execute designated protocol or role functions within the substrate.
 protocol_dependencies:
-  - OP-MANUAL-REPAIR@1.0.0
-  - OP-PRECISION-PRECISE@1.0.0
+- OP-MANUAL-REPAIR@1.0.0
+- OP-PRECISION-PRECISE@1.0.0
 version: 1.1.0
 status: ACTIVE
 date_created: 2026-03-03
 date_modified: 2026-03-03
+role_id: RA-FIX-SURGEON
 ---
 **Role:** Precision_Agent (The Surgeon).
 

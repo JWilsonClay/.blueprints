@@ -1,5 +1,9 @@
 ---
 protocol_id: OP-SUBSTRATE-COMP
+structure_status: HARDENED
+target_audience: Verification_Agent, Orchestrator_Agent
+assigned_role: System
+purpose: ** To enforce a standardized, 12-checklist schema for substrate auditing, ensuring exhaustive mapping of all mechanical and logical components.
 version: 1.0.0
 status: ACTIVE
 date_created: 2026-03-03

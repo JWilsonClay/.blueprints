@@ -6,11 +6,11 @@ target_audience: Genesis, Verification, Deployment Agents, and System Architects
 assigned_role: Orchestrator_Agent
 purpose: Prevent infinite agentic loops, manage compute budgets, and sequence the .blueprints substrate.
 protocol_dependencies:
-  - OP-ORCHESTRATE-META@1.0.0
-  - OP-SUBSTRATE-COMP@1.0.0
-  - OP-TERMINAL-WORKFLOW@1.0.0
-  - OP-PIPELINE-BUILD@1.0.0
-  - OP-SYMBIO-PCSF@1.0.0
+- OP-ORCHESTRATE-META@1.0.0
+- OP-SUBSTRATE-COMP@1.0.0
+- OP-TERMINAL-WORKFLOW@1.0.0
+- OP-PIPELINE-BUILD@1.0.0
+- OP-SYMBIO-PCSF@1.0.0
 version: 1.0.0
 status: ACTIVE
 date_created: 2026-03-02

@@ -1,8 +1,13 @@
 ---
 role: Deployment_Agent
+protocol_id: N/A (Agent Role)
+structure_status: HARDENED
+target_audience: Verification_Agent, Orchestrator_Agent
+assigned_role: Deployment_Agent
+purpose: Execute designated protocol or role functions within the substrate.
 protocol_dependencies:
-  - OP-INTEGRATE-MERGE@1.0.0
-  - OP-DOC-CAPTURE@1.0.0
+- OP-INTEGRATE-MERGE@1.0.0
+- OP-DOC-CAPTURE@1.0.0
 version: 1.0.0
 status: ACTIVE
 date_created: 2026-03-02
