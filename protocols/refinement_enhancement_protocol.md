@@ -25,13 +25,15 @@ last_updated: 2026-03-02
 - This protocol consumes the hallucination audit report.
 - This protocol consumes the original builder output simultaneously.
 - This protocol translates passive criticism into active architectural strengthening.
-- This protocol avoids introducing new logic loops or hallucinations during refinement.
+- This protocol avoids introducing new logic loops or hallucinations.
+- This MUST be ensured during refinement.
 
 ## 2. Execution Constraints
 
 - You MUST implement every Critical/High finding verbatim.
-- You MUST explicitly document trade-off justifications for any auditor suggestion you modify or reject.
-- You MUST systematically inject the seven robustness attributes into the refined scaffolding.
+- You MUST explicitly document trade-off justifications.
+- This applys to any auditor suggestion you modify or reject.
+- You MUST systematically inject the seven robustness attributes into the refined substrate.
 - You MUST execute the defined version-bump logic on the target artifact explicitly.
 
 ## 3. Conflict Resolution & Pareto Outputs

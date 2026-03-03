@@ -26,7 +26,7 @@ last_updated: 2026-03-02
 - This protocol mandates strict isolated sandbox spin-ups.
 - This protocol executes deterministic statistical test suites explicitly (Monte-Carlo, adversarial, load).
 - This protocol computes agent-specific execution metrics.
-- This protocol runs explicit regression analysis against prior scaffolding versions.
+- This protocol runs explicit regression analysis against prior substrate versions.
 
 ## 2. Execution Constraints
 
@@ -43,7 +43,7 @@ last_updated: 2026-03-02
 - **Condition:** If intermittent or "flaky" test failures are detected.
 - **Instruction:** You MUST automatically trigger exactly a 3x rerun loop.
 - You MUST compute and issue a variance report explicitly quantifying the flaky execution.
-- **Condition:** If executing tests upon prompt-only scaffolding outputs.
+- **Condition:** If executing tests upon prompt-only substrate outputs.
 - **Instruction:** You MUST explicitly inject a calibrated LLM-as-judge interface.
 - You MUST rigidly enforce an inter-rater agreement threshold of strictly `>0.85`.
 

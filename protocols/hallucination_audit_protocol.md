@@ -134,14 +134,17 @@ example_checks:
 3.  **Structural Ambiguity:**
     *   *Trigger:* Missing headers, unclosed code blocks, or merged table rows.
     *   *Protocol:* Validate syntax strictly against the CommonMark specification. 
-        Code blocks MUST be explicitly fenced with language identifiers, and table structures MUST parse cleanly via standard Markdown Abstract Syntax Tree (AST) parsers.
+    *   Code blocks MUST be explicitly fenced with language identifiers.
+    *   Table structures MUST parse cleanly via standard Markdown Abstract Syntax Tree (AST) parsers.
 4.  **Ventilated Prose (Strict Lineation):**
     *   *Trigger:* Multiple instructions, rules, or data points consolidated onto a single physical line.
     *   *Protocol:* Enforce "One Statement Per Line" constraint. 
-        A "Statement" is defined strictly as a single condition OR a single imperative instruction.
-        Complex mandates MUST be grouped via bulleted lists.
-        Each physical line MUST contain exactly one logical clause terminated by a literal newline (`\n`).
-    *   *Exception:* **Markdown Table Rows.** Content within a table cell MUST remain on the same physical line as the row delimiters (`|`) to preserve valid Markdown syntax, even if the cell contains multiple logical clauses.
+    *   A "Statement" is defined strictly as a single condition OR a single imperative instruction.
+    *   Complex mandates MUST be grouped via bulleted lists.
+    *   Each physical line MUST contain exactly one logical clause terminated by a literal newline (`\n`).
+    *   *Exception:* **Markdown Table Rows.** 
+    *   Content within a table cell MUST remain on the same physical line as the row delimiters (`|`).
+    *   This preserves valid Markdown syntax even if the cell contains multiple logical clauses.
 
 ### Dimension 06: Security & Robustness
 *Category Prefix: SECURITY*
@@ -151,7 +154,8 @@ example_checks:
     *   *Check:* Does the system prompt include a mandatory "Safety Guardrail" or "Anti-Jailbreak" module?
     *   *Protocol:* Every system-level prompt MUST explicitly forbid harmful, illegal, or biased generation.
 2.  **PII Redaction Protocol:**
-    *   *Trigger:* Presence of unmasked Personally Identifiable Information (PII) such as emails, phone numbers, or physical addresses in the context.
+    *   *Trigger:* Presence of unmasked Personally Identifiable Information (PII).
+    *   *Example:* emails, phone numbers, or physical addresses in the context.
     *   *Protocol:* Enforce strict redaction.
     *   *Fix:* Replace PII with generic tokens (e.g., `[REDACTED_EMAIL]`).
 

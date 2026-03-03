@@ -19,14 +19,6 @@ last_updated: 2026-03-02
 **Protocol ID:** OP-DOC-CAPTURE
 **Assigned Role:** Verification_Agent
 
-## 3. Maintainability & Versioning
-
-- You MUST enforce mandatory semantic versioning (e.g., v1.0.0) in both the filename and the header block of every documentation artifact.
-- You MUST maintain an explicit "Change Log" section in every file to track evolution history and logic shifts.
-- You MUST provide inline "Intent Comments" specifically for complex or non-obvious prompt logic to aid downstream debugging.
-- You MUST ensure every documentation artifact includes a verification or evaluation prompt in its companion `_eval.md` file.
-**Target Audience:** All Macro-Agents
-
 ## 1. Core Function & Rationale
 
 - This protocol ensures long-term maintainability and adaptability through living documentation.
@@ -39,11 +31,19 @@ last_updated: 2026-03-02
 
 - You MUST execute concurrently with the optimizer loop logic.
 - You MUST structurally embed auditor findings, evaluator metrics, and refinement rationales.
-- You MUST commit synchronized declarative artifacts directly alongside codebase merges.
-- You MUST rigidly obey the exact "Ventilated Prose (Strict Lineation)" formatting rules in all outputs.
+- You MUST commit synchronized declarative artifacts directly alongside substrate merges.
+- You MUST rigidly obey the exact "Ventilated Prose (Strict Lineation)" formatting rules.
 - You MUST rigidly obey the fenced-block isolation rules in all generated examples.
 
-## 3. Structural Dimensions
+## 3. Structural Dimensions & Versioning
 
 - You MUST embed the explicitly defined "Audit-Trail Embedding" dimension inside all ADRs.
 - You MUST embed the explicitly defined "Human-Readable Traceability" dimension inside all guides.
+- You MUST enforce mandatory semantic versioning (e.g., v1.0.0) in both the filename and the header block.
+- You MUST maintain an explicit "Change Log" section in every file.
+- This MUST track evolution history and logic shifts.
+- You MUST provide inline "Intent Comments" specifically for complex or non-obvious prompt logic.
+- You MUST ensure every documentation artifact includes a verification or evaluation prompt.
+- This MUST be in its companion `_eval.md` file.
+
+**Target Audience:** All Macro-Agents

@@ -12,12 +12,14 @@ last_updated: 2026-03-03
 
 ## 1. Core Function & Rationale
 - This protocol governs the interactive repair of logical errors and hallucinations.
-- It prioritizes surgical precision over broad refactoring to minimize side effects.
+- It prioritizes surgical precision over broad refactoring.
+- This MUST occur to minimize side effects.
 
 ## 2. Surgical Repair Constraints
 - You MUST provide exactly one fix per interaction cycle.
-- You MUST utilize `<DOC_DIFF>` segments for all code corrections.
-- You MUST limit diffs to < 50 lines to ensure human-readability.
+- You MUST utilize `<DOC_DIFF>` segments for all substrate corrections.
+- You MUST limit diffs to < 50 lines.
+- This ensures human-readability.
 
 ## 3. De-Duplication Logic
 If removing redundant code:

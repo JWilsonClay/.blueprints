@@ -10,8 +10,9 @@ last_updated: 2026-03-03
 **Target Audience:** Verification_Agent, Orchestrator_Agent
 
 ## 1. Core Mandate
-- This protocol governs the repair of deep, backend regressions.
-- It operates under a "Slow and Methodical" constraint to ensure zero side effects.
+- This protocol governs the repair of deep, substrate regressions.
+- It operates under a "Slow and Methodical" constraint.
+- This ensures zero side effects.
 
 ## 2. Surgical Workflow
 1.  **Lock State**: Isolate the target delta to exactly one file.
@@ -22,7 +23,7 @@ last_updated: 2026-03-03
 ## 3. Rollback Policy
 - You MUST trigger an immediate rollback on any regression detection.
 - You MUST utilize `git_bridge.py` for rollback execution.
-- You MUST escalate to human overhead after 3 failed attempts.
+- You MUST escalate to human oversight after 3 failed attempts.
 
 ## 4. Output Deliverables
 - You MUST generate a "Surgical Intervention Log" in ventilated prose.

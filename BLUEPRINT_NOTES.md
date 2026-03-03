@@ -1,4 +1,4 @@
-# Blueprint Notes: Codebase Core Components
+# Blueprint Notes: Substrate Core Components
 
 ## In the works:
 1. Token Density & Conciseness

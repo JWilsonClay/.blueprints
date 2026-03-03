@@ -19,14 +19,6 @@ last_updated: 2026-03-02
 **Protocol ID:** OP-OPTIMIZE-TUNE
 **Assigned Role:** Verification_Agent
 
-## 3. Contextual Efficiency
-
-- You MUST implement a mandatory summarization layer when the combined prompt and context exceed 80% of the target model's context window.
-- You MUST utilize the fallback summarization directive: "Summarize the following context in [TOKEN_LIMIT] tokens:" to preserve core intent.
-- You MUST specify a required caching strategy for repeated or static context blocks to reduce latency and computational cost.
-- You MUST identify and prune redundant or low-priority tokens from long context streams prior to final submission.
-**Target Audience:** Verification_Agent, Orchestrator_Agent
-
 ## 1. Core Function & Rationale
 
 - This protocol explicitly prevents continuous capability growth from triggering unsustainable compute bloat.
@@ -40,10 +32,18 @@ last_updated: 2026-03-02
 - You MUST strictly preserve all seven fundamental robustness attributes across any optimization.
 - You MUST forward optimized artifacts strictly to be re-audited and re-tested before Orchestrator sign-off.
 - **Condition:** If any optimization attempt conflicts structurally with baseline safety rules.
-- **Instruction:** You MUST automatically reject the optimization and immediately propose a safer alternative.
+- **Instruction:** You MUST automatically reject the optimization.
+- You MUST immediately propose a safer alternative.
 - You MUST strictly define a global "Auto-Reject Constraint" covering any Critical-risk alterations.
 
-## 3. Evaluated Dimensions
+## 3. Contextual Efficiency & Evaluated Dimensions
 
+- You MUST implement a mandatory summarization layer when the combined prompt and context exceed 80% of the target model's context window.
+- You MUST utilize the fallback summarization directive: "Summarize the following context in [TOKEN_LIMIT] tokens:" to preserve core intent.
+- You MUST specify a required caching strategy for repeated or static context blocks.
+- This reduces latency and computational cost.
+- You MUST identify and prune redundant or low-priority tokens from long context streams prior to final submission.
 - You MUST supply the explicitly structured "Efficiency vs. Robustness Trade-off Matrix".
 - You MUST generate and supply absolute quantitative values for the "Regression Risk Scoring" algorithm.
+
+**Target Audience:** Verification_Agent, Orchestrator_Agent

@@ -11,7 +11,7 @@ last_updated: 2026-03-03
 **Target Audience:** Planning_Agent, Orchestrator_Agent
 
 ## 1. Core Function & Rationale
-- This protocol transforms vague user intentions into structured, machine-readable project manifests.
+- This protocol transforms user agentic intent into structured, machine-readable project manifests.
 - It prevents architectural drift by enforcing a strict requirement-harvesting phase.
 
 ## 2. Requirement Harvesting (The 7 Pillars)
@@ -26,10 +26,11 @@ You MUST ask exactly 5-7 technical questions covering:
 
 ## 3. Manifest Initialization
 - You MUST generate a `MANIFEST_STATE.json` upon completion of harvesting.
-- You MUST strictly follow the schema defined in `OP-CORE-COMP`.
+- You MUST strictly follow the schema defined in `OP-SUBSTRATE-COMP`.
 
 ## 4. Execution Constraints
-- You MUST wait for explicit user verification before handing off to the Planning_Agent.
+- You MUST wait for explicit user verification.
+- This MUST occur before handing off to the Planning_Agent.
 - You MUST publish the discovery broadcast via `communication_bus.publish_discovery`.
 
 ---

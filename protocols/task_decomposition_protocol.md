@@ -12,10 +12,11 @@ last_updated: 2026-03-03
 
 ## 1. Core Function & Rationale
 - This protocol decomposes architectural stages into atomic, executable implementation tasks.
-- It ensures dependency graph integrity before the Genesis_Agent begins generation.
+- It ensures dependency graph integrity.
+- This MUST occur before the Genesis_Agent begins generation.
 
 ## 2. Decomposition Logic
-- You MUST ingest `MANIFEST_STATE.json` and current codebase status.
+- You MUST ingest `MANIFEST_STATE.json` and current substrate status.
 - You MUST break stages into tasks utilizing the "Stage #.#.#" title format.
 - You MUST identify and resolve circular dependencies in the task sequence.
 

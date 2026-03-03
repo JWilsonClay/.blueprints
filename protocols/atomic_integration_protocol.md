@@ -22,10 +22,11 @@ last_updated: 2026-03-02
 
 ## 1. Core Function & Rationale
 
-- This protocol prevents live-system breakage during self-evolution pipelines.
+- This protocol prevents live-system breakage during substrate self-evolution pipelines.
 - This protocol strictly enforces atomic transactional merges.
 - This protocol dictates feature-flag gating logic natively.
-- This protocol requires shadow-instance validation sequences prior to live rollout.
+- This protocol requires shadow-instance validation sequences.
+- This MUST occur prior to live rollout.
 
 ## 2. Execution Constraints
 
@@ -40,7 +41,7 @@ last_updated: 2026-03-02
 - **Condition:** If the host execution environment is classified as mathematically constrained.
 - **Instruction:** You MUST explicitly collapse the pipeline into a restricted "staged merge".
 - You MUST invoke orchestrator veto power explicitly over staged merges.
-- **Condition:** If the scaffolding artifact carries a globally established Critical-risk flag.
+- **Condition:** If the substrate artifact carries a globally established Critical-risk flag.
 - **Instruction:** You MUST explicitly enforce an overriding human-in-the-loop manual flag.
 
 ## 4. Evaluated Dimensions

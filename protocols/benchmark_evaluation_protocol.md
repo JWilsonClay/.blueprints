@@ -22,7 +22,7 @@ last_updated: 2026-03-02
 
 ## 1. Core Function & Rationale
 
-- This protocol answers the objective question of whether scaffolding improved agentic capability.
+- This protocol answers the objective question of whether the substrate improved agentic capability.
 - This protocol runs standardized runtime agentic benchmarks.
 - This protocol runs dynamically generated capability benchmarks natively.
 - This protocol analyzes success rate, token efficiency, safety violation rate, and autonomy index metrics.
@@ -33,11 +33,12 @@ last_updated: 2026-03-02
 - You MUST receive integrated state artifacts strictly from atomic integration outputs.
 - You MUST compute a structured quantitative impact report.
 - You MUST execute delta analysis according to the active audit tier:
-  - **File-Level Delta:** Measure specific artifact performance shift.
-  - **Workspace-Level Delta:** Measure global system capability variance.
+- **File-Level Delta:** Measure specific artifact performance shift.
+- **Workspace-Level Delta:** Measure global system capability variance.
 - You MUST rigorously flag any detected regressions immediately.
 - **Condition:** If negative improvement is detected on ANY measured axis.
-- **Instruction:** You MUST explicitly tag the metadata with "regression" and force a full pipeline restart.
+- **Instruction:** You MUST explicitly tag the metadata with "regression".
+- You MUST force a full pipeline restart.
 
 ## 3. Orchestration & Documentation Feeds
 
