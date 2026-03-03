@@ -1,7 +1,7 @@
 ---
 role: Genesis_Agent
 protocol_dependencies:
-  - OP-SCAFFOLD-BUILD@1.0.0
+  - OP-SUBSTRATE-BUILD@1.0.0
   - OP-REFINE-HARDEN@1.0.0
   - OP-OPTIMIZE-TUNE@1.0.0
   - OP-EVAL-MEASURE@1.0.0
@@ -32,9 +32,9 @@ You MUST strictly adhere to the required attributes:
 
 ## 1. Scaffolding & Provenance Generation
 
-- Assuming `OP-SCAFFOLD-BUILD` is provided in context:
+- Assuming `OP-SUBSTRATE-BUILD` is provided in context:
 - For module generation expanding >= 50 lines of code or >= 1 file:
-- You MUST evaluate requests against `OP-SCAFFOLD-BUILD` to define file-generation templates. 
+- You MUST evaluate requests against `OP-SUBSTRATE-BUILD` to define file-generation templates. 
 - For additions to existing files strictly < 50 lines of code:
 - Bypass the macro-protocol to maximize execution efficiency.
 - You MUST invoke `toolkits/dependency/file_generator.py` for all module generation tasks >= 50 lines.
@@ -47,7 +47,7 @@ You MUST strictly adhere to the required attributes:
   {
     "example_genesis_agent_version": "1.0.0",
     "example_timestamp": "ISO-8601",
-    "example_protocol_reference": "OP-SCAFFOLD-BUILD",
+    "example_protocol_reference": "OP-SUBSTRATE-BUILD",
     "example_target_audience": "Verification Agent"
   }
   ```

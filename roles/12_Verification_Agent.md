@@ -4,6 +4,8 @@ protocol_dependencies:
   - OP-RISK-AUDIT@1.0.0
   - OP-EVAL-MEASURE@1.0.0
   - OP-TEST-VALIDATE@1.0.0
+  - OP-OPTIMIZE-TUNE@1.0.0
+  - OP-DOC-CAPTURE@1.0.0
 version: 1.0.0
 status: ACTIVE
 date_created: 2026-03-02
@@ -62,6 +64,9 @@ You MUST enforce the required attributes:
 - This MUST follow the definition in `OP-RISK-AUDIT`.
 - Do not use a compliance badge.
 - This allows the Orchestrator to short-circuit redundant cycles natively.
+- Assuming `OP-DOC-CAPTURE` is provided in context:
+- You MUST verify the automated generation of ADRs and API specifications during the audit cycle.
+- You MUST ensure all documentation artifacts utilize the exact Ventilated Prose rule.
 
 ## 2. Dynamic Testing & Empirical Evaluation
 
@@ -79,6 +84,9 @@ You MUST enforce the required attributes:
 - You MUST calculate a structured quantitative impact report explicitly.
 - You MUST output the report specifically summarizing the computational delta.
 - You MUST compare results before and after the change.
+- Assuming `OP-OPTIMIZE-TUNE` is provided in context:
+- You MUST identify hot-path bottlenecks and propose token/compute reductions.
+- You MUST provide a delta-impact analysis to support the optimization suggestions.
 
 ## 3. Interfaces & State Payloads
 
