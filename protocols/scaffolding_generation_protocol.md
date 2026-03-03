@@ -32,6 +32,7 @@ date_modified: 2026-03-03
 ## 2. Execution Constraints
 
 - You MUST enforce that every generated file embeds a traceable provenance header.
+- **Header Standard:** You MUST strictly adhere to the [Universal Protocol Header (UPH)](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/Universal_Protocol_Header.md).
 - You MUST evaluate generated substrates against the "Template Completeness" dimension.
 - You MUST evaluate generated substrates against the "Provenance Traceability" dimension.
 
