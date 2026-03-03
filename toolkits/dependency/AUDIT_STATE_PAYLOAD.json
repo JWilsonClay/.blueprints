@@ -1,0 +1,287 @@
+{
+  "execution_metadata": {
+    "protocol": "OP-RISK-AUDIT@1.0.0",
+    "scope": "BATCH_PROJECT_AUDIT",
+    "audit_timestamp": "2026-03-02T21:02:05.281584",
+    "status": "FAIL"
+  },
+  "impact_data": {
+    "findings": [
+      {
+        "id": "DIM-CLARITY-01",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 3",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-02",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 5",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-03",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 7",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-04",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 11",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-05",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 14",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-06",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 15",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-07",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 16",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-08",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 18",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-09",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 21",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-10",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 22",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-11",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 25",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-12",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 28",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-13",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 32",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-14",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 35",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-15",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 36",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-16",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 41",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-17",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 47",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-18",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 53",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-19",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 65",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-20",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 71",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-21",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 78",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-22",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 119",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-23",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 120",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-24",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 121",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-25",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 122",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-26",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 123",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-27",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 124",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-28",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 127",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-29",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 129",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      },
+      {
+        "id": "DIM-CLARITY-30",
+        "type": "CLARITY",
+        "severity": "Medium",
+        "description": "Ventilated Prose violation (multiple statements on one line)",
+        "location": "Line 131",
+        "remediation": "Split to one statement per line",
+        "file": "README.md"
+      }
+    ],
+    "total_files_scanned": 1,
+    "summary": "Batch audit complete. Found 30 issues across 1 files."
+  },
+  "validation": {
+    "compliance_ratio": 0.0
+  }
+}

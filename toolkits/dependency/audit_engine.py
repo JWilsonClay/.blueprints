@@ -14,10 +14,15 @@
 import os
 import re
 import json
+import sys
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Any
-from .core_utils import validate_robustness_attributes, inject_provenance_header
+try:
+    from .core_utils import validate_robustness_attributes, inject_provenance_header
+except ImportError:
+    from core_utils import validate_robustness_attributes, inject_provenance_header
+
 
 class AuditReport:
     def __init__(self):
