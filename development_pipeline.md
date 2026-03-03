@@ -2,30 +2,43 @@
 
 ## Operational Protocol: Terminal Workflow
 **User Workflow:** The user's role is strictly mechanical: **Copy, Paste, and Upload Logs**.
-To maximize efficiency and minimize workload, the AI must provide complete, chained commands that handle all logging and error reporting automatically. The user will simply execute the block and upload the resulting log file (defined in Global Project Context) for the AI to analyze.
+To maximize efficiency and minimize workload, the AI must provide complete, chained commands that handle all logging and error reporting automatically. 
+The user will simply execute the block and upload the resulting log file (defined in Global Project Context) for the AI to analyze.
 
 **AI Command Generation Rules:**
-1.  **Structure:** Numbered descriptive headers (e.g., 'Command 1: Verify Qwen Restore') followed by the full command as a single-line chained string using `&&` (ensure the footer executes by using `;` or `||` logic where appropriate).
-2.  **Environment:** Start every command with `cd <PROJECT_ROOT> && source <VENV_PATH>/bin/activate &&`. (Exception: Skip this prefix for System Command 0, system information queries, or initial project creation commands where the folder/venv does not yet exist). **CRITICAL:** If `<PROJECT_ROOT>` or `<VENV_PATH>` are not defined in the Global Project Context, **STOP** and ask the user to provide them before generating commands. Do not output literal placeholders.
+1.  **Structure:** Numbered descriptive headers (e.g., 'Command 1: Verify Qwen Restore') followed by the full command as a single-line chained string using `&&`.
+    Ensure the footer executes by using explicitly defined `;` or `||` logic.
+2.  **Environment:** Start every command with `cd <PROJECT_ROOT> && source <VENV_PATH>/bin/activate &&`. 
+    (Exception: Skip this prefix for System Command 0, system information queries, or initial project creation commands where the folder/venv does not yet exist). 
+    **CRITICAL:** If `<PROJECT_ROOT>` or `<VENV_PATH>` are not defined in the Global Project Context, **STOP** and ask the user to provide them before generating commands.
+    Do not output literal placeholders.
 3.  **Logging:** *Mandatory* automatic logging.
     *   Append output: `2>&1 | tee -a <LOG_PATH>` (Ensure <LOG_PATH> is replaced by the value in Global Project Context)
     *   Footer: `echo "=== COMMAND NAME COMPLETED ===" 2>&1 | tee -a <LOG_PATH>`
-    *   Iteration Start: `System Command 0` (and ONLY Command 0) must overwrite the log file (use `tee` instead of `tee -a`). This enforces the "Transient Log Workflow": logs are cleared at the start of every new AI-User iteration to prevent file bloat and ensure the AI analyzes only the most recent execution context.
+    *   Iteration Start: `System Command 0` (and ONLY Command 0) must overwrite the log file (use `tee` instead of `tee -a`).
+    *   This enforces the "Transient Log Workflow": logs are cleared at the start of every new AI-User iteration to prevent file bloat.
+    *   This ensures the AI analyzes only the most recent execution context.
 4.  **Error Handling:** Include `|| echo "Error..."` chains to log failures without crashing the user's terminal experience.
 5.  **Timestamps:** Prefix completion echoes with `$(date)`.
 6.  **Estimates:** Include estimated execution time inline.
 7.  **Safety:** Use dry-runs for destructive commands (sed, rm) first.
 8.  **Timeouts:** Use `timeout` for long-running ops (default 5 mins) to prevent hangs.
 9.  **Verification:** Log environment details (e.g., `python --version`, `pwd`) at the start.
-10. **Verbosity:** Include verbose flags (`-v`) where appropriate, capturing output via `2>&1 | tee -a ...`.
-11. **Noise Control:** As an exception to Rule 3, for noisy commands, redirect stdout to null (`> /dev/null`) but keep errors (`2>> <LOG_PATH>`). Ensure status is echoed separately (e.g., `echo "Status..." && cmd > /dev/null 2>> <LOG_PATH>`).
+10. **Verbosity:** Include verbose flags (`-v`) for file mutation operations explicitly, capturing output via `2>&1 | tee -a ...`.
+11. **Noise Control:** As an exception to Rule 3, for explicitly noisy commands, redirect stdout to null (`> /dev/null`) but keep errors (`2>> <LOG_PATH>`).
+    Ensure status is echoed separately (e.g., `echo "Status..." && cmd > /dev/null 2>> <LOG_PATH>`).
 
 ## Global Directives: Project Management
-At the beginning, if I mention a new project or provide a tree structure (via command output or description), immediately suggest terminal commands to create the project folder (e.g., mkdir project_name && cd project_name) and organize it logically (e.g., subfolders like src, tests, docs, logs; use mv to relocate files if needed). 
-Base organization on best practices: group code in src, tests in tests, configs in config, etc. If no tree is provided yet, ask for one via a tree command suggestion.
-At the end of each development stage (e.g., after completing a feature, testing, or any milestone I indicate), automatically review the current folder structure (based on any provided tree output or descriptions). 
-Suggest terminal commands to: reorganize files if messy (e.g., mv *.py src/), create missing folders (e.g., mkdir backups), clean up temporary files/logs (e.g., rm -rf pycache; truncate large logs with 'echo "" > log_file' or mv to archive), and ensure consistency (e.g., git init if not present, or add .gitignore). 
-Explain suggestions briefly before commands.
+At the beginning, if the user mentions a new project or provides a tree structure, immediately suggest terminal commands to create the project folder (e.g., `mkdir mock_project_name && cd mock_project_name`).
+You must organize it logically into required structural subfolders (e.g., `mock_src`, `mock_tests`, `mock_docs`, `mock_logs`).
+You must base organization on explicit modular design patterns.
+If no tree is provided yet, ask for one explicitly via a tree command suggestion.
+At the end of each development stage, automatically review the current folder structure.
+Suggest terminal commands to explicitly reorganize files.
+Create explicitly missing required folders (e.g., `mkdir mock_backups`).
+Clean up temporary files/logs (e.g., `rm -rf mock_pycache`; truncate large logs with `echo "" > mock_log_file` or move to archive).
+Ensure explicit environment consistency (e.g., `git init`, or add `.gitignore`).
+Explain suggestions briefly before executing commands.
 
 Global definition Manual Commands
 Global format for Manual Commands: markdown with code block
@@ -40,7 +53,10 @@ Global format for Code Updates (Diff/Patch):
 2. **Diff/Block:** Provide a Unified Diff or full code block if manual review is needed.
 
 System Command 0: Iteration Start & Log Reset
-Estimated Time: Instant. **Purpose:** Resets the transient log file. This is the ONLY command that uses `tee` (overwrite). All subsequent commands in this iteration MUST use `tee -a` (append). This prevents multi-GB log files and isolates the context for the current cycle.
+Estimated Time: Instant. **Purpose:** Resets the transient log file.
+This is the ONLY command that uses `tee` (overwrite).
+All subsequent commands in this iteration MUST use `tee -a` (append).
+This prevents multi-GB log files and isolates the context for the current cycle.
 ```bash
 echo "=== New Iteration: [Description] - $(date '+%Y-%m-%d %H:%M:%S') ===" 2>&1 | tee <LOG_PATH>
 ```
@@ -56,7 +72,7 @@ System Command: Display Comprehensive System Information
 Project Name: Blueprints
 Project Root Path: .blueprints
 Virtual Env Path: to be set up
-Log File Path: ~/Desktop/terminal.log  #USER DEFINED SETTING
+Log File Path: ~/Desktop/mock_terminal.log  #USER DEFINED SETTING
 Overall Goal: 
 Languages Used: 
 Key Libraries/Frameworks: 
@@ -95,7 +111,9 @@ Specific Focus:
 Code Snippet: 
 [PASTE CODE]
 
-For Quick Iteration, leave the Global Project Context section blank or write 'Refer to previous context' (Only use 'Refer to previous context' if staying within the same active LLM chat session. If starting a new session, Context is mandatory).
+For Quick Iteration, leave the Global Project Context section blank or write 'Refer to previous context'.
+Only use 'Refer to previous context' if staying within the same active LLM chat session.
+If starting a new session, Context is explicitly mandatory.
 ## Stage 1: Code Structure & Style
 
 Goal: Ensure code follows language conventions, is readable, modular, and maintainable. Catch style violations early.

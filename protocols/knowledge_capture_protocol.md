@@ -1,0 +1,42 @@
+---
+protocol_id: OP-DOC-CAPTURE
+version: 1.0.0
+status: ACTIVE
+last_updated: 2026-03-02
+---
+# Operational Protocol: Knowledge Capture (OP-DOC-CAPTURE)
+
+```json
+// EXAMPLE_PROVENANCE_HEADER
+{
+  "example_genesis_agent_version": "1.0.0",
+  "example_timestamp": "2026-03-02T17:07:44-06:00",
+  "example_protocol_reference": "OP-DOC-CAPTURE",
+  "example_target_audience": "Verification Agent"
+}
+```
+
+**Protocol ID:** OP-DOC-CAPTURE
+**Assigned Role:** Documenter
+**Target Audience:** All Macro-Agents
+
+## 1. Core Function & Rationale
+
+- This protocol ensures long-term maintainability and adaptability through living documentation.
+- This protocol auto-generates Architecture Decision Records (ADRs).
+- This protocol auto-generates structured API specification docs.
+- This protocol auto-generates explicit visual graphs and migration guides.
+- This protocol auto-generates contextual inline assertions and annotations.
+
+## 2. Execution Constraints
+
+- You MUST execute concurrently with the optimizer loop logic.
+- You MUST structurally embed auditor findings, evaluator metrics, and refinement rationales.
+- You MUST commit synchronized declarative artifacts directly alongside codebase merges.
+- You MUST rigidly obey the exact "Ventilated Prose (Strict Lineation)" formatting rules in all outputs.
+- You MUST rigidly obey the fenced-block isolation rules in all generated examples.
+
+## 3. Structural Dimensions
+
+- You MUST embed the explicitly defined "Audit-Trail Embedding" dimension inside all ADRs.
+- You MUST embed the explicitly defined "Human-Readable Traceability" dimension inside all guides.

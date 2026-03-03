@@ -24,16 +24,16 @@ Custom auditing environments MAY append additional dimensions by providing a com
 **Dimension Registration Schema:**
 Custom dimensions MUST adhere to the following YAML-based schema, wrapped in a `yaml` fenced code block, to ensure structured dynamic parsing:
 ```yaml
-dimension_id: [ID_NUMBER]
-name: [Name]
-focus: [Focus]
-category_prefix: [PREFIX]
-goal: [Statement]
-checks:
-  - check_name: [Check Name]
-    trigger: [Definition]
-    risk: [Risk or Rule]
-    fix_example: [Remediation]
+example_dimension_id: [EXAMPLE_ID_NUMBER]
+example_name: [mock_Name]
+example_focus: [example_Focus]
+example_category_prefix: [mock_PREFIX]
+example_goal: [mock_Statement]
+example_checks:
+  - example_check_name: [mock_Check_Name]
+    example_trigger: [mock_Definition]
+    example_risk: [mock_Risk_Or_Rule]
+    example_fix_example: [mock_Remediation]
 ```
 
 ### Dimension 01: Consistency (Contradiction Detection)
@@ -76,31 +76,47 @@ checks:
 *Category Prefix: CLARITY*
 *Goal: Eliminate subjective interpretation.*
 
-1.  **Vague Quantifiers:**
+### Dimension 04: Recursive Self-Reference (Logic Loop Detection)
+*Category Prefix: RECURSIVE*
+*Goal: Ensure protocols do not mandate operations that infinitely trigger themselves.*
+
+1.  **Self-Triggering Constraints:**
+    *   *Check:* Does the protocol mandate an output that triggers its own evaluation without a termination condition?
+    *   *Example:* "Auditing an audit report."
+    *   *Fix:* Define explicit terminal states for outputs.
+
+2.  **Vague Quantifiers:**
     *   *Trigger:* Words like "briefly", "appropriate", "standard", "etc.", "and so on".
     *   *Protocol:* Replace with specific constraints (e.g., "Max 50 words", "CommonMark compliant", "List exactly 5 items").
-2.  **Structural Ambiguity:**
+3.  **Structural Ambiguity:**
     *   *Trigger:* Missing headers, unclosed code blocks, or merged table rows.
     *   *Protocol:* Validate syntax strictly against the CommonMark specification. 
         Code blocks MUST be explicitly fenced with language identifiers, and table structures MUST parse cleanly via standard Markdown Abstract Syntax Tree (AST) parsers.
-3.  **Ventilated Prose (Strict Lineation):**
+4.  **Ventilated Prose (Strict Lineation):**
     *   *Trigger:* Multiple instructions, rules, or data points consolidated onto a single physical line.
     *   *Protocol:* Enforce "One Statement Per Line" constraint. 
         A "Statement" is defined strictly as a single condition OR a single imperative instruction.
-        Complex mandates MUST be grouped via bulleted lists, ensuring each physical line contains exactly one logical clause terminated by a literal newline (`\n`).
+        Complex mandates MUST be grouped via bulleted lists.
+        Each physical line MUST contain exactly one logical clause terminated by a literal newline (`\n`).
     *   *Exception:* **Markdown Table Rows.** Content within a table cell MUST remain on the same physical line as the row delimiters (`|`) to preserve valid Markdown syntax, even if the cell contains multiple logical clauses.
 
 ## 2. Execution Workflow
 
 To execute this protocol, the AI Auditor performs the following pass:
 
-1.  **Ingest & Segment:** Functionally segment the document by identifying standard Markdown boundaries. Extract all fenced code blocks (using triple backticks), blockquotes (`>`), and tables to isolate them from instructional prose. Tag standard unstructured prose as "Instructional Blocks" and isolated content as "Example Blocks."
+1.  **Ingest & Segment:** 
+    *   Functionally segment the document by identifying standard Markdown boundaries. 
+    *   Extract all fenced code blocks (using triple backticks), blockquotes (`>`), and tables to isolate them from instructional prose. 
+    *   Tag standard unstructured prose as "Instructional Blocks".
+    *   Tag isolated content as "Example Blocks."
 2.  **Targeted Logic Mapping:** 
     * Isolate sentences containing generalized global modifiers (e.g., "Always", "Never", "Must", "All"). 
     * Extract imperative verbs exclusively from these high-risk constraint blocks.
     * Extract all binding assertions simultaneously (Is, Are Not, Will, Shall Not).
     * Extract all passive structural constraints (Are to be, Must not be).
-    * Generate a structured mapping for each extracted element: `(Element_Type, Primary_Target, Contextual_Scope, Violated_Rule)`. For constraint blocks, this maps to `("Imperative Constraint", Action, Target, Scope)`. For static examples, it maps to `("Example Block", Entity_Name, File_Context, N/A)`.
+    * Generate a structured mapping for each extracted element: `(Element_Type, Primary_Target, Contextual_Scope, Violated_Rule)`. 
+    * For constraint blocks, this maps to `("Imperative Constraint", Action, Target, Scope)`. 
+    * For static examples, it maps to `("Example Block", Entity_Name, File_Context, N/A)`.
     * Flag any single line containing multiple imperative verbs or competing constraints as a violation of the active "Ventilated Prose" rule.
     * *Example:* `("Imperative", "Delete", "User Account", "Global / After 30 days")`
 3.  **Dynamic Dimension Execution:** Iterate over all active Dimension modules successfully parsed from the document structure, remaining completely agnostic to their specific identifiers or customized origins.
@@ -147,41 +163,42 @@ For automated pipelines, the AI Auditor MUST generate the Gap Analysis Report as
 **Template:**
 ```json
 {
-  "report_metadata": {
-    "document_name": "[Document Name]",
-    "protocol_applied": "OP-RISK-AUDIT",
-    "protocol_version": "[VERSION]",
-    "audit_timestamp": "[ISO-8601]",
-    "status": "[PASS/FAIL]",
-    "extensions": {}
+  "example_report_metadata": {
+    "example_document_name": "[mock_Document_Name]",
+    "example_protocol_applied": "OP-RISK-AUDIT",
+    "example_protocol_version": "[mock_VERSION]",
+    "example_audit_timestamp": "[mock_ISO-8601]",
+    "example_status": "[mock_PASS_FAIL]",
+    "example_extensions": {}
   },
-  "findings": [
+  "example_findings": [
     {
-      "id": "DIM-CONSIST-01",
-      "type": "Contradiction",
-      "severity": "Critical",
-      "description": "\"Rule A\" conflicts with \"Rule B\"",
-      "location": {
-        "start_line": "XX",
-        "end_line": "YY"
+      "example_id": "DIM-CONSIST-01",
+      "example_type": "Contradiction",
+      "example_severity": "Critical",
+      "example_description": "\"mock_Rule A\" conflicts with \"mock_Rule B\"",
+      "example_location": {
+        "example_start_line": "mock_XX",
+        "example_end_line": "mock_YY"
       },
-      "remediation": "Add \"Except\" clause to Line XX"
+      "example_remediation": "Add \"mock_Except\" clause to Line mock_XX"
     }
   ]
 }
+```
 
 **Zero-Finding State (JSON):**
 If no gaps are detected across all dimensions, the `findings` array MUST be strictly empty and the metadata status MUST indicate a pass.
 ```json
 {
-  "report_metadata": {
-    "document_name": "[Document Name]",
-    "protocol_applied": "OP-RISK-AUDIT",
-    "protocol_version": "[VERSION]",
-    "audit_timestamp": "[ISO-8601]",
-    "status": "PASS",
-    "extensions": {}
+  "example_report_metadata": {
+    "example_document_name": "[mock_Document_Name]",
+    "example_protocol_applied": "OP-RISK-AUDIT",
+    "example_protocol_version": "[mock_VERSION]",
+    "example_audit_timestamp": "[mock_ISO-8601]",
+    "example_status": "PASS",
+    "example_extensions": {}
   },
-  "findings": []
+  "example_findings": []
 }
 ```
