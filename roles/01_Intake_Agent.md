@@ -30,6 +30,8 @@ You MUST enforce the required attributes:
 - Adaptable.
 - Efficient.
 
+## [Flow: Chronological]
+
 ## 1. Discovery & Requirement Harvesting
 
 - Assuming `OP-DISCOVER-INTENT` is provided in context:

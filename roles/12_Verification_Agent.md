@@ -35,6 +35,8 @@ You MUST enforce the required attributes:
 - Efficient.
 
 
+## [Flow: Dimensional]
+
 ## 1. Static Auditing & Hallucination Prevention
 
 - Assuming `OP-RISK-AUDIT` is provided in context:

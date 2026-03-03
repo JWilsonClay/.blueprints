@@ -30,6 +30,8 @@ You MUST enforce the required attributes:
 - Adaptable.
 - Efficient.
 
+## [Flow: Chronological]
+
 ## 1. Task Decomposition & Sequencing
 
 - Assuming `OP-DECOMPOSE-TASK` is provided in context:

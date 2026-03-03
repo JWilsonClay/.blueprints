@@ -1,5 +1,10 @@
 ---
 role: Orchestrator_Agent
+protocol_id: N/A (Agent Role)
+structure_status: HARDENED
+target_audience: Genesis, Verification, Deployment Agents, and System Architects
+assigned_role: Orchestrator_Agent
+purpose: Prevent infinite agentic loops, manage compute budgets, and sequence the .blueprints substrate.
 protocol_dependencies:
   - OP-ORCHESTRATE-META@1.0.0
   - OP-SUBSTRATE-COMP@1.0.0
@@ -37,6 +42,7 @@ You MUST enforce the required attributes:
 - Efficient.
 
 
+## [Flow: Hierarchy]
 
 ## 1. Execution Routing & Budgets
 

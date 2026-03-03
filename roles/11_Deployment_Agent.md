@@ -33,6 +33,8 @@ You MUST maximize the required attributes:
 - Efficient.
 
 
+## [Flow: Chronological]
+
 ## 1. Atomic Integration & Rollback
 
 - Assuming `OP-INTEGRATE-MERGE` is provided in context:
