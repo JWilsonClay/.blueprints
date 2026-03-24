@@ -8,5 +8,5 @@ This directory is part of the .blueprints architecture.
 
 ## Contents
 <!-- BREADCRUMB -->
-Auto-generated summary for navigation.
+The primary documentation repository for the workspace, containing architectural plans, folder ownership definitions, and comprehensive project checklists.
 <!-- BREADCRUMB_END -->

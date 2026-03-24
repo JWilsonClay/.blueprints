@@ -16,7 +16,7 @@
       "templates",
       "toolkits"
     ],
-    "last_seen": "2026-03-24T18:15:09.782052"
+    "last_seen": "2026-03-24T18:24:12.545858"
   },
   "activation_demonstration": {
     "has_readme": true,
@@ -34,7 +34,7 @@
     "content_hash": "e04eb0a86d370abb299ba98ef4b5d3d4daec0d37d1a5a7b53135f9f504e36a34",
     "last_modified": "2026-03-02T19:29:55.809000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:15:31.023000"
+    "last_seen": "2026-03-24T18:24:50.082262"
   },
   "data": {
     "has_readme": true,
@@ -43,7 +43,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-24T16:22:39.226000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:15:31.023505"
+    "last_seen": "2026-03-24T18:24:50.082747"
   },
   "docs": {
     "has_readme": true,
@@ -52,7 +52,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-03T05:10:42.454000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:15:31.023940"
+    "last_seen": "2026-03-24T18:24:50.083108"
   },
   "docs/checklists": {
     "has_readme": false,
@@ -80,7 +80,7 @@
     "content_hash": "ba6e4b1125252375276de1b88eba731dacec6a8d833c30a76d631f40aa25d41a",
     "last_modified": "2026-03-02T21:20:36.778000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:15:33.685356"
+    "last_seen": "2026-03-24T18:24:53.892699"
   },
   "governance": {
     "has_readme": true,
@@ -89,7 +89,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-24T16:22:36.810000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:15:33.685885"
+    "last_seen": "2026-03-24T18:24:53.893274"
   },
   "governance/thedoorway": {
     "has_readme": false,
@@ -121,7 +121,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-02T15:05:21.531000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:15:33.686491"
+    "last_seen": "2026-03-24T18:24:53.893770"
   },
   "roles": {
     "has_readme": true,
@@ -132,7 +132,7 @@
     "content_hash": "680dc983aa69b60fc8e2e56acfe2332b1215565c7306e028a1fd86c1fc96dc25",
     "last_modified": "2026-03-02T08:20:42.514000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:15:33.993409"
+    "last_seen": "2026-03-24T18:24:54.101897"
   },
   "templates": {
     "has_readme": true,
@@ -141,7 +141,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-03T06:15:28.911000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:15:33.993952"
+    "last_seen": "2026-03-24T18:24:54.102477"
   },
   "templates/doorway": {
     "has_readme": false,
@@ -159,7 +159,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-02T19:27:27.282000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:15:33.994430"
+    "last_seen": "2026-03-24T18:24:54.102992"
   },
   "toolkits/audit_onboarding": {
     "has_readme": true,

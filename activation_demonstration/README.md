@@ -98,3 +98,8 @@ This Activation & Demonstration Layer transforms the 8 roles + 9 protocols + 26 
 You now possess the entire closed-loop stack (roles + protocols + 3 toolkits + activation layer = 42 artifacts), ready for immediate use or further self-improvement.
 
 If you would like me to generate the full source code for these eight capstone components in the exact same annotated Markdown code-block format as all previous scripts (complete with # FILE, # NAME, # PURPOSE annotations, ready to copy-paste), simply say “yes please” and I will deliver them instantly. You can then run `python system_bootstrapper.py` and have the entire agentic system live and evolving within minutes.
+
+## Contents
+<!-- BREADCRUMB -->
+Houses demonstration scripts and example pipelines that showcase multi-agent orchestration, self-evolution loops, and system bootstrapping within the blueprint.
+<!-- BREADCRUMB_END -->

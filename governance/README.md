@@ -8,5 +8,5 @@ This directory is part of the .blueprints architecture.
 
 ## Contents
 <!-- BREADCRUMB -->
-Auto-generated summary for navigation.
+Parent domain for the self-governance layer, including agent behaviors, protocols, and the Doorway Protocol engine.
 <!-- BREADCRUMB_END -->

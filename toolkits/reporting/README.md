@@ -56,3 +56,8 @@ All reports are now ventilated-prose compliant by design (the enforcer guarantee
 If you would like me to generate the full source code for these four reporting scripts in the exact same annotated Markdown code-block format I have used for every previous layer (with # FILE, # NAME, # PURPOSE, ready to drop into your project and wire to the three front-end agents), just say “yes please” and I will deliver them instantly.
 
 You can then run `python -m agentic_cli report` and watch the full, non-lonely, perfectly ventilated reporting layer in action. Would you like the code now?
+
+## Contents
+<!-- BREADCRUMB -->
+Enforcers for ventilated prose, gap analysis reporting, and unified architectural audits.
+<!-- BREADCRUMB_END -->

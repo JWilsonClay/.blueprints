@@ -414,9 +414,17 @@ Auto-generated summary for navigation.
             
             if tag_start in content and tag_end in content:
                 # Replace the middle
-                before = content.split(tag_start)[0]
-                after = content.split(tag_end)[1]
-                new_content = f"{before}{tag_start}\n{breadcrumb}\n{tag_end}{after}"
+                parts_before = content.split(tag_start)
+                parts_after = content.split(tag_end)
+                if len(parts_before) > 1 and len(parts_after) > 1:
+                    before = parts_before[0]
+                    after = parts_after[-1]
+                    new_content = f"{before}{tag_start}\n{breadcrumb}\n{tag_end}{after}"
+                    target.write_text(new_content)
+                    return True
+            else:
+                # Append tags if missing to ensure contextualization
+                new_content = content.rstrip() + f"\n\n## Contents\n{tag_start}\n{breadcrumb}\n{tag_end}\n"
                 target.write_text(new_content)
                 return True
         except Exception:

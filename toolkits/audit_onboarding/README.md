@@ -84,3 +84,8 @@ This Audit & Onboarding Layer transforms the original 10-module toolkit from an 
 You now possess the full stack: 8 roles + 9 protocols + 10 core toolkit modules + 8 audit/onboarding utilities—everything required for safe, comprehensive, beginner-accessible agentic code engineering.
 
 If you would like me to produce the full source code for the six new scripts (codebase_analyzer.py through health_dashboard_generator.py) in the exact same annotated Markdown code-block format I used for the original 10, just say the word and I will deliver them instantly, ready to drop into your project root.
+
+## Contents
+<!-- BREADCRUMB -->
+Utilities for initial codebase analysis, vulnerability scanning, and agentic grounding.
+<!-- BREADCRUMB_END -->

@@ -8,5 +8,5 @@ This directory is part of the .blueprints architecture.
 
 ## Contents
 <!-- BREADCRUMB -->
-Auto-generated summary for navigation.
+Persistent storage for workspace snapshots, context update logs, success certificates, and runtime state data.
 <!-- BREADCRUMB_END -->

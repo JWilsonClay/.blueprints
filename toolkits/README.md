@@ -8,5 +8,5 @@ This directory is part of the .blueprints architecture.
 
 ## Contents
 <!-- BREADCRUMB -->
-Auto-generated summary for navigation.
+Central hub for specialized agent toolkits, covering static auditing, codebase analysis, debugging, and runtime observability metrics.
 <!-- BREADCRUMB_END -->

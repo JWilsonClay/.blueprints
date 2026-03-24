@@ -129,3 +129,8 @@ This wiring turns the LLM agents from “prompt-only” actors into a true softw
 You now possess the complete triad: 8 roles + 9 protocols + 10 executable Python modules, fully wired and ready for production self-scaffolding or user code-engineering assistance.
 
 If you would like me to generate the full source code for any (or all) of these ten Python files—complete with type hints, docstrings, unit tests, and exact compliance with the hallucination_audit_protocol.md—simply specify which one(s) and I will deliver them in the next response, ready to drop into the `/toolkit/` directory.
+
+## Contents
+<!-- BREADCRUMB -->
+Hub for benchmark evaluation, testing sandboxes, and integration management for modular components.
+<!-- BREADCRUMB_END -->

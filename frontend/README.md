@@ -130,3 +130,8 @@ This Frontend Orchestration Layer (8 scripts) + the existing GUI controls (Strea
 You now possess the complete platform: backend (42 artifacts) + three front-end agents + GUI controls + Frontend Orchestration Layer (8 scripts) = a fully operational, user-friendly, self-improving agentic engineering system.
 
 If you would like me to generate the full source code for these eight frontend orchestration scripts in the exact same annotated Markdown code-block format as all previous layers (with # FILE, # NAME, # PURPOSE, ready to copy-paste and wire into your GUI controls), simply say “yes please” and I will deliver them instantly. You can then run `python -m agentic_cli bootstrap` and have the three front-end agents live and collaborating within minutes.
+
+## Contents
+<!-- BREADCRUMB -->
+Contains the presentation and UI components of the blueprint, including communication buses and deployment orchestrators for specialized agent dashboards.
+<!-- BREADCRUMB_END -->

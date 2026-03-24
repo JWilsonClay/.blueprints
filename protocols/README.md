@@ -8,5 +8,5 @@ This directory is part of the .blueprints architecture.
 
 ## Contents
 <!-- BREADCRUMB -->
-Auto-generated summary for navigation.
+Defines operational standards and step-by-step procedures for agentic tasks, ensuring consistent execution across the autonomous substrate.
 <!-- BREADCRUMB_END -->

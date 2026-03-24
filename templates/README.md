@@ -8,5 +8,5 @@ This directory is part of the .blueprints architecture.
 
 ## Contents
 <!-- BREADCRUMB -->
-Auto-generated summary for navigation.
+Source of reusable document stubs and templates, including the critical governance files used for self-healing substrate recovery.
 <!-- BREADCRUMB_END -->
