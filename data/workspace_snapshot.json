@@ -1,0 +1,249 @@
+{
+  ".": {
+    "has_readme": true,
+    "files_count": 11,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-24T17:07:51.551726",
+    "subdirs": [
+      "activation_demonstration",
+      "data",
+      "docs",
+      "frontend",
+      "governance",
+      "protocols",
+      "roles",
+      "templates",
+      "toolkits"
+    ],
+    "last_seen": "2026-03-24T18:15:09.782052"
+  },
+  "activation_demonstration": {
+    "has_readme": true,
+    "files_count": 9,
+    "py_files": [
+      "agentic_cli.py",
+      "ci_pipeline_generator.py",
+      "memory_scaffold_example.py",
+      "multi_agent_demo_pipeline.py",
+      "production_packager.py",
+      "prompt_library_manager.py",
+      "self_evolution_loop.py",
+      "system_bootstrapper.py"
+    ],
+    "content_hash": "e04eb0a86d370abb299ba98ef4b5d3d4daec0d37d1a5a7b53135f9f504e36a34",
+    "last_modified": "2026-03-02T19:29:55.809000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T18:15:31.023000"
+  },
+  "data": {
+    "has_readme": true,
+    "files_count": 3,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-24T16:22:39.226000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T18:15:31.023505"
+  },
+  "docs": {
+    "has_readme": true,
+    "files_count": 12,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-03T05:10:42.454000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T18:15:31.023940"
+  },
+  "docs/checklists": {
+    "has_readme": false,
+    "files_count": 12,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-03T05:10:43.560000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T17:07:39.114288"
+  },
+  "frontend": {
+    "has_readme": true,
+    "files_count": 10,
+    "py_files": [
+      "communication_bus.py",
+      "deployment_orchestrator.py",
+      "feedback_aggregator.py",
+      "realtime_collaborator.py",
+      "schemas.py",
+      "security_gateway.py",
+      "session_manager.py",
+      "user_experience_optimizer.py",
+      "visualization_renderer.py"
+    ],
+    "content_hash": "ba6e4b1125252375276de1b88eba731dacec6a8d833c30a76d631f40aa25d41a",
+    "last_modified": "2026-03-02T21:20:36.778000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T18:15:33.685356"
+  },
+  "governance": {
+    "has_readme": true,
+    "files_count": 2,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-24T16:22:36.810000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T18:15:33.685885"
+  },
+  "governance/thedoorway": {
+    "has_readme": false,
+    "files_count": 2,
+    "py_files": [
+      "best_practices_auditor.py",
+      "dynamic_contextualizer.py"
+    ],
+    "content_hash": "af983b16c7364219ccbe4261e7559f641f67aacce69661365d3f76fa3499035b",
+    "last_modified": "2026-03-24T17:07:03.580748",
+    "subdirs": [
+      "templates"
+    ],
+    "last_seen": "2026-03-24T17:07:41.704073"
+  },
+  "governance/thedoorway/templates": {
+    "has_readme": false,
+    "files_count": 4,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-24T16:22:38.194000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T17:07:41.704576"
+  },
+  "protocols": {
+    "has_readme": true,
+    "files_count": 20,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-02T15:05:21.531000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T18:15:33.686491"
+  },
+  "roles": {
+    "has_readme": true,
+    "files_count": 11,
+    "py_files": [
+      "Depreciator.py"
+    ],
+    "content_hash": "680dc983aa69b60fc8e2e56acfe2332b1215565c7306e028a1fd86c1fc96dc25",
+    "last_modified": "2026-03-02T08:20:42.514000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T18:15:33.993409"
+  },
+  "templates": {
+    "has_readme": true,
+    "files_count": 2,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-03T06:15:28.911000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T18:15:33.993952"
+  },
+  "templates/doorway": {
+    "has_readme": false,
+    "files_count": 4,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-24T16:23:55.773560",
+    "subdirs": [],
+    "last_seen": "2026-03-24T17:07:41.978639"
+  },
+  "toolkits": {
+    "has_readme": true,
+    "files_count": 2,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-02T19:27:27.282000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T18:15:33.994430"
+  },
+  "toolkits/audit_onboarding": {
+    "has_readme": true,
+    "files_count": 13,
+    "py_files": [
+      "auto_test_generator.py",
+      "codebase_analyzer.py",
+      "dependency_visualizer.py",
+      "health_dashboard_generator.py",
+      "role_seniority_validator.py",
+      "search_copy.py",
+      "simulate_assimilation_drift.py",
+      "standardize_uph.py",
+      "substrate_birthmark_verifier.py",
+      "table_formatter.py",
+      "test_protocol_assimilation.py",
+      "vulnerability_scanner.py"
+    ],
+    "content_hash": "7458f57b2a191e36398b858dc19ebba8cdd3b652962a821dab1b8e7537102ede",
+    "last_modified": "2026-03-02T19:06:24.788000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T17:07:45.163657"
+  },
+  "toolkits/debugging": {
+    "has_readme": false,
+    "files_count": 1,
+    "py_files": [
+      "surgeon.py"
+    ],
+    "content_hash": "594eb24f384a657d7003af8a5a00e4b9b94262addc14296467069e945f16adb6",
+    "last_modified": "2026-03-02T22:24:41.536000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T17:07:45.403364"
+  },
+  "toolkits/dependency": {
+    "has_readme": true,
+    "files_count": 12,
+    "py_files": [
+      "audit_engine.py",
+      "benchmark_evaluator.py",
+      "core_utils.py",
+      "documentation_generator.py",
+      "file_generator.py",
+      "integration_manager.py",
+      "performance_optimizer.py",
+      "refinement_engine.py",
+      "testing_sandbox.py",
+      "workflow_orchestrator.py"
+    ],
+    "content_hash": "197619139a4cdf6a7a10ef3b459313529a65f3ddf0c22352f8cb6b9c6e6da237",
+    "last_modified": "2026-03-02T19:05:46.455000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T17:07:48.072667"
+  },
+  "toolkits/reporting": {
+    "has_readme": true,
+    "files_count": 5,
+    "py_files": [
+      "exhaustive_gap_report_generator.py",
+      "redundancy_report_generator.py",
+      "unified_reporting_orchestrator.py",
+      "ventilated_prose_enforcer.py"
+    ],
+    "content_hash": "61fa450363c66bb52076e0837be4f51461e8da29ce6db530f2ff135c74836ca3",
+    "last_modified": "2026-03-02T21:49:10.625000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T17:07:49.126973"
+  },
+  "toolkits/runtime_observability": {
+    "has_readme": true,
+    "files_count": 9,
+    "py_files": [
+      "agent_runner.py",
+      "container_orchestrator.py",
+      "error_recovery_manager.py",
+      "external_api_hub.py",
+      "git_bridge.py",
+      "metrics_collector.py",
+      "self_monitor_dashboard.py",
+      "structured_logger.py"
+    ],
+    "content_hash": "a0be2790f0d44bb9d98e0c3def408f03a068a596a879b542419f6ff758ab2d97",
+    "last_modified": "2026-03-02T19:16:59.638000",
+    "subdirs": [],
+    "last_seen": "2026-03-24T17:07:51.539250"
+  }
+}

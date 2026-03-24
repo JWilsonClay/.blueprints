@@ -1,4 +1,4 @@
-# contentflow/governance/dynamic_contextualizer.py
+# governance/thedoorway/dynamic_contextualizer.py
 import os
 import json
 import time
@@ -8,16 +8,12 @@ import hashlib
 import argparse
 from typing import List, Optional
 
-# Relative imports are forbidden by project rules, using absolute
-try:
-    from contentflow import DATA_DIR, PROJECT_ROOT
-except ImportError:
-    # Fallback for standalone execution if contentflow is not in path
-    PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-    DATA_DIR = PROJECT_ROOT / "data"
+# Resolve paths standalone for .blueprints workspace
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+DATA_DIR = PROJECT_ROOT / "data"
 
 try:
-    from contentflow.governance.best_practices_auditor import BestPracticesAuditor
+    from governance.thedoorway.best_practices_auditor import BestPracticesAuditor
 except ImportError:
     BestPracticesAuditor = None
 
@@ -25,25 +21,34 @@ class DoorwayContextualizer:
     """
     Dynamic Ingestion Protocol ("The Doorway").
     Performs active structural audits, self-healing READMEs, and protocol recommendations.
+    Now enhanced with Substrate Integrity (Self-Healing) for core governance files.
     """
     
     def __init__(self):
         self.snapshot_file = DATA_DIR / "workspace_snapshot.json"
         self.ownership_file = PROJECT_ROOT / "docs" / "FOLDER_OWNERSHIP.md"
+        self.manifest_file = PROJECT_ROOT / "governance" / "MANIFEST.md"
         self.update_log = DATA_DIR / "context_updates.log"
         self.ignore_dirs = {
             ".git", ".venv", "__pycache__", ".ipynb_checkpoints",
             "node_modules", "build", "dist", ".pytest_cache"
         }
         self.success_cert = DATA_DIR / "ctw_last_success.json"
-        self.repair_template = PROJECT_ROOT / "governance" / "templates" / "repair_plan.md"
+        self.repair_template = PROJECT_ROOT / "governance" / "thedoorway" / "templates" / "repair_plan.md.template"
         self.repair_plan_file = PROJECT_ROOT / "governance" / "repair_implementation_plan.md"
+        
+        # Redundant template locations for self-healing
+        self.primary_templates = PROJECT_ROOT / "governance" / "thedoorway" / "templates"
+        self.backup_templates = PROJECT_ROOT / "templates" / "doorway"
 
     def run(self, full_scan: bool = False, auto_apply: bool = False, verbose: bool = True) -> dict:
         """Main execution loop for dynamic contextualization."""
         start_time = time.time()
         
-        # 0. Auto-Apply Approved Breadcrumbs
+        # 0. Ensure Substrate Integrity (Self-Healing)
+        self._ensure_substrate_integrity()
+        
+        # 0.5 Auto-Apply Approved Breadcrumbs
         if auto_apply:
             self._apply_approved_breadcrumbs()
             
@@ -59,13 +64,13 @@ class DoorwayContextualizer:
         # 3. Persistence
         self._save_snapshot(current_map)
 
-        # 4. Manifest Synchronization (NEW)
+        # 4. Manifest Synchronization
         self._sync_manifest(current_map)
         
         # 5. Protocol Recommendation
         recommendations = self._recommend_protocols(audit_results)
         
-        # 5. Qualitative 'Workout' & 6. 'Breakfast' Branching
+        # 6. Qualitative 'Workout' & 7. 'Breakfast' Branching
         quality_results = self._perform_qualitative_audit(audit_results, current_map, full_scan)
         
         overhead = time.time() - start_time
@@ -82,6 +87,46 @@ class DoorwayContextualizer:
             self._render_report(results)
             
         return results
+
+    def _ensure_substrate_integrity(self):
+        """Self-Healing: Ensures core files and directories exist."""
+        # 1. Ensure data directory
+        if not DATA_DIR.exists():
+            DATA_DIR.mkdir(parents=True, exist_ok=True)
+            (DATA_DIR / ".gitkeep").touch()
+            print("[SELF-HEAL] Created missing data/ directory.")
+
+        # 2. Ensure core governance files
+        critical_files = {
+            self.ownership_file: "FOLDER_OWNERSHIP.md.template",
+            self.manifest_file: "MANIFEST.md.template"
+        }
+        
+        for file_path, template_name in critical_files.items():
+            if not file_path.exists():
+                self._heal(file_path, template_name)
+
+    def _heal(self, target_path: Path, template_name: str):
+        """Heals a missing file using redundant templates."""
+        template_content = None
+        
+        # Try Primary
+        primary = self.primary_templates / template_name
+        if primary.exists():
+            template_content = primary.read_text()
+        else:
+            # Fallback to Backup
+            backup = self.backup_templates / template_name
+            if backup.exists():
+                template_content = backup.read_text()
+                print(f"[SELF-HEAL] Primary template missing. Used backup for {target_path.name}.")
+        
+        if template_content:
+            target_path.parent.mkdir(parents=True, exist_ok=True)
+            target_path.write_text(template_content)
+            print(f"[SELF-HEAL] Recreated missing {target_path.relative_to(PROJECT_ROOT)} from template.")
+        else:
+            print(f"[ERROR] Failed to heal {target_path.name}: No template found in primary or backup.")
 
     def _compute_dir_hash(self, root_path: Path) -> str:
         """Computes hash from concatenated content of sorted .py files."""
@@ -114,7 +159,10 @@ class DoorwayContextualizer:
             dirs[:] = [d for d in dirs if d not in self.ignore_dirs and not d.startswith('.')]
             
             root_path = Path(root)
-            rel_path = root_path.relative_to(PROJECT_ROOT)
+            try:
+                rel_path = root_path.relative_to(PROJECT_ROOT)
+            except ValueError:
+                continue
             rel_path_str = str(rel_path)
             
             # Content-based hash
@@ -224,9 +272,23 @@ class DoorwayContextualizer:
         target = PROJECT_ROOT / folder_path_str / "README.md"
         name = Path(folder_path_str).name
         
-        template = f"""# {name} — [One Sentence Owner Description Placeholder]
+        # Try to load template from redundant locations
+        template_content = None
+        for base in [self.primary_templates, self.backup_templates]:
+            tpl_file = base / "README.md.template"
+            if tpl_file.exists():
+                template_content = tpl_file.read_text()
+                break
+        
+        if template_content:
+            # Replace placeholders
+            template_content = template_content.replace("{name}", name)
+            template_content = template_content.replace("{path}", folder_path_str)
+        else:
+            # Fallback inline template
+            template_content = f"""# {name} — [One Sentence Owner Description Placeholder]
 
-This directory is part of the ContentFlow architecture.
+This directory is part of the .blueprints architecture.
 
 ## Ownership
 - **Owner**: [Defined in FOLDER_OWNERSHIP.md]
@@ -238,9 +300,8 @@ Auto-generated summary for navigation.
 <!-- BREADCRUMB_END -->
 """
         try:
-            # Ensure directory exists (should always be true in os.walk)
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_text(template)
+            target.write_text(template_content)
         except Exception:
             pass
 
@@ -274,7 +335,7 @@ Auto-generated summary for navigation.
             pass
 
     def _render_report(self, results: dict):
-        print("\n=== ContentFlow Live Architectural Map ===")
+        print("\n=== .blueprints Live Architectural Map ===")
         print(f"Scan completed in {results['overhead']:.2f}s")
         
         if results["drift"]["new"]:
@@ -398,11 +459,23 @@ Auto-generated summary for navigation.
 
     def _generate_repair_plan(self, results: dict, files: List[Path]):
         """Tier 3: Branch Findings → Repair Plan."""
-        if not self.repair_template.exists():
-            return
+        # Redundant template loading for repair plan
+        template_content = None
+        for base in [self.primary_templates, self.backup_templates]:
+            tpl_file = base / "repair_plan.md.template"
+            if tpl_file.exists():
+                template_content = tpl_file.read_text()
+                break
+        
+        if not template_content:
+            # Fallback to the hardcoded path if templates missing
+            if self.repair_template.exists():
+                template_content = self.repair_template.read_text()
+            else:
+                return
             
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        template = self.repair_template.read_text()
+        template = template_content
         
         # Prepare high-impact refactors (KISS/SOLID)
         high_impact = []
@@ -416,7 +489,7 @@ Auto-generated summary for navigation.
         # Prepare SoC violations
         soc_violations = [f"- {v['file']}:{v['line']} -> {v['message']}" for v in results["doctrines"]["SoC"]]
         
-        # Prepare DRY / Composition Root violations
+        # Prepare DRY / Contamination violations
         dry_violations = [f"- {v['file']}:{v['line']} -> {v['message']}" for v in results["doctrines"]["DRY"]]
         
         context = {
@@ -433,7 +506,7 @@ Auto-generated summary for navigation.
             "{high_impact_refactors}": "\n".join(high_impact) if high_impact else "_None detected_",
             "{soc_violations}": "\n".join(soc_violations) if soc_violations else "_None detected_",
             "{dry_violations}": "\n".join(dry_violations) if dry_violations else "_None detected_",
-            "{other_recommendations}": "_Follow Composition Root and SoC conventions._"
+            "{other_recommendations}": "_Follow .blueprints architectural conventions._"
         }
         
         report = template
@@ -458,8 +531,7 @@ Auto-generated summary for navigation.
 
     def _sync_manifest(self, current_map: dict):
         """Surgically updates MANIFEST.md with all discovered READMEs."""
-        manifest_file = PROJECT_ROOT / "governance" / "MANIFEST.md"
-        if not manifest_file.exists():
+        if not self.manifest_file.exists():
             return
 
         try:
@@ -481,7 +553,7 @@ Auto-generated summary for navigation.
             formatted_entries = [entry for path, entry in discovered_readmes]
 
             # 3. Surgical Update of MANIFEST.md
-            content = manifest_file.read_text()
+            content = self.manifest_file.read_text()
             lines = content.splitlines()
             
             new_lines = []
@@ -489,7 +561,7 @@ Auto-generated summary for navigation.
             section_replaced = False
 
             for line in lines:
-                if line.startswith("## Root Directories") or line.startswith("## Discovered Domains"):
+                if line.startswith("## Root Directories") or "(Auto-Synced)" in line:
                     new_lines.append("## Root Directories (Auto-Synced)")
                     new_lines.extend(formatted_entries)
                     in_directories_section = True
@@ -497,7 +569,7 @@ Auto-generated summary for navigation.
                     continue
                 
                 if in_directories_section:
-                    if line.startswith("---") or line.startswith("## "):
+                    if line.startswith("---") or (line.startswith("## ") and "(Auto-Synced)" not in line):
                         in_directories_section = False
                         new_lines.append("")
                         new_lines.append(line)
@@ -510,14 +582,14 @@ Auto-generated summary for navigation.
                 new_lines.append("\n## Root Directories (Auto-Synced)")
                 new_lines.extend(formatted_entries)
 
-            manifest_file.write_text("\n".join(new_lines) + "\n")
+            self.manifest_file.write_text("\n".join(new_lines) + "\n")
             print(f"[MANIFEST] Synced {len(formatted_entries)} READMEs to governance/MANIFEST.md")
 
         except Exception as e:
             print(f"[ERROR] Manifest sync failed: {e}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="ContentFlow Doorway Contextualizer")
+    parser = argparse.ArgumentParser(description="Blueprints Doorway Contextualizer")
     parser.add_argument("--full-scan", action="store_true", help="Force deep scan of all directories")
     parser.add_argument("--auto-apply", action="store_true", help="Apply approved breadcrumbs from the log")
     args = parser.parse_args()

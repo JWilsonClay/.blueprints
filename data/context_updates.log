@@ -1,0 +1,72 @@
+Folder: activation_demonstration
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: data
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: docs
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: docs/checklists
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: frontend
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: governance
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: governance/thedoorway
+Proposed breadcrumb: Contains the core engine of the Doorway Protocol, responsible for dynamic workspace contextualization and qualitative auditing. It features a self-healing DoorwayContextualizer that ensures substrate integrity by reconstructing missing governance files from redundant templates. The BestPracticesAuditor enforces coding standards (PEP8, SoC, SOLID) and performs contamination checks for legacy workspace references.
+Reason: new directory
+
+Folder: governance/thedoorway/templates
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: protocols
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: roles
+Proposed breadcrumb: Repository of specialized AI agent role definitions that govern the autonomous behavior of the substrate. Includes primary agents for orchestration (00), intake (01), genesis (02), and verification (12), each with distinct protocols and constraints. These markdown-based roles serve as the authoritative grounding for agent identification and cross-agent collaboration.
+Reason: new directory
+
+Folder: templates
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: templates/doorway
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: toolkits
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: toolkits/audit_onboarding
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: toolkits/debugging
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: toolkits/dependency
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: toolkits/reporting
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
+Folder: toolkits/runtime_observability
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+

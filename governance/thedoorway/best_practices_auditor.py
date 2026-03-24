@@ -1,4 +1,4 @@
-# contentflow/governance/best_practices_auditor.py
+# governance/thedoorway/best_practices_auditor.py
 from pathlib import Path
 import subprocess
 import json
@@ -26,7 +26,7 @@ class BestPracticesAuditor:
                 "PEP8": [],           # Ruff style/import/fixable issues
                 "SoC": [],            # Relative imports, cross-layer (custom grep or Ruff rules)
                 "SOLID_KISS": [],     # High CC, low MI
-                "DRY": [],            # Future placeholder (Ruff lacks native dup detection -> phase 2)
+                "DRY": [],            # Detection of old-workspace contamination
                 "YAGNI": [],          # Future (unused code via vulture or Ruff unused)
             },
             "summary": {"violations": 0, "warnings": 0, "auto_fixable": 0}
@@ -43,7 +43,7 @@ class BestPracticesAuditor:
 
         self._run_ruff(py_files)
         self._run_radon(py_files)
-        self._run_composition_root_audit(py_files)
+        self._run_contamination_audit(py_files)
 
         # Count totals
         for cat in self.results["doctrines"].values():
@@ -57,13 +57,13 @@ class BestPracticesAuditor:
         cmd = [
             "ruff", "check",
             "--output-format", self.RUFF_OUTPUT_FORMAT,
-            "--select", "E,F,I,UP,B,ANN",  # Errors, flake8, isort, pyupgrade, bugbear, annotations (optional)
-            "--ignore", "E501",             # Let formatter handle line-length if using ruff format later
+            "--select", "E,F,I,UP,B,ANN",  # Errors, flake8, isort, pyupgrade, bugbear, annotations
+            "--ignore", "E501",             # Let formatter handle line-length
         ]
-        if len(files) < 20:  # Small set -> list files; else scan dirs
+        if len(files) < 20:  # Small set -> list files; else scan root
             cmd.extend(str(f) for f in files)
         else:
-            cmd.append(str(self.project_root / "contentflow"))  # Or drifted dirs
+            cmd.append(str(self.project_root))
 
         try:
             result = subprocess.run(cmd, capture_output=True, text=True, check=False)
@@ -97,12 +97,13 @@ class BestPracticesAuditor:
                     capture_output=True, text=True, check=True
                 )
                 cc_data = json.loads(cc_out.stdout)
-                for func, metrics in cc_data.items():
-                    cc = metrics.get("complexity", 0)
+                # Results can be a list of dicts for the file
+                for item in cc_data.get(str(file_path), []):
+                    cc = item.get("complexity", 0)
                     if cc > self.CC_VIOLATION_THRESHOLD:
                         self.results["doctrines"]["SOLID_KISS"].append({
                             "file": str(file_path),
-                            "function": func,
+                            "function": item.get("name", "unknown"),
                             "cc": cc,
                             "level": "violation",
                             "message": f"High cyclomatic complexity (exceeds {self.CC_VIOLATION_THRESHOLD})"
@@ -114,7 +115,8 @@ class BestPracticesAuditor:
                     capture_output=True, text=True, check=True
                 )
                 mi_data = json.loads(mi_out.stdout)
-                mi_score = mi_data.get("MI", 100)
+                file_mi = mi_data.get(str(file_path), {})
+                mi_score = file_mi.get("mi", 100)
                 if mi_score < self.MI_WARNING_THRESHOLD:
                     self.results["doctrines"]["SOLID_KISS"].append({
                         "file": str(file_path),
@@ -125,20 +127,15 @@ class BestPracticesAuditor:
             except Exception as e:
                 self.results["doctrines"]["SOLID_KISS"].append({"error": f"Radon failed on {file_path}: {str(e)}"})
 
-    def _run_composition_root_audit(self, files: List[Path]):
-        """Detects manual service instantiation outside the core context."""
+    def _run_contamination_audit(self, files: List[Path]):
+        """Option A: Detects old-workspace path strings and package references."""
         patterns = {
-            r"ChromaManager\(\)": "Manual ChromaManager instantiation detected.",
-            r"LLMStructuredInterface\(": "Manual LLMStructuredInterface instantiation detected.",
-            r"IntegrityTools\(": "Manual IntegrityTools instantiation detected.",
-            r'with open\(.*config\.yaml"': "Manual config.yaml loading detected."
+            r"/home/jwils/Public/langgraph-social-agent": "Old workspace absolute path found.",
+            r"contentflow": "Old package reference 'contentflow' found.",
+            r"langgraph-social-agent": "Old workspace name 'langgraph-social-agent' found."
         }
         
         for file_path in files:
-            # Skip the context provider itself to avoid recursive flagging
-            if "contentflow/core/context.py" in str(file_path):
-                continue
-                
             try:
                 content = file_path.read_text()
                 lines = content.splitlines()
@@ -149,8 +146,8 @@ class BestPracticesAuditor:
                             self.results["doctrines"]["DRY"].append({
                                 "file": str(file_path),
                                 "line": i + 1,
-                                "message": f"Composition Root Violation: {message} Use ContentFlowContext.get_instance().",
+                                "message": f"Contamination Violation: {message} Purge and reprogram for .blueprints.",
                                 "level": "violation"
                             })
             except Exception as e:
-                self.results["doctrines"]["DRY"].append({"error": f"CompRoot audit failed on {file_path}: {str(e)}"})
+                self.results["doctrines"]["DRY"].append({"error": f"Contamination audit failed on {file_path}: {str(e)}"})

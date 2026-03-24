@@ -17,8 +17,8 @@ Per doctrine:
 ## Quick Wins (Auto-Fixable)
 ```bash
 # Format & fix lint issues
-ruff check --fix contentflow/
-ruff format contentflow/     # If using Ruff formatter
+ruff check --fix governance/
+ruff format governance/     # If using Ruff formatter
 ```
 
 ## High-Impact Refactors (KISS/SOLID)
@@ -33,4 +33,4 @@ ruff format contentflow/     # If using Ruff formatter
 {other_recommendations}
 
 ## Verification
-Re-run `python3 -m contentflow.governance.dynamic_contextualizer --full-scan` to verify repair status.
+Re-run `python3 governance/thedoorway/dynamic_contextualizer.py --full-scan` to verify repair status.
