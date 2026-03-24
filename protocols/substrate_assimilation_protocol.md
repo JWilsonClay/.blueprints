@@ -11,7 +11,7 @@ date_modified: 2026-03-03
 ---
 # Operational Protocol: Substrate Assimilation (OP-SUBSTRATE-ASSIMILATE)
 
-**Context:** This protocol replaces the legacy `OP-AGENT-ASSIMILATE` by expanding the "Anti-Corruption" logic to the entire Protocol Substrate. It ensures all roles and protocols adhere to a singular structural anchor (UPH).
+**Context:** This protocol replaces the legacy `OP-AGENT-ASSIMILATE` by expanding the "Anti-Corruption" logic to the entire Protocol Substrate. It ensures all roles and protocols adhere to a singular structural anchor (UPH) and follow the [Universal Agent Logic (UAL)](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/Universal_Agent_Logic.md) flow.
 
 ## 1. Trigger Conditions
 - Flagged by `Verification_Agent` (12) during context ingestion or workspace audit.

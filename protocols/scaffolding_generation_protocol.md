@@ -9,25 +9,15 @@ status: ACTIVE
 date_created: 2026-03-02
 date_modified: 2026-03-03
 ---
+
 # Operational Protocol: Agentic Substrate Scaffolding (OP-SUBSTRATE-BUILD)
 
-```json
-// EXAMPLE_PROVENANCE_HEADER
-{
-  "example_genesis_agent_version": "1.0.0",
-  "example_timestamp": "2026-03-02T17:07:44-06:00",
-  "example_protocol_reference": "OP-SUBSTRATE-BUILD",
-  "example_target_audience": "Verification Agent"
-}
-```
 
-**Protocol ID:** OP-SUBSTRATE-BUILD
-**Assigned Role:** Genesis_Agent
-**Target Audience:** Verification_Agent, Orchestrator_Agent
 
 ## 1. Core Function & Rationale
 
 - This protocol defines mandatory initialization templates for agentic substrates.
+- It MUST enforce the [Universal Agent Logic (UAL)](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/Universal_Agent_Logic.md) flow in all generated Agent Role modules.
 - This protocol defines required naming conventions for prompt-logic modules.
 - This protocol enforces strict dependency graphs across the substrate.
 - This protocol institutes a seven-robustness-attribute checklist explicitly for the Genesis_Agent.

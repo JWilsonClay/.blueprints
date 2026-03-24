@@ -9,21 +9,10 @@ status: ACTIVE
 date_created: 2026-03-02
 date_modified: 2026-03-03
 ---
+
 # Operational Protocol: Atomic Integration (OP-INTEGRATE-MERGE)
 
-```json
-// EXAMPLE_PROVENANCE_HEADER
-{
-  "example_genesis_agent_version": "1.0.0",
-  "example_timestamp": "2026-03-02T17:07:44-06:00",
-  "example_protocol_reference": "OP-INTEGRATE-MERGE",
-  "example_target_audience": "Verification Agent"
-}
-```
 
-**Protocol ID:** OP-INTEGRATE-MERGE
-**Assigned Role:** Deployment_Agent
-**Target Audience:** Verification_Agent, Orchestrator_Agent
 
 ## 1. Core Function & Rationale
 

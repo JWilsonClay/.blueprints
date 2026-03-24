@@ -9,21 +9,10 @@ status: ACTIVE
 date_created: 2026-03-02
 date_modified: 2026-03-03
 ---
+
 # Operational Protocol: Benchmark Evaluation (OP-EVAL-MEASURE)
 
-```json
-// EXAMPLE_PROVENANCE_HEADER
-{
-  "example_genesis_agent_version": "1.0.0",
-  "example_timestamp": "2026-03-02T17:07:44-06:00",
-  "example_protocol_reference": "OP-EVAL-MEASURE",
-  "example_target_audience": "Verification Agent"
-}
-```
 
-**Protocol ID:** OP-EVAL-MEASURE
-**Assigned Role:** Verification_Agent
-**Target Audience:** Orchestrator_Agent, Verification_Agent
 
 ## 1. Core Function & Rationale
 

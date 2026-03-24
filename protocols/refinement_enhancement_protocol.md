@@ -9,21 +9,10 @@ status: ACTIVE
 date_created: 2026-03-02
 date_modified: 2026-03-03
 ---
+
 # Operational Protocol: Refinement & Enhancement (OP-REFINE-HARDEN)
 
-```json
-// EXAMPLE_PROVENANCE_HEADER
-{
-  "example_genesis_agent_version": "1.0.0",
-  "example_timestamp": "2026-03-02T17:07:44-06:00",
-  "example_protocol_reference": "OP-REFINE-HARDEN",
-  "example_target_audience": "Verification Agent"
-}
-```
 
-**Protocol ID:** OP-REFINE-HARDEN
-**Assigned Role:** Genesis_Agent
-**Target Audience:** Verification_Agent
 
 ## 1. Core Function & Rationale
 

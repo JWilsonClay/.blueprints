@@ -77,7 +77,7 @@ def update_file(filepath):
             new_data[k] = v
             
     # 3. Order the output to visually match UPH cleanly
-    ordered_keys = ['role', 'protocol_id', 'structure_status', 'target_audience', 'assigned_role', 'purpose', 'protocol_dependencies', 'version', 'status', 'date_created', 'date_modified']
+    ordered_keys = ['role', 'protocol_id', 'structure_status', 'target_audience', 'assigned_role', 'purpose', 'protocol_dependencies', 'version', 'status', 'date_created', 'date_modified', 'supersedes']
     
     final_yaml = []
     
@@ -93,11 +93,24 @@ def update_file(filepath):
         if k not in ordered_keys:
             final_yaml.append(yaml.dump({k: v}, default_flow_style=False).strip())
             
-    final_content = "---\n" + "\n".join(final_yaml) + "\n---\n" + body
+    # 4. Surgical Context Purge (Body Cleanup)
+    # Remove Legacy JSON Headers
+    body = re.sub(r'```json\n// EXAMPLE_PROVENANCE_HEADER\n\{.*?\n\}\n```\n?', '', body, flags=re.DOTALL)
+    
+    # Remove Redundant Inline Metadata
+    body = re.sub(r'^\*\*?(Protocol ID|Assigned Role|Target Audience|Purpose|Role):\*\*?.*$\n?', '', body, flags=re.MULTILINE | re.IGNORECASE)
+    
+    # Remove Redundant Footers
+    body = re.sub(r'^\*Ventilated Prose Enforced.*\*$\n?', '', body, flags=re.MULTILINE)
+    
+    # Final cleanup of excessive newlines at the start of body
+    body = body.lstrip('\n')
+            
+    final_content = "---\n" + "\n".join(final_yaml) + "\n---\n\n" + body
     
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(final_content)
-    print(f"Updated: {os.path.basename(filepath)}")
+    print(f"Purged & Updated: {os.path.basename(filepath)}")
 
 def main():
     print("--- Injecting UPH to Substrate Roles ---")

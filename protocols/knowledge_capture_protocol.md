@@ -9,20 +9,10 @@ status: ACTIVE
 date_created: 2026-03-02
 date_modified: 2026-03-03
 ---
+
 # Operational Protocol: Knowledge Capture (OP-DOC-CAPTURE)
 
-```json
-// EXAMPLE_PROVENANCE_HEADER
-{
-  "example_genesis_agent_version": "1.0.0",
-  "example_timestamp": "2026-03-02T17:07:44-06:00",
-  "example_protocol_reference": "OP-DOC-CAPTURE",
-  "example_target_audience": "Verification Agent"
-}
-```
 
-**Protocol ID:** OP-DOC-CAPTURE
-**Assigned Role:** Verification_Agent
 
 ## 1. Core Function & Rationale
 
@@ -51,4 +41,3 @@ date_modified: 2026-03-03
 - You MUST ensure every documentation artifact includes a verification or evaluation prompt.
 - This MUST be in its companion `_eval.md` file.
 
-**Target Audience:** All Macro-Agents

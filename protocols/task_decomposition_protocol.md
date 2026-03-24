@@ -9,11 +9,9 @@ status: ACTIVE
 date_created: 2026-03-03
 date_modified: 2026-03-03
 ---
+
 # Operational Protocol: Task Decomposition (OP-DECOMPOSE-TASK)
 
-**Protocol ID:** OP-DECOMPOSE-TASK
-**Assigned Role:** Planning_Agent
-**Target Audience:** Genesis_Agent, Orchestrator_Agent
 
 ## 1. Core Function & Rationale
 - This protocol decomposes architectural stages into atomic, executable implementation tasks.
@@ -37,4 +35,3 @@ Every task MUST include:
 - You MUST provide the Orchestrator with a valid dependency graph payload.
 
 ---
-*Ventilated Prose Enforced | Protocol: OP-DECOMPOSE-TASK*

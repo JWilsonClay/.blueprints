@@ -9,11 +9,9 @@ status: ACTIVE
 date_created: 2026-03-03
 date_modified: 2026-03-03
 ---
+
 # Operational Protocol: Intent Discovery (OP-DISCOVER-INTENT)
 
-**Protocol ID:** OP-DISCOVER-INTENT
-**Assigned Role:** Intake_Agent
-**Target Audience:** Planning_Agent, Orchestrator_Agent
 
 ## 1. Core Function & Rationale
 - This protocol transforms user agentic intent into structured, machine-readable project manifests.
@@ -39,4 +37,3 @@ You MUST ask exactly 5-7 technical questions covering:
 - You MUST publish the discovery broadcast via `communication_bus.publish_discovery`.
 
 ---
-*Ventilated Prose Enforced | Protocol: OP-DISCOVER-INTENT*

@@ -3,15 +3,18 @@ protocol_id: OP-AGENT-ASSIMILATE
 structure_status: HARDENED
 target_audience: Verification_Agent, Orchestrator_Agent
 assigned_role: System
-purpose: ** To methodically reformat "Junior" agent roles to match the structural patterns of "Senior" substrate anchors, preventing format pollution and logic drift.
+purpose: **DEPRECATED** | Superseded by OP-SUBSTRATE-ASSIMILATE. This protocol has been absorbed into the universal substrate hardening layer.
 version: 1.0.0
-status: ACTIVE
+status: DEPRECATED
 date_created: 2026-03-03
 date_modified: 2026-03-03
+supersedes: []
 ---
-# Operational Protocol: Role Assimilation (OP-AGENT-ASSIMILATE)
 
-**Purpose:** To methodically reformat "Junior" agent roles to match the structural patterns of "Senior" substrate anchors, preventing format pollution and logic drift.
+# [DEPRECATED] Operational Protocol: Role Assimilation (OP-AGENT-ASSIMILATE)
+
+**Context:** This protocol is NO LONGER AUTHORITATIVE. 
+Please refer to [OP-SUBSTRATE-ASSIMILATE](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/protocols/substrate_assimilation_protocol.md) for all role and protocol reformatting cycles.
 
 ## 1. Trigger Conditions
 - Flagged by `Verification_Agent` (12) during context ingestion or workspace audit.

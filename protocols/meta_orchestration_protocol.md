@@ -3,31 +3,21 @@ protocol_id: OP-ORCHESTRATE-META
 structure_status: HARDENED
 target_audience: Verification_Agent, Orchestrator_Agent
 assigned_role: System
-purpose: Execute designated protocol or role functions within the substrate.
+purpose: "** To govern the recursive relationship between meta-layer blueprints and implementation-layer code, enforcing [UAL](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/Universal_Agent_Logic.md) across all subordinate roles."
 version: 1.0.0
 status: ACTIVE
 date_created: 2026-03-02
 date_modified: 2026-03-03
 ---
+
 # Operational Protocol: Meta Orchestration (OP-ORCHESTRATE-META)
 
-```json
-// EXAMPLE_PROVENANCE_HEADER
-{
-  "example_genesis_agent_version": "1.0.0",
-  "example_timestamp": "2026-03-02T17:07:44-06:00",
-  "example_protocol_reference": "OP-ORCHESTRATE-META",
-  "example_target_audience": "Verification Agent"
-}
-```
 
-**Protocol ID:** OP-ORCHESTRATE-META
-**Assigned Role:** Orchestrator_Agent
-**Target Audience:** All Macro-Agents
 
 ## 1. Core Function & Rationale
 
 - This protocol acts as the recursive apex engine to coordinate the substrate without systemic fragmentation.
+- It enforces the [Universal Agent Logic (UAL)](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/Universal_Agent_Logic.md) 3-Step Sequence (Preparation, Safety, Action) globally.
 - This protocol strictly defines hierarchical workflow sequencing paths.
 - This protocol implements global parallelism rules and rigid state boundaries.
 - This protocol computes universal compute-budget allocation frameworks.

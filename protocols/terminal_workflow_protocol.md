@@ -9,9 +9,9 @@ status: ACTIVE
 date_created: 2026-03-03
 date_modified: 2026-03-03
 ---
+
 # Operational Protocol: Terminal Workflow (OP-TERMINAL-WORKFLOW)
 
-**Purpose:** To maximize execution efficiency and minimize user workload by providing complete, chained commands with automated logging.
 
 ## 1. AI Command Generation Rules
 
@@ -41,4 +41,3 @@ date_modified: 2026-03-03
     - OS version, Hardware specs, GPU status, Python version, Disk usage, and Uptime.
 - You MUST anchor all system captures directly to the `MANIFEST_STATE.json` schema.
 
-*Ventilated Prose Enforced | Protocol: OP-TERMINAL-WORKFLOW*

@@ -9,11 +9,9 @@ status: ACTIVE
 date_created: 2026-03-03
 date_modified: 2026-03-03
 ---
+
 # Operational Protocol: Manual/Precision Repair (OP-MANUAL-REPAIR)
 
-**Protocol ID:** OP-MANUAL-REPAIR
-**Assigned Role:** Precision_Agent
-**Target Audience:** Orchestrator_Agent, User
 
 ## 1. Core Function & Rationale
 - This protocol governs the interactive repair of logical errors and hallucinations.
@@ -37,4 +35,3 @@ If removing redundant code:
 - You MUST publish debug events via `communication_bus.publish_debug_event`.
 
 ---
-*Ventilated Prose Enforced | Protocol: OP-MANUAL-REPAIR*
