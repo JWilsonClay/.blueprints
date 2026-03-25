@@ -1,39 +1,10 @@
 ---
-protocol_id: OP-DISCOVER-INTENT
-structure_status: HARDENED
-target_audience: Verification_Agent, Orchestrator_Agent
-assigned_role: System
-purpose: Execute designated protocol or role functions within the substrate.
-version: 1.0.0
-status: ACTIVE
+status: DEPRECATED
+superseded_by: ["atomic/OPS-DISCOVER-INTENT.md"]
 date_created: 2026-03-03
-date_modified: 2026-03-03
+date_modified: 2026-03-25
 ---
+# DEPRECATED: Intent Discovery Protocol
 
-# Operational Protocol: Intent Discovery (OP-DISCOVER-INTENT)
-
-
-## 1. Core Function & Rationale
-- This protocol transforms user agentic intent into structured, machine-readable project manifests.
-- It prevents architectural drift by enforcing a strict requirement-harvesting phase.
-
-## 2. Requirement Harvesting (The 7 Pillars)
-You MUST ask exactly 5-7 technical questions covering:
-1.  **Tech Stack**: Languages, frameworks, and versions.
-2.  **Persistence**: Databases, local storage, or cloud state.
-3.  **Interface**: CLI, Web, GUI, or API-only.
-4.  **Scaling**: Performance expectations and user load.
-5.  **Environment**: Infrastructure, OS, and local constraints.
-6.  **Security**: PII handling, authentication, and compliance.
-7.  **Success Criteria**: Explicit definition of "Done".
-
-## 3. Manifest Initialization
-- You MUST generate a `MANIFEST_STATE.json` upon completion of harvesting.
-- You MUST strictly follow the schema defined in `OP-SUBSTRATE-COMP`.
-
-## 4. Execution Constraints
-- You MUST wait for explicit user verification.
-- This MUST occur before handing off to the Planning_Agent.
-- You MUST publish the discovery broadcast via `communication_bus.publish_discovery`.
-
----
+This protocol has been absorbed into the universal substrate hardening layer.
+Please refer to [OPS-DISCOVER-INTENT.md](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/protocols/atomic/OPS-DISCOVER-INTENT.md) for all intent logic.

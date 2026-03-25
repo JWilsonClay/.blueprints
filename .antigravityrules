@@ -31,6 +31,15 @@ Contains the registry of all discovered READMEs and domain owners.
 
 ---
 
+### Step 4 — Substrate Seniority Audit
+All protocols and roles MUST have immutable seniority timestamps. Run the birthmark verifier to anchor dates pursuant to [OPS-YAML-CREATED](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/protocols/atomic/OPS-YAML-CREATED.md):
+```bash
+python3 /home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/toolkits/audit_onboarding/substrate_birthmark_verifier.py
+```
+
+
+---
+
 ### Step 5 — Folder Ownership
 [FOLDER_OWNERSHIP.md](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/docs/FOLDER_OWNERSHIP.md)
 Source of Truth for directory seniority and agent responsibility.
@@ -41,3 +50,21 @@ Source of Truth for directory seniority and agent responsibility.
 If Step 2 generates a repair plan, view it here:
 [repair_implementation_plan.md](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/governance/repair_implementation_plan.md)
 Follow strictly to achieve a Zero-Finding State.
+
+---
+
+### Step 7 — Static Security Scan
+Execute the vulnerability scanner to detect common risks pursuant to [OPS-RISK-AUDIT](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/protocols/atomic/OPS-RISK-AUDIT.md):
+```python
+import sys; from pathlib import Path; root = "/home/jwils/GoogleDrive1TB/PapiBobes/.blueprints"; sys.path.insert(0, root); from toolkits.audit_onboarding.vulnerability_scanner import run_security_audit; run_security_audit(root)
+```
+
+---
+
+### Step 8 — Deep Audit Branching
+If Step 2 or Step 7 indicates **DRIFT DETECTED** or **RISK_DETECTED**, you MUST perform a full qualitative audit pursuant to [SEQ-SUBSTRATE-ASSIMILATE](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/protocols/sequential/SEQ-SUBSTRATE-ASSIMILATE.md):
+```python
+import sys; from pathlib import Path; root = "/home/jwils/GoogleDrive1TB/PapiBobes/.blueprints"; sys.path.insert(0, root); from governance.thedoorway.dynamic_contextualizer import DoorwayContextualizer; DoorwayContextualizer().run(full_scan=True)
+```
+Analyze the resulting `repair_implementation_plan.md` and achieve a Zero-Finding State before continuing.
+

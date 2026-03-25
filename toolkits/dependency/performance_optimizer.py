@@ -10,24 +10,27 @@
 
 from typing import Dict
 
+
 def optimize_for_metrics(metrics_payload: Dict) -> Dict:
     """
     Proposes optimizations while preserving robustness, strictly ingesting METRICS_STATE_PAYLOAD.json.
     """
     perf = metrics_payload.get("performance_metrics", {})
     risk_score = perf.get("regression_risk", 0.0)
-    
+
     if risk_score > 0.2:
         return {
             "status": "rejected",
             "reason": "High regression risk detected",
-            "risk_score": risk_score
+            "risk_score": risk_score,
         }
-        
+
     optimization_delta = perf.get("optimization_delta", 0.0)
-    
+
     return {
         "status": "applied",
         "savings_summary": f"{optimization_delta * 100:.1f}% token reduction",
-        "robustness_index": metrics_payload.get("robustness_scorecard", {}).get("index", 1.0)
+        "robustness_index": metrics_payload.get("robustness_scorecard", {}).get(
+            "index", 1.0
+        ),
     }

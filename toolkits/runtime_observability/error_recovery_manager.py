@@ -15,21 +15,27 @@
 
 """Error Recovery Toolkit – self-healing for the Orchestrator_Agent."""
 
-import time
 import json
-from pathlib import Path
+import time
+
 from .structured_logger import log_event
+
 
 def attempt_recovery(error_type: str, context: dict) -> dict:
     """
     Attempts recovery and emits a standardized JSON state payload.
     Natively integrated with Orchestrator_Agent control loops.
     """
-    log_event("Orchestrator_Agent", "OP-RECOVER", f"Toolkit: Attempting recovery for {error_type}", "WARNING")
-    
+    log_event(
+        "Orchestrator_Agent",
+        "OP-RECOVER",
+        f"Toolkit: Attempting recovery for {error_type}",
+        "WARNING",
+    )
+
     success = False
     strategy = "NONE"
-    
+
     if error_type == "hallucination_loop":
         strategy = "REPHRASE_AND_RESTART"
         time.sleep(1)
@@ -37,28 +43,26 @@ def attempt_recovery(error_type: str, context: dict) -> dict:
     elif error_type == "oom":
         strategy = "CONTEXT_REDUCTION"
         success = True
-        
+
     payload = {
         "execution_metadata": {
             "protocol": "OP-RECOVER@1.0.0",
             "error_type": error_type,
-            "status": "RECOVERED" if success else "RECOVERY_FAILED"
+            "status": "RECOVERED" if success else "RECOVERY_FAILED",
         },
         "impact_data": {
             "strategy_applied": strategy,
             "success": success,
-            "summary": f"Recovery {strategy} executed with status: {success}"
+            "summary": f"Recovery {strategy} executed with status: {success}",
         },
-        "validation": {
-            "is_zero_finding_state": success,
-            "confidence": 0.8
-        }
+        "validation": {"is_zero_finding_state": success, "confidence": 0.8},
     }
-    
+
     with open("RECOVERY_STATE_PAYLOAD.json", "w") as f:
         json.dump(payload, f, indent=2)
-        
+
     return payload
+
 
 def handle_exception(exc: Exception, scaffold_path: str) -> bool:
     err_str = str(exc).lower()

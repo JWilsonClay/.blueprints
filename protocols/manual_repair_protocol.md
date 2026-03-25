@@ -1,37 +1,10 @@
 ---
-protocol_id: OP-MANUAL-REPAIR
-structure_status: HARDENED
-target_audience: Verification_Agent, Orchestrator_Agent
-assigned_role: System
-purpose: Execute designated protocol or role functions within the substrate.
-version: 1.0.0
-status: ACTIVE
+status: DEPRECATED
+superseded_by: ["atomic/OPS-MANUAL-REPAIR.md"]
 date_created: 2026-03-03
-date_modified: 2026-03-03
+date_modified: 2026-03-25
 ---
+# DEPRECATED: Manual Repair Protocol
 
-# Operational Protocol: Manual/Precision Repair (OP-MANUAL-REPAIR)
-
-
-## 1. Core Function & Rationale
-- This protocol governs the interactive repair of logical errors and hallucinations.
-- It prioritizes surgical precision over broad refactoring.
-- This MUST occur to minimize side effects.
-
-## 2. Surgical Repair Constraints
-- You MUST provide exactly one fix per interaction cycle.
-- You MUST utilize `<DOC_DIFF>` segments for all substrate corrections.
-- You MUST limit diffs to < 50 lines.
-- This ensures human-readability.
-
-## 3. De-Duplication Logic
-If removing redundant code:
-1.  Target the exact line where the duplication starts.
-2.  Provide the original reference block for grounding.
-3.  Execute the removal in a single, atomic diff.
-
-## 4. Execution Constraints
-- You MUST provide a "Dissent" flag if a repair request violates system integrity.
-- You MUST publish debug events via `communication_bus.publish_debug_event`.
-
----
+This protocol has been absorbed into the universal substrate hardening layer.
+Please refer to [OPS-MANUAL-REPAIR.md](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/protocols/atomic/OPS-MANUAL-REPAIR.md) for all repair logic.

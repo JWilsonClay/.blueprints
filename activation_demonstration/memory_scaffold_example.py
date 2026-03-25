@@ -10,18 +10,21 @@
 """Memory Scaffold Example – long-term memory with reflection."""
 
 import time
+
 from .structured_logger import log_event
+
 
 class SimpleMemory:
     def __init__(self):
         self.store = []
-    
+
     def remember(self, fact: str):
         self.store.append(fact)
         log_event("MemoryScaffold", "OP-SCAFFOLD-BUILD", f"Remembered: {fact}")
-    
+
     def recall(self):
         return self.store[-3:] if self.store else ["No memories yet"]
+
 
 if __name__ == "__main__":
     mem = SimpleMemory()

@@ -1,42 +1,10 @@
 ---
-protocol_id: OP-REFINE-HARDEN
-structure_status: HARDENED
-target_audience: Verification_Agent, Orchestrator_Agent
-assigned_role: System
-purpose: Execute designated protocol or role functions within the substrate.
-version: 1.0.0
-status: ACTIVE
+status: DEPRECATED
+superseded_by: ["atomic/OPS-LOGIC-REFINE.md"]
 date_created: 2026-03-02
-date_modified: 2026-03-03
+date_modified: 2026-03-25
 ---
+# DEPRECATED: Refinement & Enhancement Protocol
 
-# Operational Protocol: Refinement & Enhancement (OP-REFINE-HARDEN)
-
-
-
-## 1. Core Function & Rationale
-
-- This protocol consumes the hallucination audit report.
-- This protocol consumes the original builder output simultaneously.
-- This protocol translates passive criticism into active architectural strengthening.
-- This protocol avoids introducing new logic loops or hallucinations.
-- This MUST be ensured during refinement.
-
-## 2. Execution Constraints
-
-- You MUST implement every Critical/High finding verbatim.
-- You MUST explicitly document trade-off justifications.
-- This applys to any auditor suggestion you modify or reject.
-- You MUST implement the seven robustness attributes defined in `OP-SUBSTRATE-BUILD` into the refined substrate.
-- You MUST execute the defined version-bump logic on the target artifact explicitly.
-
-## 3. Conflict Resolution & Pareto Outputs
-
-- **Condition:** If an auditor flag mathematically conflicts with established scalability patterns.
-- **Instruction:** You MUST explicitly produce a "Pareto-front" JSON attachment.
-- You MUST forward this specific JSON attachment strictly to the Evaluator role.
-
-## 4. Mandatory Deliverables
-
-- You MUST append the "Trade-off Justification" log to all modified outputs.
-- You MUST issue the explicitly formatted "Robustness Scorecard" schema.
+This protocol has been absorbed into the universal substrate hardening layer.
+Please refer to [OPS-LOGIC-REFINE.md](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/protocols/atomic/OPS-LOGIC-REFINE.md) for all refinement logic.

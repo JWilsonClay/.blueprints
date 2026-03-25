@@ -20,27 +20,32 @@
 
 """System Bootstrapper – instant agentic platform setup."""
 
-import os
-import shutil
 from pathlib import Path
+
 from .core_utils import AtomicFileWriter
 from .health_dashboard_generator import main as generate_health
+
 
 def bootstrap():
     root = Path(".")
     dirs = ["toolkit", "protocols", "roles", "scaffolds", "tests"]
     for d in dirs:
         (root / d).mkdir(exist_ok=True)
-    
+
     # Copy all previous files (in real deployment these would be packaged)
     print("📦 Creating project structure...")
     with AtomicFileWriter("BOOTSTRAP_LOG.md") as w:
-        w.write("# Bootstrap Complete\n\nAll 42 artifacts ready.\n", role="Bootstrapper", protocol="meta_orchestration")
-    
+        w.write(
+            "# Bootstrap Complete\n\nAll 42 artifacts ready.\n",
+            role="Bootstrapper",
+            protocol="meta_orchestration",
+        )
+
     generate_health()
     print("\n🎉 AGENTIC SYSTEM READY!")
     print("Next: python -m agentic_cli monitor")
     print("   or: python -m agentic_cli run memory_scaffold_example.py")
+
 
 if __name__ == "__main__":
     bootstrap()

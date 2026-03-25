@@ -1,10 +1,10 @@
 {
   ".": {
     "has_readme": true,
-    "files_count": 11,
+    "files_count": 13,
     "py_files": [],
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "last_modified": "2026-03-24T17:07:51.551726",
+    "last_modified": "2026-03-25T09:18:12.072507",
     "subdirs": [
       "activation_demonstration",
       "data",
@@ -16,7 +16,7 @@
       "templates",
       "toolkits"
     ],
-    "last_seen": "2026-03-24T18:32:31.147894"
+    "last_seen": "2026-03-25T09:45:04.543842"
   },
   "activation_demonstration": {
     "has_readme": true,
@@ -31,10 +31,10 @@
       "self_evolution_loop.py",
       "system_bootstrapper.py"
     ],
-    "content_hash": "e04eb0a86d370abb299ba98ef4b5d3d4daec0d37d1a5a7b53135f9f504e36a34",
+    "content_hash": "ef16d28542190412fd858c089d971139ec03ffa30f223d3089069c40e70c624d",
     "last_modified": "2026-03-02T19:29:55.809000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:41.026527"
+    "last_seen": "2026-03-25T09:45:04.547032"
   },
   "data": {
     "has_readme": true,
@@ -43,18 +43,18 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-24T16:22:39.226000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:41.027148"
+    "last_seen": "2026-03-25T09:45:04.547340"
   },
   "docs": {
     "has_readme": true,
     "files_count": 13,
     "py_files": [],
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "last_modified": "2026-03-24T18:29:29.873840",
+    "last_modified": "2026-03-03T05:10:42.454000",
     "subdirs": [
       "checklists"
     ],
-    "last_seen": "2026-03-24T18:32:41.027657"
+    "last_seen": "2026-03-25T09:45:04.547721"
   },
   "docs/checklists": {
     "has_readme": true,
@@ -63,7 +63,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-03T05:10:43.560000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:41.028181"
+    "last_seen": "2026-03-25T09:45:04.548094"
   },
   "frontend": {
     "has_readme": true,
@@ -79,21 +79,21 @@
       "user_experience_optimizer.py",
       "visualization_renderer.py"
     ],
-    "content_hash": "ba6e4b1125252375276de1b88eba731dacec6a8d833c30a76d631f40aa25d41a",
-    "last_modified": "2026-03-02T21:20:36.778000",
+    "content_hash": "b9d10403eb5e8d77345f9852623ee4c977aba1add6ae0b80fe78ee4e60316c22",
+    "last_modified": "2026-03-25T09:42:06.711258",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:42.942078"
+    "last_seen": "2026-03-25T09:45:04.551754"
   },
   "governance": {
     "has_readme": true,
-    "files_count": 2,
+    "files_count": 3,
     "py_files": [],
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-24T16:22:36.810000",
     "subdirs": [
       "thedoorway"
     ],
-    "last_seen": "2026-03-24T18:32:42.942526"
+    "last_seen": "2026-03-25T09:45:04.552169"
   },
   "governance/thedoorway": {
     "has_readme": true,
@@ -102,12 +102,12 @@
       "best_practices_auditor.py",
       "dynamic_contextualizer.py"
     ],
-    "content_hash": "ce9bf94097cf4199a24466994fdca19d2ddafb3c6b6b7e4bdc2024ff732cd43c",
+    "content_hash": "e7a51e1414e452950139b9ee6e0fceab835efad4d6d0a7a662bb6bc9b08c5d02",
     "last_modified": "2026-03-24T16:22:37.519000",
     "subdirs": [
       "templates"
     ],
-    "last_seen": "2026-03-24T18:32:42.943638"
+    "last_seen": "2026-03-25T09:45:04.553429"
   },
   "governance/thedoorway/templates": {
     "has_readme": true,
@@ -116,7 +116,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-24T16:22:38.194000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:42.943925"
+    "last_seen": "2026-03-25T09:45:04.553832"
   },
   "protocols": {
     "has_readme": true,
@@ -124,8 +124,29 @@
     "py_files": [],
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-02T15:05:21.531000",
+    "subdirs": [
+      "atomic",
+      "sequential"
+    ],
+    "last_seen": "2026-03-25T09:45:04.554242"
+  },
+  "protocols/atomic": {
+    "has_readme": true,
+    "files_count": 28,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-25T09:10:06.091000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:42.944313"
+    "last_seen": "2026-03-25T09:45:04.554793"
+  },
+  "protocols/sequential": {
+    "has_readme": true,
+    "files_count": 23,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-25T09:10:06.806000",
+    "subdirs": [],
+    "last_seen": "2026-03-25T09:45:04.555159"
   },
   "roles": {
     "has_readme": true,
@@ -133,10 +154,10 @@
     "py_files": [
       "Depreciator.py"
     ],
-    "content_hash": "680dc983aa69b60fc8e2e56acfe2332b1215565c7306e028a1fd86c1fc96dc25",
-    "last_modified": "2026-03-24T18:32:05.721911",
+    "content_hash": "1d1ee95dcc770cfb695b22189f1a3a4f811e8910432e2e0481b00b26086384da",
+    "last_modified": "2026-03-02T08:20:42.514000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:43.154299"
+    "last_seen": "2026-03-25T09:45:04.555714"
   },
   "templates": {
     "has_readme": true,
@@ -147,7 +168,7 @@
     "subdirs": [
       "doorway"
     ],
-    "last_seen": "2026-03-24T18:32:43.154895"
+    "last_seen": "2026-03-25T09:45:04.555947"
   },
   "templates/doorway": {
     "has_readme": true,
@@ -156,7 +177,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-24T16:22:38.709000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:43.155507"
+    "last_seen": "2026-03-25T09:45:04.556264"
   },
   "toolkits": {
     "has_readme": true,
@@ -171,7 +192,7 @@
       "reporting",
       "runtime_observability"
     ],
-    "last_seen": "2026-03-24T18:32:43.155870"
+    "last_seen": "2026-03-25T09:45:04.556514"
   },
   "toolkits/audit_onboarding": {
     "has_readme": true,
@@ -190,10 +211,10 @@
       "test_protocol_assimilation.py",
       "vulnerability_scanner.py"
     ],
-    "content_hash": "7458f57b2a191e36398b858dc19ebba8cdd3b652962a821dab1b8e7537102ede",
-    "last_modified": "2026-03-02T19:06:24.788000",
+    "content_hash": "2203f7c51bb1ac6202e82f16570d454664999a8f17b53667e87cab272dc31979",
+    "last_modified": "2026-03-25T09:41:36.315546",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:46.557221"
+    "last_seen": "2026-03-25T09:45:04.560207"
   },
   "toolkits/debugging": {
     "has_readme": true,
@@ -201,10 +222,10 @@
     "py_files": [
       "surgeon.py"
     ],
-    "content_hash": "594eb24f384a657d7003af8a5a00e4b9b94262addc14296467069e945f16adb6",
+    "content_hash": "985f21bc8feb6eaa3f27f6f827459475752a06f9467c1516b94b8cc847167c12",
     "last_modified": "2026-03-02T22:24:41.536000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:46.795624"
+    "last_seen": "2026-03-25T09:45:04.560865"
   },
   "toolkits/dependency": {
     "has_readme": true,
@@ -221,10 +242,10 @@
       "testing_sandbox.py",
       "workflow_orchestrator.py"
     ],
-    "content_hash": "197619139a4cdf6a7a10ef3b459313529a65f3ddf0c22352f8cb6b9c6e6da237",
+    "content_hash": "6eb6fa57b463f85e6c4cd25e74a577e8c4b50ff1f53d4b45a4c9a6dd1fbc0a8b",
     "last_modified": "2026-03-02T19:05:46.455000",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:49.585469"
+    "last_seen": "2026-03-25T09:45:04.564217"
   },
   "toolkits/reporting": {
     "has_readme": true,
@@ -235,10 +256,10 @@
       "unified_reporting_orchestrator.py",
       "ventilated_prose_enforcer.py"
     ],
-    "content_hash": "61fa450363c66bb52076e0837be4f51461e8da29ce6db530f2ff135c74836ca3",
-    "last_modified": "2026-03-02T21:49:10.625000",
+    "content_hash": "d05f407235ca328359ece334fca0e4e11cfdc176f822562c357ab00eeb3466c4",
+    "last_modified": "2026-03-25T09:41:36.316698",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:50.618031"
+    "last_seen": "2026-03-25T09:45:04.565729"
   },
   "toolkits/runtime_observability": {
     "has_readme": true,
@@ -253,9 +274,9 @@
       "self_monitor_dashboard.py",
       "structured_logger.py"
     ],
-    "content_hash": "a0be2790f0d44bb9d98e0c3def408f03a068a596a879b542419f6ff758ab2d97",
-    "last_modified": "2026-03-02T19:16:59.638000",
+    "content_hash": "e5d9bdab91bb661f30e6ef19e248ec04e514077c87bae96669e353e83d1f2304",
+    "last_modified": "2026-03-25T09:41:36.320539",
     "subdirs": [],
-    "last_seen": "2026-03-24T18:32:52.710712"
+    "last_seen": "2026-03-25T09:45:04.568719"
   }
 }

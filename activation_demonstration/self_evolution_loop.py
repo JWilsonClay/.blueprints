@@ -9,11 +9,11 @@
 
 """Self Evolution Toolkit – refactored for Orchestrator_Agent control."""
 
-import time
-from .workflow_orchestrator import execute_pipeline
-from .metrics_collector import record_event
 from .error_recovery_manager import handle_exception
+from .metrics_collector import record_event
 from .structured_logger import log_event
+from .workflow_orchestrator import execute_pipeline
+
 
 def trigger_evolution(role_sequence=None):
     """
@@ -21,18 +21,33 @@ def trigger_evolution(role_sequence=None):
     Invoked exclusively by the Orchestrator_Agent natively.
     """
     if role_sequence is None:
-        role_sequence = ["02_Genesis_Agent", "12_Verification_Agent", "Deployment_Agent"]
-        
-    log_event("Orchestrator_Agent", "meta_orchestration", "Starting evolution cycle via toolkit", "INFO")
+        role_sequence = [
+            "02_Genesis_Agent",
+            "12_Verification_Agent",
+            "Deployment_Agent",
+        ]
+
+    log_event(
+        "Orchestrator_Agent",
+        "meta_orchestration",
+        "Starting evolution cycle via toolkit",
+        "INFO",
+    )
     try:
         results = execute_pipeline(role_sequence)
         record_event(success=True, tokens=420)
-        log_event("Orchestrator_Agent", "meta_orchestration", "Evolution cycle execution complete", "INFO")
+        log_event(
+            "Orchestrator_Agent",
+            "meta_orchestration",
+            "Evolution cycle execution complete",
+            "INFO",
+        )
         return results
     except Exception as e:
         handle_exception(e, "self_evolution_loop.py")
         record_event(success=False)
         return {"status": "FAILED", "error": str(e)}
+
 
 # NOTE: start_loop() and __main__ block removed to prevent unauthorized autonomous execution.
 # Looping is now the sole responsibility of the Orchestrator_Agent protocols.

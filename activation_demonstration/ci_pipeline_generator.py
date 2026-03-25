@@ -9,6 +9,9 @@
 
 """CI Pipeline Generator – automatic CI for agentic self-improvement."""
 
+from pathlib import Path
+
+
 def generate_github_actions():
     content = """name: Agentic CI
 on: [push, pull_request]
@@ -22,6 +25,7 @@ jobs:
 """
     Path(".github/workflows/agentic-ci.yml").write_text(content, encoding="utf-8")
     print("✅ GitHub Actions CI pipeline generated")
+
 
 if __name__ == "__main__":
     generate_github_actions()

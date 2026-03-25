@@ -11,14 +11,14 @@
 
 import time
 from pathlib import Path
-from typing import Optional
-from .core_utils import AtomicFileWriter, inject_provenance_header
-from .testing_sandbox import run_test_suite
-from .git_bridge import rollback_to_last_good_commit, commit_changes
+
+from .core_utils import AtomicFileWriter
 from .error_recovery_manager import handle_exception
-from .unified_reporting_orchestrator import generate_all_reports
+from .git_bridge import commit_changes, rollback_to_last_good_commit
 from .structured_logger import log_event
-from .ventilated_prose_enforcer import enforce_ventilated_prose
+from .testing_sandbox import run_test_suite
+from .unified_reporting_orchestrator import generate_all_reports
+
 
 class Surgeon:
     def __init__(self, max_attempts: int = 3):
@@ -26,26 +26,47 @@ class Surgeon:
         self.attempt = 0
         self.original_state_hash = None
 
-    def perform_surgical_fix(self, target_file: str, original_intent: str, user_id: str = "default") -> bool:
+    def perform_surgical_fix(
+        self, target_file: str, original_intent: str, user_id: str = "default"
+    ) -> bool:
         """Main entry point — called by Interactive Agent or error_recovery_manager."""
-        log_event("Surgeon", "precision_fixing", f"Starting surgical fix on {target_file} (intent: {original_intent})", "INFO")
-        
+        log_event(
+            "Surgeon",
+            "precision_fixing",
+            f"Starting surgical fix on {target_file} (intent: {original_intent})",
+            "INFO",
+        )
+
         target_path = Path(target_file)
         if not target_path.exists():
-            log_event("Surgeon", "precision_fixing", "Target file not found", "CRITICAL")
+            log_event(
+                "Surgeon", "precision_fixing", "Target file not found", "CRITICAL"
+            )
             return False
 
         self.attempt = 0
-        self.original_state_hash = target_path.read_text(encoding="utf-8", errors="ignore")
+        self.original_state_hash = target_path.read_text(
+            encoding="utf-8", errors="ignore"
+        )
 
         while self.attempt < self.max_attempts:
             self.attempt += 1
-            log_event("Surgeon", "precision_fixing", f"Attempt {self.attempt}/{self.max_attempts} — isolating change", "INFO")
-            
+            log_event(
+                "Surgeon",
+                "precision_fixing",
+                f"Attempt {self.attempt}/{self.max_attempts} — isolating change",
+                "INFO",
+            )
+
             # 1. Run full regression suite BEFORE any edit
             pre_test = run_test_suite({"test_files": {}})
             if not pre_test.get("success", False):
-                log_event("Surgeon", "precision_fixing", "Pre-edit tests already failing — aborting", "CRITICAL")
+                log_event(
+                    "Surgeon",
+                    "precision_fixing",
+                    "Pre-edit tests already failing — aborting",
+                    "CRITICAL",
+                )
                 rollback_to_last_good_commit()
                 return False
 
@@ -55,22 +76,35 @@ class Surgeon:
             try:
                 content = target_path.read_text(encoding="utf-8", errors="ignore")
                 # Placeholder: apply tiny surgical patch (real version would use refiner_engine)
-                new_content = content.replace("# TODO: fix regression", "# FIXED by Surgeon")
+                new_content = content.replace(
+                    "# TODO: fix regression", "# FIXED by Surgeon"
+                )
                 with AtomicFileWriter(target_file) as writer:
-                    writer.write(new_content, role="Surgeon", protocol="precision_fixing")
-                
+                    writer.write(
+                        new_content, role="Surgeon", protocol="precision_fixing"
+                    )
+
                 # 3. Run full regression suite AFTER the edit
                 post_test = run_test_suite({"test_files": {}})
                 if post_test.get("success", False):
-                    commit_changes(f"Surgeon: fixed {target_file} (attempt {self.attempt})")
-                    log_event("Surgeon", "precision_fixing", "Surgical fix successful", "INFO")
+                    commit_changes(
+                        f"Surgeon: fixed {target_file} (attempt {self.attempt})"
+                    )
+                    log_event(
+                        "Surgeon", "precision_fixing", "Surgical fix successful", "INFO"
+                    )
                     generate_all_reports(user_id)  # updates Exhaustive Gap Report
                     return True
-                
+
                 # 4. Any failure → immediate rollback
-                log_event("Surgeon", "precision_fixing", f"Post-edit regression on attempt {self.attempt}", "WARNING")
+                log_event(
+                    "Surgeon",
+                    "precision_fixing",
+                    f"Post-edit regression on attempt {self.attempt}",
+                    "WARNING",
+                )
                 rollback_to_last_good_commit()
-                
+
             except Exception as e:
                 handle_exception(e, target_file)
                 rollback_to_last_good_commit()
@@ -79,12 +113,19 @@ class Surgeon:
             time.sleep(0.5)  # deliberate pause for safety
 
         # All attempts failed
-        log_event("Surgeon", "precision_fixing", "All surgical attempts exhausted — human intervention required", "CRITICAL")
+        log_event(
+            "Surgeon",
+            "precision_fixing",
+            "All surgical attempts exhausted — human intervention required",
+            "CRITICAL",
+        )
         return False
 
 
 # Public one-line API used by the three front-end agents
-def perform_surgical_fix(target_file: str, original_intent: str, user_id: str = "default"):
+def perform_surgical_fix(
+    target_file: str, original_intent: str, user_id: str = "default"
+):
     surgeon = Surgeon(max_attempts=3)
     return surgeon.perform_surgical_fix(target_file, original_intent, user_id)
 

@@ -1,45 +1,10 @@
 ---
-protocol_id: OP-EVAL-MEASURE
-structure_status: HARDENED
-target_audience: Verification_Agent, Orchestrator_Agent
-assigned_role: System
-purpose: Execute designated protocol or role functions within the substrate.
-version: 1.0.0
-status: ACTIVE
+status: DEPRECATED
+superseded_by: ["atomic/OPS-EVAL-MEASURE.md"]
 date_created: 2026-03-02
-date_modified: 2026-03-03
+date_modified: 2026-03-25
 ---
+# DEPRECATED: Benchmark Evaluation Protocol
 
-# Operational Protocol: Benchmark Evaluation (OP-EVAL-MEASURE)
-
-
-
-## 1. Core Function & Rationale
-
-- This protocol answers the objective question of whether the substrate improved agentic capability.
-- This protocol runs standardized runtime agentic benchmarks.
-- This protocol runs dynamically generated capability benchmarks natively.
-- This protocol analyzes success rate, token efficiency, safety violation rate, and autonomy index metrics.
-- This protocol executes explicit before-and-after delta analyses.
-
-## 2. Execution Constraints
-
-- You MUST receive integrated state artifacts strictly from atomic integration outputs.
-- You MUST compute a structured quantitative impact report.
-- You MUST execute delta analysis according to the active audit tier:
-- **File-Level Delta:** Measure specific artifact performance shift.
-- **Workspace-Level Delta:** Measure global system capability variance.
-- You MUST rigorously flag any detected regressions immediately.
-- **Condition:** If negative improvement is detected on ANY measured axis.
-- **Instruction:** You MUST explicitly tag the metadata with "regression".
-- You MUST force a full pipeline restart.
-
-## 3. Orchestration & Documentation Feeds
-
-- You MUST supply the quantitative report directly to the `meta_orchestration_protocol.md`.
-- You MUST supply novel capability benchmark items directly to the `knowledge_capture_protocol.md`.
-
-## 4. Evaluated Dimensions
-
-- You MUST systematically extract the "Pareto Impact" dimension from your analysis.
-- You MUST systematically extract the "Novelty Detection" dimension from your analysis.
+This protocol has been absorbed into the universal substrate hardening layer.
+Please refer to [OPS-EVAL-MEASURE.md](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/protocols/atomic/OPS-EVAL-MEASURE.md) for all evaluation logic.

@@ -8,10 +8,11 @@
 
 """Real-Time Collaborator – live sync for frontend agents."""
 
-import sys
 import asyncio
+import sys
 from pathlib import Path
 from typing import Dict
+
 from fastapi import FastAPI, WebSocket
 
 # Path injection
@@ -20,14 +21,14 @@ if str(BLUEPRINT_ROOT) not in sys.path:
     sys.path.append(str(BLUEPRINT_ROOT))
 
 try:
-    from .communication_bus import bus
-    from .security_gateway import validate_request
+    from .communication_bus import bus  # noqa: E402
 except ImportError:
     # Handle direct execution if needed
     pass
 
 app = FastAPI(title="Agentic Frontend Collaborator")
 connected = []
+
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
@@ -40,17 +41,20 @@ async def websocket_endpoint(websocket: WebSocket):
     finally:
         connected.remove(websocket)
 
+
 def broadcast(event: Dict):
     """Secure broadcast to all connected clients."""
     for ws in connected[:]:
         try:
             # Optional: validate_request here if specific user scopes required
             asyncio.create_task(ws.send_json(event))
-        except:
+        except Exception:
             pass
+
 
 def on_bus_message(msg: Dict):
     broadcast(msg)
+
 
 # Global subscriptions
 bus.subscribe("intake.*", on_bus_message)

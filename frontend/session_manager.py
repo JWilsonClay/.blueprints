@@ -8,13 +8,13 @@
 
 """Session Manager – persistent context for front-end agents."""
 
-import sqlite3
-import json
 import hashlib
+import json
+import sqlite3
 import sys
-from pathlib import Path
-from typing import Dict, Optional
 from datetime import datetime
+from pathlib import Path
+from typing import Dict
 
 # Path injection
 BLUEPRINT_ROOT = Path(__file__).parent.parent
@@ -24,16 +24,26 @@ if str(BLUEPRINT_ROOT) not in sys.path:
 try:
     from toolkits.dependency.core_utils import AtomicFileWriter
 except ImportError:
-    class AtomicFileWriter:
-        def __init__(self, path): self.path = path
-        def write(self, content, role, protocol):
-            with open(self.path, "w") as f: f.write(content)
-        def __enter__(self): return self
-        def __exit__(self, *args): pass
 
-from .schemas import SessionState
+    class AtomicFileWriter:
+        def __init__(self, path):
+            self.path = path
+
+        def write(self, content, role, protocol):
+            with open(self.path, "w") as f:
+                f.write(content)
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            pass
+
+
+from .schemas import SessionState  # noqa: E402
 
 DB_PATH = Path("frontend_sessions.db")
+
 
 def init_db():
     conn = sqlite3.connect(DB_PATH)
@@ -45,18 +55,25 @@ def init_db():
     )""")
     conn.commit()
 
+
 init_db()
+
 
 def get_session(user_id: str) -> Dict:
     conn = sqlite3.connect(DB_PATH)
-    row = conn.execute("SELECT data, hash FROM sessions WHERE user_id=?", (user_id,)).fetchone()
+    row = conn.execute(
+        "SELECT data, hash FROM sessions WHERE user_id=?", (user_id,)
+    ).fetchone()
     if row:
         data = json.loads(row[0])
         # verify hash integrity
-        calculated_hash = hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()
+        calculated_hash = hashlib.sha256(
+            json.dumps(data, sort_keys=True).encode()
+        ).hexdigest()
         if calculated_hash == row[1]:
             return data
     return {"requirements": [], "sequence": [], "debug_log": []}
+
 
 def update_session(user_id: str, delta: Dict):
     """Atomic update with Pydantic validation."""
@@ -64,16 +81,19 @@ def update_session(user_id: str, delta: Dict):
     current.update(delta)
     current["user_id"] = user_id
     current["last_updated"] = datetime.utcnow().isoformat()
-    
+
     # Validate against schema
     state = SessionState(**current)
     data_str = state.json(sort_keys=True)
     h = hashlib.sha256(data_str.encode()).hexdigest()
-    
+
     conn = sqlite3.connect(DB_PATH)
-    conn.execute("REPLACE INTO sessions (user_id, data, hash) VALUES (?, ?, ?)", (user_id, data_str, h))
+    conn.execute(
+        "REPLACE INTO sessions (user_id, data, hash) VALUES (?, ?, ?)",
+        (user_id, data_str, h),
+    )
     conn.commit()
-    
+
     # Also backup to atomic file for extra durability
     backup_path = Path(f"backups/session_{user_id}.json")
     backup_path.parent.mkdir(exist_ok=True)

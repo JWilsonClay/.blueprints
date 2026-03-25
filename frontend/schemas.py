@@ -6,8 +6,10 @@
 # VERSION: 1.0.0
 # =====================================================
 
-from pydantic import BaseModel, Field
-from typing import List, Dict, Any, Optional
+from typing import Any, Dict, List, Optional
+
+from pydantic import BaseModel
+
 
 class ProvenanceHeader(BaseModel):
     agent_version: str = "1.0.0"
@@ -15,21 +17,25 @@ class ProvenanceHeader(BaseModel):
     protocol_reference: str
     target_audience: str
 
+
 class DiscoveryPayload(BaseModel):
     project_name: str
     requirements: List[Dict[str, Any]]
     tech_stack: Dict[str, str]
+
 
 class SequencePayload(BaseModel):
     sequence_id: str
     tasks: List[Dict[str, Any]]
     priority: str
 
+
 class DebugEventPayload(BaseModel):
     filename: str
     error_context: str
     suggested_fix: Optional[str] = None
     estimated_impact: float
+
 
 class SessionState(BaseModel):
     user_id: str

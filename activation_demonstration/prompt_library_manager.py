@@ -10,19 +10,25 @@
 """Prompt Library Manager – versioned role prompts."""
 
 from pathlib import Path
-import json
 
 PROMPTS_DIR = Path("prompt_library")
+
 
 def load_prompt(role: str, version: str = "latest") -> str:
     path = PROMPTS_DIR / f"{role}_{version}.txt"
     if not path.exists():
         path = PROMPTS_DIR / f"{role}_latest.txt"
-    return path.read_text(encoding="utf-8", errors="ignore") if path.exists() else "Default prompt"
+    return (
+        path.read_text(encoding="utf-8", errors="ignore")
+        if path.exists()
+        else "Default prompt"
+    )
+
 
 def save_prompt(role: str, content: str, version: str = "latest"):
     PROMPTS_DIR.mkdir(exist_ok=True)
     (PROMPTS_DIR / f"{role}_{version}.txt").write_text(content, encoding="utf-8")
+
 
 if __name__ == "__main__":
     print("📚 Prompt library ready – use load_prompt('Builder')")

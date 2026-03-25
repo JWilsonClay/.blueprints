@@ -1,55 +1,10 @@
 ---
-protocol_id: OP-SUBSTRATE-BUILD
-structure_status: HARDENED
-target_audience: Verification_Agent, Orchestrator_Agent
-assigned_role: System
-purpose: Execute designated protocol or role functions within the substrate.
-version: 1.0.0
-status: ACTIVE
+status: DEPRECATED
+superseded_by: ["atomic/OPS-SCAFFOLD-INIT.md"]
 date_created: 2026-03-02
-date_modified: 2026-03-03
+date_modified: 2026-03-25
 ---
+# DEPRECATED: Scaffolding Generation Protocol
 
-# Operational Protocol: Agentic Substrate Scaffolding (OP-SUBSTRATE-BUILD)
-
-
-
-## 1. Core Function & Rationale
-
-- This protocol defines mandatory initialization templates for agentic substrates.
-- It MUST enforce the [Universal Agent Logic (UAL)](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/Universal_Agent_Logic.md) flow in all generated Agent Role modules.
-- This protocol defines required naming conventions for prompt-logic modules.
-- This protocol enforces strict dependency graphs across the substrate.
-- This protocol institutes a seven-robustness-attribute checklist explicitly for the Genesis_Agent.
-- This protocol prevents the Genesis_Agent from emitting unstructured substrate definitions that cascade failures.
-
-## 2. Execution Constraints
-
-- You MUST enforce that every generated file embeds a traceable provenance header.
-- **Header Standard:** You MUST strictly adhere to the [Universal Protocol Header (UPH)](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/Universal_Protocol_Header.md).
-- You MUST evaluate generated substrates against the "Template Completeness" dimension.
-- You MUST evaluate generated substrates against the "Provenance Traceability" dimension.
-
-## 3. The Pure-Prompt Substrate Variant
-
-- **Condition:** If the generated substrate contains no executable code (pure-prompt generation).
-- **Instruction:** You MUST explicitly invoke the LLM-only template variant.
-- You MUST generate exactly three variant seeds for the pure-prompt substrate.
-- You MUST execute a majority-vote internal check across the three variant seeds.
-- You MUST select the winning variant as the final output.
-
-## 4. Required Output Checklist
-
-- [ ] Is the generated module strictly Scalable?
-- [ ] Is the generated module strictly Modular?
-- [ ] Is the generated module strictly Comprehensive?
-- [ ] Is the generated module strictly Verifiable?
-- [ ] Is the generated module strictly Maintainable?
-- [ ] Is the generated module strictly Adaptable?
-- [ ] Is the generated module strictly Efficient?
-
-## 5. Compositional Standards
-
-- Every prompt MUST use at least 3 mergeable components (System/Role, Task/Goal, Context/Knowledge).
-- You MUST enforce YAML/JSON schema validation for prompt definitions to ensure machine-readability.
-- You MUST prevent logic duplication by auditing against existing prompt-library modules.
+This protocol has been absorbed into the universal substrate hardening layer.
+Please refer to [OPS-SCAFFOLD-INIT.md](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/protocols/atomic/OPS-SCAFFOLD-INIT.md) for all initialization templates.

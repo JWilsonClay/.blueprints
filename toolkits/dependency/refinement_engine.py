@@ -8,25 +8,31 @@
 
 """Refinement engine for the Genesis_Agent role."""
 
-from typing import Dict, Any
-from .core_utils import AtomicFileWriter, inject_provenance_header
-from .audit_engine import AuditReport
+from typing import Dict
 
-def apply_refinements(original_content: str, audit_report: AuditReport, output_path: str) -> str:
+from .audit_engine import AuditReport
+from .core_utils import AtomicFileWriter, inject_provenance_header
+
+
+def apply_refinements(
+    original_content: str, audit_report: AuditReport, output_path: str
+) -> str:
     """Implements every finding and adds robustness layers."""
     refined = original_content
     rationale = "# REFINEMENT RATIONALE (auto-generated)\n"
-    
+
     for finding in audit_report.findings:
         if finding["severity"] in ("Critical", "High"):
             refined = _apply_fix(refined, finding)
             rationale += f"- {finding['id']}: {finding['remediation']}\n"
-    
-    refined = inject_provenance_header(refined, "Genesis_Agent", "OP-REFINE-HARDEN@1.0.0")
-    
+
+    refined = inject_provenance_header(
+        refined, "Genesis_Agent", "OP-REFINE-HARDEN@1.0.0"
+    )
+
     with AtomicFileWriter(output_path) as writer:
         writer.write(refined, role="Genesis_Agent", protocol="OP-REFINE-HARDEN@1.0.0")
-    
+
     return refined
 
 

@@ -8,14 +8,14 @@
 
 """Communication Bus – real-time inter-agent messaging."""
 
-import queue
-import threading
 import json
+import queue
 import sys
-from pathlib import Path
+import threading
 from collections import defaultdict
-from typing import Dict, Callable, Any
 from datetime import datetime
+from pathlib import Path
+from typing import Any, Callable, Dict
 
 # Path injection for Blueprint Toolkits
 BLUEPRINT_ROOT = Path(__file__).parent.parent
@@ -24,14 +24,19 @@ if str(BLUEPRINT_ROOT) not in sys.path:
 
 # Attempt imports from toolkits
 try:
-    from toolkits.dependency.core_utils import inject_provenance_header
-    from toolkits.runtime_observability.structured_logger import log_event
+    from toolkits.dependency.core_utils import inject_provenance_header  # noqa: E402
+    from toolkits.runtime_observability.structured_logger import log_event  # noqa: E402
 except ImportError:
     # Fallback to local placeholders for standalone testing
-    def inject_provenance_header(data, agent, layer): return data
-    def log_event(agent, layer, msg, level="INFO"): print(f"[{level}] {agent}: {msg}")
+    def inject_provenance_header(data, agent, layer):
+        return data
 
-from .schemas import DiscoveryPayload, SequencePayload, DebugEventPayload
+    def log_event(agent, layer, msg, level="INFO"):
+        print(f"[{level}] {agent}: {msg}")
+
+
+from .schemas import DebugEventPayload, DiscoveryPayload, SequencePayload  # noqa: E402
+
 
 class CommunicationBus:
     def __init__(self):
@@ -52,18 +57,25 @@ class CommunicationBus:
             elif channel == "interactive.debug":
                 DebugEventPayload(**message)
         except Exception as e:
-            log_event("CommunicationBus", "frontend_layer", f"Payload validation failed: {e}", "ERROR")
+            log_event(
+                "CommunicationBus",
+                "frontend_layer",
+                f"Payload validation failed: {e}",
+                "ERROR",
+            )
             return
 
         msg = {
             "channel": channel,
             "payload": message,
             "timestamp": datetime.utcnow().isoformat(),
-            "provenance": "frontend_orchestration"
+            "provenance": "frontend_orchestration",
         }
-        
+
         # Inject production provenance header
-        encoded_msg = inject_provenance_header(json.dumps(msg), "CommunicationBus", "frontend_layer")
+        encoded_msg = inject_provenance_header(
+            json.dumps(msg), "CommunicationBus", "frontend_layer"
+        )
         msg = json.loads(encoded_msg)
 
         with self.lock:
@@ -71,8 +83,12 @@ class CommunicationBus:
             self.replay_buffer.append(msg)
             if len(self.replay_buffer) > 1000:
                 self.replay_buffer.pop(0)
-        
-        log_event("CommunicationBus", "frontend_layer", f"Published verified payload to {channel}")
+
+        log_event(
+            "CommunicationBus",
+            "frontend_layer",
+            f"Published verified payload to {channel}",
+        )
 
     def subscribe(self, channel: str, callback: Callable):
         self.subscribers[channel].append(callback)
@@ -81,15 +97,31 @@ class CommunicationBus:
         while True:
             _, msg = self.message_queue.get()
             channel = msg["channel"]
-            targets = self.subscribers.get(channel, []) + self.subscribers.get(channel.split('.')[0] + ".*", [])
+            targets = self.subscribers.get(channel, []) + self.subscribers.get(
+                channel.split(".")[0] + ".*", []
+            )
             for cb in targets:
                 try:
                     cb(msg)
                 except Exception as e:
-                    log_event("CommunicationBus", "frontend_layer", f"Callback error on {channel}: {e}", "WARNING")
+                    log_event(
+                        "CommunicationBus",
+                        "frontend_layer",
+                        f"Callback error on {channel}: {e}",
+                        "WARNING",
+                    )
+
 
 bus = CommunicationBus()
 
-def publish_discovery(requirements: Dict): bus.publish("intake.discovery", requirements)
-def publish_sequence(sequence: Dict): bus.publish("planning.sequence", sequence)
-def publish_debug_event(event: Dict): bus.publish("interactive.debug", event)
+
+def publish_discovery(requirements: Dict):
+    bus.publish("intake.discovery", requirements)
+
+
+def publish_sequence(sequence: Dict):
+    bus.publish("planning.sequence", sequence)
+
+
+def publish_debug_event(event: Dict):
+    bus.publish("interactive.debug", event)

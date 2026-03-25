@@ -9,39 +9,59 @@
 
 """Unified Reporting Orchestrator – conductor for Comprehensive Redundancy Report, Exhaustive Gap Report, and ventilated prose enforcement."""
 
-import threading
 from concurrent.futures import ThreadPoolExecutor
-from .redundancy_report_generator import generate_comprehensive_redundancy_report
-from .exhaustive_gap_report_generator import generate_exhaustive_gap_report
-from .ventilated_prose_enforcer import enforce_on_file
-from .real_time_collaborator import broadcast
-from .structured_logger import log_event
+
 from .core_utils import AtomicFileWriter
+from .exhaustive_gap_report_generator import generate_exhaustive_gap_report
+from .real_time_collaborator import broadcast
+from .redundancy_report_generator import generate_comprehensive_redundancy_report
+from .structured_logger import log_event
+from .ventilated_prose_enforcer import enforce_on_file
+
 
 def generate_all_reports(user_id: str = "default"):
-    log_event("ReportingOrchestrator", "step_4_reporting", "Starting full reporting cycle")
-    
+    log_event(
+        "ReportingOrchestrator", "step_4_reporting", "Starting full reporting cycle"
+    )
+
     with ThreadPoolExecutor(max_workers=2) as executor:
         redundancy_future = executor.submit(generate_comprehensive_redundancy_report)
         gap_future = executor.submit(generate_exhaustive_gap_report, user_id)
-        
+
         redundancy_future.result()
         gap_future.result()
-    
+
     # Enforce ventilated prose on final outputs
     enforce_on_file("COMPREHENSIVE_REDUNDANCY_REPORT.md")
     enforce_on_file("EXHAUSTIVE_GAP_REPORT.md")
-    
+
     # Broadcast to GUI and agents
-    broadcast({"type": "report_complete", "files": ["COMPREHENSIVE_REDUNDANCY_REPORT.md", "EXHAUSTIVE_GAP_REPORT.md"]})
-    
+    broadcast(
+        {
+            "type": "report_complete",
+            "files": ["COMPREHENSIVE_REDUNDANCY_REPORT.md", "EXHAUSTIVE_GAP_REPORT.md"],
+        }
+    )
+
     with AtomicFileWriter("REPORTING_SUMMARY.md") as w:
-        w.write("# REPORTING COMPLETE\n\nAll three required outputs generated and ventilated.\n", role="Orchestrator", protocol="step_4_reporting")
-    
-    log_event("ReportingOrchestrator", "step_4_reporting", "All reports generated and enforced")
-    print("✅ Comprehensive Redundancy Report + Exhaustive Gap Report + Ventilated Prose complete")
+        w.write(
+            "# REPORTING COMPLETE\n\nAll three required outputs generated and ventilated.\n",
+            role="Orchestrator",
+            protocol="step_4_reporting",
+        )
+
+    log_event(
+        "ReportingOrchestrator",
+        "step_4_reporting",
+        "All reports generated and enforced",
+    )
+    print(
+        "✅ Comprehensive Redundancy Report + Exhaustive Gap Report + Ventilated Prose complete"
+    )
+
 
 if __name__ == "__main__":
     import sys
+
     if "--all" in sys.argv:
         generate_all_reports()

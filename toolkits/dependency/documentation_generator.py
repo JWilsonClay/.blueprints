@@ -8,15 +8,18 @@
 
 """Documentation generator for the Genesis_Agent role."""
 
+from typing import Dict
+
+
 def generate_adr_from_changeset(changeset: Dict) -> str:
     """Creates an Architecture Decision Record."""
-    return f"""# ADR-001: {changeset.get('title')}
+    return f"""# ADR-001: {changeset.get("title")}
 
 ## Status
 Accepted
 
 ## Context
-{changeset.get('rationale')}
+{changeset.get("rationale")}
 
 ## Decision
 Implemented via Genesis_Agent role and OP-REFINE-HARDEN@1.0.0.

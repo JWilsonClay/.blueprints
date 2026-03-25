@@ -11,10 +11,9 @@
 
 import http.server
 import socketserver
-import json
+import time
 from pathlib import Path
 from threading import Thread
-import time
 
 HTML_TEMPLATE = """
 <!DOCTYPE html>
@@ -36,6 +35,7 @@ setInterval(() => {
 </html>
 """
 
+
 class DashboardHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/metrics":
@@ -45,13 +45,13 @@ class DashboardHandler(http.server.SimpleHTTPRequestHandler):
             try:
                 data = Path("agent_metrics.json").read_text()
                 self.wfile.write(data.encode())
-            except:
+            except Exception:
                 self.wfile.write(b"{}")
         elif self.path == "/recover":
             self.send_response(200)
             self.send_header("Content-type", "text/html")
             self.end_headers()
-            self.wfile.write(b"<h1>Recovery triggered – check logs</h1>")
+            self.wfile.write(b"<h1>Recovery triggered - check logs</h1>")
             # would call error_recovery_manager here
         else:
             self.send_response(200)
@@ -59,10 +59,12 @@ class DashboardHandler(http.server.SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(HTML_TEMPLATE.encode())
 
+
 def start_dashboard(port: int = 8000):
     with socketserver.TCPServer(("", port), DashboardHandler) as httpd:
         print(f"🌐 Dashboard live at http://localhost:{port}")
         httpd.serve_forever()
+
 
 if __name__ == "__main__":
     Thread(target=start_dashboard, daemon=True).start()

@@ -10,8 +10,8 @@
 """Auto Test Generator – starter pytest suites for new scaffolding."""
 
 import ast
-import os
 from pathlib import Path
+
 
 def generate_test_for_function(func_name: str, file_name: str) -> str:
     return f'''import pytest
@@ -33,32 +33,38 @@ if __name__ == "__main__":
     pytest.main()
 '''
 
+
 def main(target_dir: str = "."):
     target = Path(target_dir)
     test_dir = target / "tests"
     test_dir.mkdir(exist_ok=True)
-    
+
     for py_file in target.rglob("*.py"):
         if py_file.name.startswith("test_") or "tests" in py_file.parts:
             continue
         try:
             tree = ast.parse(py_file.read_text(encoding="utf-8", errors="ignore"))
-            functions = [node.name for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
+            functions = [
+                node.name
+                for node in ast.walk(tree)
+                if isinstance(node, ast.FunctionDef)
+            ]
             if not functions:
                 continue
-            
+
             test_file = test_dir / f"test_{py_file.name}"
             if test_file.exists():
                 continue  # never overwrite
-                
-            content = f'# Auto-generated test for {py_file.name}\n'
+
+            content = f"# Auto-generated test for {py_file.name}\n"
             for fn in functions:
                 content += generate_test_for_function(fn, py_file.name)
-            
+
             test_file.write_text(content, encoding="utf-8")
             print(f"✓ Generated {test_file.name}")
-        except:
+        except Exception:
             pass
+
 
 if __name__ == "__main__":
     main()

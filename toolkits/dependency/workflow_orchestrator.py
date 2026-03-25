@@ -9,8 +9,10 @@
 """Workflow orchestrator – utility for the Orchestrator_Agent."""
 
 from concurrent.futures import ThreadPoolExecutor
-from typing import List, Dict
+from typing import Dict, List
+
 from .core_utils import retry_on_exception
+
 
 @retry_on_exception()
 def execute_pipeline(role_sequence: List[str], budget_tokens: int = 100000) -> Dict:
@@ -24,10 +26,10 @@ def execute_pipeline(role_sequence: List[str], budget_tokens: int = 100000) -> D
             futures[role] = executor.submit(lambda r=role: f"{r}_completed")
         for role, future in futures.items():
             results[role] = future.result()
-    
+
     return {
         "status": "COMPLETE",
         "results": results,
         "loop_detected": False,
-        "human_gate_required": False
+        "human_gate_required": False,
     }

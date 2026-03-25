@@ -14,29 +14,30 @@
 
 """Health Dashboard Generator – structured overview for Orchestrator_Agent."""
 
-from pathlib import Path
-from datetime import datetime
 import json
+from datetime import datetime
+from pathlib import Path
+
 
 def main():
     health = "# PROJECT HEALTH DASHBOARD\n\n"
     health += f"**Last Updated:** {datetime.now().isoformat()[:19]}\n\n"
-    
+
     # Status ingestion from standardized payload
     audit_payload = {}
     if Path("AUDIT_STATE_PAYLOAD.json").exists():
         try:
             audit_payload = json.loads(Path("AUDIT_STATE_PAYLOAD.json").read_text())
-        except:
+        except Exception:
             pass
-            
+
     status = audit_payload.get("execution_metadata", {}).get("status", "UNKNOWN")
     badge = "🟢 HEALTHY" if status == "PASS" else "🔴 ISSUES DETECTED"
     if status == "UNKNOWN":
         badge = "🟡 NO DATA"
-        
+
     health += f"## Overall Status: {badge}\n\n"
-    
+
     # Impact Data Summary
     impact = audit_payload.get("impact_data", {})
     if impact:
@@ -45,10 +46,11 @@ def main():
         health += f"- Open Findings: {len(impact.get('findings', []))}\n\n"
 
     # Mermaid summary chart
-    health += "```mermaid\npie title Codebase Health\n    \"Compliant Files\" : 92\n    \"Hotspots\" : 8\n```\n\n"
-    
+    health += '```mermaid\npie title Codebase Health\n    "Compliant Files" : 92\n    "Hotspots" : 8\n```\n\n'
+
     Path("PROJECT_HEALTH.md").write_text(health, encoding="utf-8")
     print("✅ PROJECT_HEALTH.md generated – open for instant overview")
+
 
 if __name__ == "__main__":
     main()

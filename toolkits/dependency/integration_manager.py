@@ -8,11 +8,15 @@
 
 """Integration manager for the Deployment_Agent role."""
 
+from typing import Dict
+
 try:
     import git
+
     GIT_AVAILABLE = True
 except ImportError:
     GIT_AVAILABLE = False
+
 
 def atomic_merge(changeset: Dict, target_repo: str = ".") -> bool:
     """Performs atomic git merge or file copy with rollback capability."""

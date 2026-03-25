@@ -10,31 +10,51 @@
 """External API Hub – safe outbound calls."""
 
 import time
+
 try:
     import requests
+
     REQUESTS_AVAILABLE = True
 except ImportError:
     REQUESTS_AVAILABLE = False
 
 from .structured_logger import log_event
 
-def call_api(url: str, method: str = "GET", json_data=None, headers=None, retries: int = 3) -> dict:
+
+def call_api(
+    url: str, method: str = "GET", json_data=None, headers=None, retries: int = 3
+) -> dict:
     if not REQUESTS_AVAILABLE:
-        log_event("ExternalAPIHub", "OP-EXTERNAL", "requests not available – skipping", "WARNING")
+        log_event(
+            "ExternalAPIHub",
+            "OP-EXTERNAL",
+            "requests not available – skipping",
+            "WARNING",
+        )
         return {"success": False, "error": "requests not installed"}
-    
+
     for attempt in range(retries):
         try:
-            resp = requests.request(method, url, json=json_data, headers=headers, timeout=10)
+            resp = requests.request(
+                method, url, json=json_data, headers=headers, timeout=10
+            )
             resp.raise_for_status()
-            log_event("ExternalAPIHub", "OP-EXTERNAL", f"Success {method} {url}", "INFO")
+            log_event(
+                "ExternalAPIHub", "OP-EXTERNAL", f"Success {method} {url}", "INFO"
+            )
             return {"success": True, "data": resp.json() if resp.content else None}
         except Exception as e:
-            log_event("ExternalAPIHub", "OP-EXTERNAL", f"Attempt {attempt+1} failed: {e}", "WARNING")
+            log_event(
+                "ExternalAPIHub",
+                "OP-EXTERNAL",
+                f"Attempt {attempt + 1} failed: {e}",
+                "WARNING",
+            )
             if attempt == retries - 1:
                 return {"success": False, "error": str(e)}
-            time.sleep(2 ** attempt)  # exponential backoff
+            time.sleep(2**attempt)  # exponential backoff
     return {"success": False, "error": "max retries exceeded"}
+
 
 if __name__ == "__main__":
     print("🔌 External API Hub ready – use call_api()")

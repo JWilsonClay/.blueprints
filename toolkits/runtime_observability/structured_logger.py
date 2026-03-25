@@ -22,11 +22,11 @@
 
 """Structured Logger – audit-compliant logging for all roles."""
 
-import logging
 import json
-import sys
+import logging
+import time
 from datetime import datetime
-from pathlib import Path
+
 
 class JsonFormatter(logging.Formatter):
     def format(self, record):
@@ -36,9 +36,10 @@ class JsonFormatter(logging.Formatter):
             "role": getattr(record, "role", "Unknown"),
             "protocol": getattr(record, "protocol", "Unknown"),
             "message": record.getMessage(),
-            "correlation_id": getattr(record, "correlation_id", "global")
+            "correlation_id": getattr(record, "correlation_id", "global"),
         }
         return json.dumps(log_entry)
+
 
 logger = logging.getLogger("agentic")
 logger.setLevel(logging.INFO)
@@ -53,14 +54,17 @@ json_handler = logging.FileHandler("agentic_runtime.log", mode="a")
 json_handler.setFormatter(JsonFormatter())
 logger.addHandler(json_handler)
 
+
 def log_event(role: str, protocol: str, msg: str, level: str = "INFO", **extra):
     """Helper used by every toolkit module."""
     extra["role"] = role
     extra["protocol"] = protocol
     getattr(logger, level.lower())(msg, extra=extra)
 
+
 if __name__ == "__main__":
     import argparse
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--tail", action="store_true")
     args = parser.parse_args()

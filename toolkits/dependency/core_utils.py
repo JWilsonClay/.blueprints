@@ -22,14 +22,13 @@
 Provides reusable, zero-dependency helpers that every role and protocol relies on.
 """
 
-import os
-import json
 import hashlib
+import os
+import shutil
 import tempfile
 from datetime import datetime, timezone
-from typing import Any, Dict, Optional, Callable, TypeVar
 from functools import wraps
-import shutil
+from typing import Any, Callable, Dict, TypeVar
 
 T = TypeVar("T")
 
@@ -43,8 +42,21 @@ PROVENANCE_TEMPLATE = """# === PROVENANCE HEADER (DO NOT EDIT) ===
 # =========================================
 """
 
-VALID_ROLES = {"02_Genesis_Agent", "12_Verification_Agent", "Deployment_Agent", "Orchestrator_Agent"}
-VALID_PROTOCOLS = {"OP-SCAFFOLD-BUILD@1.0.0", "OP-REFINE-HARDEN@1.0.0", "OP-OPTIMIZE-TUNE@1.0.0", "OP-EVAL-MEASURE@1.0.0", "OP-RISK-AUDIT@1.0.0", "OP-TEST-VALIDATE@1.0.0"}
+VALID_ROLES = {
+    "02_Genesis_Agent",
+    "12_Verification_Agent",
+    "Deployment_Agent",
+    "Orchestrator_Agent",
+}
+VALID_PROTOCOLS = {
+    "OP-SCAFFOLD-BUILD@1.0.0",
+    "OP-REFINE-HARDEN@1.0.0",
+    "OP-OPTIMIZE-TUNE@1.0.0",
+    "OP-EVAL-MEASURE@1.0.0",
+    "OP-RISK-AUDIT@1.0.0",
+    "OP-TEST-VALIDATE@1.0.0",
+}
+
 
 def validate_provenance_metadata(role: str, protocol: str):
     """Validates that role and protocol match the canonical scaffolding definitions."""
@@ -54,6 +66,7 @@ def validate_provenance_metadata(role: str, protocol: str):
     if "@" not in protocol and protocol != "Unknown":
         # Protocols should be versioned
         pass
+
 
 def inject_provenance_header(
     content: str, role: str, protocol: str, robustness_level: int = 7
@@ -77,22 +90,35 @@ def validate_robustness_attributes(
 ) -> Dict[str, bool]:
     """Checks that generated scaffolding meets all seven required attributes."""
     if required is None:
-        required = ["scalable", "modular", "comprehensive", "verifiable", "maintainable", "adaptable", "efficient"]
+        required = [
+            "scalable",
+            "modular",
+            "comprehensive",
+            "verifiable",
+            "maintainable",
+            "adaptable",
+            "efficient",
+        ]
     checks = {}
     lower = file_content.lower()
     for attr in required:
-        checks[attr] = any(word in lower for word in [attr, attr[:5]])  # loose but fast heuristic
+        checks[attr] = any(
+            word in lower for word in [attr, attr[:5]]
+        )  # loose but fast heuristic
     return checks
 
 
 class AtomicFileWriter:
     """Context manager for atomic file writes (never leaves partial files)."""
+
     def __init__(self, target_path: str):
         self.target_path = os.path.abspath(target_path)
         self.temp_dir = tempfile.mkdtemp()
         self.temp_path = os.path.join(self.temp_dir, "atomic.tmp")
 
-    def write(self, content: str, role: str = "Unknown", protocol: str = "Unknown") -> None:
+    def write(
+        self, content: str, role: str = "Unknown", protocol: str = "Unknown"
+    ) -> None:
         content = inject_provenance_header(content, role, protocol)
         with open(self.temp_path, "w", encoding="utf-8") as f:
             f.write(content)
@@ -113,6 +139,7 @@ class AtomicFileWriter:
 def safe_subprocess_run(cmd: list[str], timeout: int = 30) -> Dict[str, Any]:
     """Wrapper around subprocess with timeout and safe error handling."""
     import subprocess
+
     try:
         result = subprocess.run(
             cmd, capture_output=True, text=True, timeout=timeout, check=True
@@ -124,18 +151,22 @@ def safe_subprocess_run(cmd: list[str], timeout: int = 30) -> Dict[str, Any]:
 
 def retry_on_exception(max_retries: int = 3):
     """Decorator for transient LLM/tool failures."""
+
     def decorator(func: Callable[..., T]) -> Callable[..., T]:
         @wraps(func)
         def wrapper(*args, **kwargs):
             for attempt in range(max_retries):
                 try:
                     return func(*args, **kwargs)
-                except Exception as e:
+                except Exception:
                     if attempt == max_retries - 1:
                         raise
                     # exponential backoff
                     import time
-                    time.sleep(0.5 * (2 ** attempt))
+
+                    time.sleep(0.5 * (2**attempt))
             return None  # unreachable
+
         return wrapper
+
     return decorator

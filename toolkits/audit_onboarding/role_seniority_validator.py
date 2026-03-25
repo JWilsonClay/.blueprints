@@ -1,33 +1,36 @@
 #!/usr/bin/env python3
-import os
-import sys
-import yaml
-import re
 import difflib
+import os
+import re
+import sys
 from datetime import datetime
 
+import yaml
+
 # ==================== CONFIGURE THIS ====================
-VARIANCE_THRESHOLD = 10.0          # % structural difference to trigger assimilation
-CREATED_FIELD = "date_created"     # must match your birthmark script
+VARIANCE_THRESHOLD = 10.0  # % structural difference to trigger assimilation
+CREATED_FIELD = "date_created"  # must match your birthmark script
 # =======================================================
+
 
 def extract_frontmatter_and_body(content: str):
     """Robust extraction used by your birthmark verifier."""
-    match = re.match(r'^---\s*\n(.*?)\n---\s*\n', content, re.DOTALL)
+    match = re.match(r"^---\s*\n(.*?)\n---\s*\n", content, re.DOTALL)
     if not match:
         return {}, content
     yaml_content = match.group(1)
-    body = content[match.end():]
+    body = content[match.end() :]
     try:
         data = yaml.safe_load(yaml_content) or {}
     except yaml.YAMLError:
         data = {}
     return data, body
 
+
 def get_date_created(filepath: str) -> str | None:
     """Returns date_created or None."""
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
         data, _ = extract_frontmatter_and_body(content)
         return data.get(CREATED_FIELD)
@@ -35,19 +38,23 @@ def get_date_created(filepath: str) -> str | None:
         print(f"Error reading {filepath}: {e}", file=sys.stderr)
         return None
 
+
 def calculate_structural_variance(content1: str, content2: str) -> float:
     """Variance on body only (ignores frontmatter and whitespace)."""
     _, body1 = extract_frontmatter_and_body(content1)
     _, body2 = extract_frontmatter_and_body(content2)
-    
+
     # Normalize whitespace for fair comparison
-    body1 = ' '.join(body1.strip().split())
-    body2 = ' '.join(body2.strip().split())
-    
+    body1 = " ".join(body1.strip().split())
+    body2 = " ".join(body2.strip().split())
+
     seq = difflib.SequenceMatcher(None, body1, body2)
     return (1.0 - seq.ratio()) * 100
 
-def validate_seniority(senior_path: str, junior_path: str, threshold: float = VARIANCE_THRESHOLD):
+
+def validate_seniority(
+    senior_path: str, junior_path: str, threshold: float = VARIANCE_THRESHOLD
+):
     """
     Returns: (reformat_required: bool, rationale: str)
     """
@@ -61,40 +68,52 @@ def validate_seniority(senior_path: str, junior_path: str, threshold: float = VA
         return False, f"Missing {CREATED_FIELD} in one or both files."
 
     try:
-        senior_dt = datetime.strptime(str(senior_date_str), '%Y-%m-%d')
-        junior_dt = datetime.strptime(str(junior_date_str), '%Y-%m-%d')
+        senior_dt = datetime.strptime(str(senior_date_str), "%Y-%m-%d")
+        junior_dt = datetime.strptime(str(junior_date_str), "%Y-%m-%d")
     except ValueError as e:
         return False, f"Date parse error: {e}"
 
     # --- Universal Protocol Header (UPH) Compliance Check ---
     # According to OP-SUBSTRATE-ASSIMILATE, all documents must adhere to UPH schema.
     required_uph_fields = [
-        "structure_status", "target_audience", "assigned_role",
-        "purpose", "version", "status", "date_created", "date_modified"
+        "structure_status",
+        "target_audience",
+        "assigned_role",
+        "purpose",
+        "version",
+        "status",
+        "date_created",
+        "date_modified",
     ]
     try:
-        with open(junior_path, 'r', encoding='utf-8') as f:
+        with open(junior_path, "r", encoding="utf-8") as f:
             junior_data, _ = extract_frontmatter_and_body(f.read())
-            
+
         missing_fields = []
-        if 'protocol_id' not in junior_data and 'role' not in junior_data:
-            missing_fields.append('protocol_id (or role)')
+        if "protocol_id" not in junior_data and "role" not in junior_data:
+            missing_fields.append("protocol_id (or role)")
         for field in required_uph_fields:
             if field not in junior_data:
                 missing_fields.append(field)
-                
+
         if missing_fields:
-            return True, f"ASSIMILATE: UPH Compliance Failure. Junior is missing required fields: {', '.join(missing_fields)}"
+            return (
+                True,
+                f"ASSIMILATE: UPH Compliance Failure. Junior is missing required fields: {', '.join(missing_fields)}",
+            )
     except Exception as e:
         return False, f"Bypass: Could not parse Junior UPH fields ({e})"
 
     # Junior must be strictly younger to be a candidate for assimilation
     if junior_dt <= senior_dt:
-        return False, f"Bypass: Junior ({junior_date_str}) is not younger than Senior ({senior_date_str})."
+        return (
+            False,
+            f"Bypass: Junior ({junior_date_str}) is not younger than Senior ({senior_date_str}).",
+        )
 
     # --- Dynamic Seniority Weighting Logic ---
     age_delta = (junior_dt - senior_dt).days
-    
+
     # 1. Peer Tolerance: Both are hardened, suppress reformat for minor differences
     if age_delta < 30:
         actual_threshold = 20.0
@@ -109,27 +128,34 @@ def validate_seniority(senior_path: str, junior_path: str, threshold: float = VA
         reason_prefix = "Standard Threshold Applied"
 
     variance = calculate_structural_variance(
-        open(senior_path, encoding='utf-8').read(),
-        open(junior_path, encoding='utf-8').read()
+        open(senior_path, encoding="utf-8").read(),
+        open(junior_path, encoding="utf-8").read(),
     )
 
     if variance > actual_threshold:
-        return True, (f"ASSIMILATE: {reason_prefix}. Junior ({junior_date_str}) is younger than Senior ({senior_date_str}) "
-                     f"with {variance:.2f}% structural variance (threshold {actual_threshold}%).")
+        return True, (
+            f"ASSIMILATE: {reason_prefix}. Junior ({junior_date_str}) is younger than Senior ({senior_date_str}) "
+            f"with {variance:.2f}% structural variance (threshold {actual_threshold}%)."
+        )
     else:
-        return False, (f"Bypass: {reason_prefix}. Junior is younger but variance ({variance:.2f}%) "
-                       f"is below threshold ({actual_threshold}%). Safe to keep separate.")
+        return False, (
+            f"Bypass: {reason_prefix}. Junior is younger but variance ({variance:.2f}%) "
+            f"is below threshold ({actual_threshold}%). Safe to keep separate."
+        )
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python3 role_seniority_validator.py <senior_file.md> <junior_file.md>")
+        print(
+            "Usage: python3 role_seniority_validator.py <senior_file.md> <junior_file.md>"
+        )
         sys.exit(1)
 
     reformat_required, rationale = validate_seniority(sys.argv[1], sys.argv[2])
-    
+
     print(f"REFORMAT_REQUIRED: {reformat_required}")
     print(f"RATIONALE: {rationale}")
-    
+
     # Exit 1 = agent should trigger assimilation/refinement
     # Exit 0 = safe to leave as-is
     sys.exit(1 if reformat_required else 0)
