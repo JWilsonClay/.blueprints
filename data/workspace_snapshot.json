@@ -16,7 +16,7 @@
       "templates",
       "toolkits"
     ],
-    "last_seen": "2026-03-25T09:45:04.543842"
+    "last_seen": "2026-03-25T09:55:39.434683"
   },
   "activation_demonstration": {
     "has_readme": true,
@@ -34,7 +34,7 @@
     "content_hash": "ef16d28542190412fd858c089d971139ec03ffa30f223d3089069c40e70c624d",
     "last_modified": "2026-03-02T19:29:55.809000",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.547032"
+    "last_seen": "2026-03-25T09:55:39.438810"
   },
   "data": {
     "has_readme": true,
@@ -43,7 +43,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-24T16:22:39.226000",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.547340"
+    "last_seen": "2026-03-25T09:55:39.439214"
   },
   "docs": {
     "has_readme": true,
@@ -54,7 +54,7 @@
     "subdirs": [
       "checklists"
     ],
-    "last_seen": "2026-03-25T09:45:04.547721"
+    "last_seen": "2026-03-25T09:55:39.439594"
   },
   "docs/checklists": {
     "has_readme": true,
@@ -63,7 +63,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-03T05:10:43.560000",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.548094"
+    "last_seen": "2026-03-25T09:55:39.440065"
   },
   "frontend": {
     "has_readme": true,
@@ -79,10 +79,10 @@
       "user_experience_optimizer.py",
       "visualization_renderer.py"
     ],
-    "content_hash": "b9d10403eb5e8d77345f9852623ee4c977aba1add6ae0b80fe78ee4e60316c22",
+    "content_hash": "2f016ef64208249cfcaabd2b0f8e5562d4d4866ff87c22d737dc684d23d4d1a1",
     "last_modified": "2026-03-25T09:42:06.711258",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.551754"
+    "last_seen": "2026-03-25T09:55:39.443631"
   },
   "governance": {
     "has_readme": true,
@@ -93,7 +93,7 @@
     "subdirs": [
       "thedoorway"
     ],
-    "last_seen": "2026-03-25T09:45:04.552169"
+    "last_seen": "2026-03-25T09:55:39.443921"
   },
   "governance/thedoorway": {
     "has_readme": true,
@@ -107,7 +107,7 @@
     "subdirs": [
       "templates"
     ],
-    "last_seen": "2026-03-25T09:45:04.553429"
+    "last_seen": "2026-03-25T09:55:39.444790"
   },
   "governance/thedoorway/templates": {
     "has_readme": true,
@@ -116,19 +116,29 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-24T16:22:38.194000",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.553832"
+    "last_seen": "2026-03-25T09:55:39.445131"
   },
   "protocols": {
     "has_readme": true,
-    "files_count": 20,
+    "files_count": 1,
     "py_files": [],
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "last_modified": "2026-03-02T15:05:21.531000",
+    "last_modified": "2026-03-25T09:55:30.665992",
     "subdirs": [
+      "archived",
       "atomic",
       "sequential"
     ],
-    "last_seen": "2026-03-25T09:45:04.554242"
+    "last_seen": "2026-03-25T09:55:39.445375"
+  },
+  "protocols/archived": {
+    "has_readme": false,
+    "files_count": 19,
+    "py_files": [],
+    "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_modified": "2026-03-25T09:55:31.802075",
+    "subdirs": [],
+    "last_seen": "2026-03-25T09:55:39.445916"
   },
   "protocols/atomic": {
     "has_readme": true,
@@ -137,7 +147,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-25T09:10:06.091000",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.554793"
+    "last_seen": "2026-03-25T09:55:39.446355"
   },
   "protocols/sequential": {
     "has_readme": true,
@@ -146,7 +156,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-25T09:10:06.806000",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.555159"
+    "last_seen": "2026-03-25T09:55:39.446747"
   },
   "roles": {
     "has_readme": true,
@@ -157,7 +167,7 @@
     "content_hash": "1d1ee95dcc770cfb695b22189f1a3a4f811e8910432e2e0481b00b26086384da",
     "last_modified": "2026-03-02T08:20:42.514000",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.555714"
+    "last_seen": "2026-03-25T09:55:39.447464"
   },
   "templates": {
     "has_readme": true,
@@ -168,7 +178,7 @@
     "subdirs": [
       "doorway"
     ],
-    "last_seen": "2026-03-25T09:45:04.555947"
+    "last_seen": "2026-03-25T09:55:39.447795"
   },
   "templates/doorway": {
     "has_readme": true,
@@ -177,7 +187,7 @@
     "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "last_modified": "2026-03-24T16:22:38.709000",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.556264"
+    "last_seen": "2026-03-25T09:55:39.448187"
   },
   "toolkits": {
     "has_readme": true,
@@ -192,7 +202,7 @@
       "reporting",
       "runtime_observability"
     ],
-    "last_seen": "2026-03-25T09:45:04.556514"
+    "last_seen": "2026-03-25T09:55:39.448495"
   },
   "toolkits/audit_onboarding": {
     "has_readme": true,
@@ -214,7 +224,7 @@
     "content_hash": "2203f7c51bb1ac6202e82f16570d454664999a8f17b53667e87cab272dc31979",
     "last_modified": "2026-03-25T09:41:36.315546",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.560207"
+    "last_seen": "2026-03-25T09:55:39.452754"
   },
   "toolkits/debugging": {
     "has_readme": true,
@@ -225,7 +235,7 @@
     "content_hash": "985f21bc8feb6eaa3f27f6f827459475752a06f9467c1516b94b8cc847167c12",
     "last_modified": "2026-03-02T22:24:41.536000",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.560865"
+    "last_seen": "2026-03-25T09:55:39.453583"
   },
   "toolkits/dependency": {
     "has_readme": true,
@@ -245,7 +255,7 @@
     "content_hash": "6eb6fa57b463f85e6c4cd25e74a577e8c4b50ff1f53d4b45a4c9a6dd1fbc0a8b",
     "last_modified": "2026-03-02T19:05:46.455000",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.564217"
+    "last_seen": "2026-03-25T09:55:39.457325"
   },
   "toolkits/reporting": {
     "has_readme": true,
@@ -259,7 +269,7 @@
     "content_hash": "d05f407235ca328359ece334fca0e4e11cfdc176f822562c357ab00eeb3466c4",
     "last_modified": "2026-03-25T09:41:36.316698",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.565729"
+    "last_seen": "2026-03-25T09:55:39.458906"
   },
   "toolkits/runtime_observability": {
     "has_readme": true,
@@ -277,6 +287,6 @@
     "content_hash": "e5d9bdab91bb661f30e6ef19e248ec04e514077c87bae96669e353e83d1f2304",
     "last_modified": "2026-03-25T09:41:36.320539",
     "subdirs": [],
-    "last_seen": "2026-03-25T09:45:04.568719"
+    "last_seen": "2026-03-25T09:55:39.461845"
   }
 }

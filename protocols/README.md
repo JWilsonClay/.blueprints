@@ -14,3 +14,4 @@ Defines operational standards and step-by-step procedures for agentic tasks, ens
 ### Subdirectories
 - **[atomic/](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/protocols/atomic/)**: Low-level, single-purpose agentic instructions (OPS-).
 - **[sequential/](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/protocols/sequential/)**: High-level multi-step agentic workflows (SEQ-).
+- **[archived/](file:///home/jwils/GoogleDrive1TB/PapiBobes/.blueprints/protocols/archived/)**: Legacy, deprecated protocols preserved for historical context and redirection logic.

@@ -114,3 +114,11 @@ Folder: toolkits/runtime_observability
 Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
 Reason: hash drift
 
+Folder: frontend
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: hash drift
+
+Folder: protocols/archived
+Proposed breadcrumb: [PENDING AGENT SUMMARIZATION]
+Reason: new directory
+
